@@ -2,10 +2,10 @@
 
 <div align=center>
      <a href="#sobre">Sobre |</a>
-     <a href="equipe">Contribuidores |</a>
-     <a href="backlog">Product Backlog |</a>
-     <a href="cronograma">Cronograma de Entregas |</a>
-     <a href="tecnologias">Tecnologias</a>
+     <a href="#equipe">Contribuidores |</a>
+     <a href="#backlog">Product Backlog |</a>
+     <a href="#cronograma">Cronograma de Entregas |</a>
+     <a href="#tecnologias">Tecnologias</a>
 </div>
 
 
