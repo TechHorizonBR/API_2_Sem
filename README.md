@@ -12,11 +12,10 @@
   <span id="sobre">
 
   ## Sobre 📚
-
+  
 <p align="left">Uma aplicação DESKTOP criada com o objetivo de otimizar o processo de avaliação dos trabalhos de conclusão de curso dos alunos do 5º e 6º período do curso de Análise e Desenvolvimento de Sistemas.
 
 <p align="left">Este sistema permite que os professores façam o upload de um arquivo CSV gerado a partir de um formulário preenchido pelos alunos, que, por sua vez, popula o banco de dados. A aplicação oferece uma série de ferramentas que incluem recursos para avaliação, feedbacks e a geração de relatórios para acompanhamento dos alunos</p>
-
 
 <span id="equipe"> 
      
@@ -133,7 +132,6 @@
   </div>
 
 
-
 <span id="backlog">
 
 ## Product Backlog 📜
@@ -156,5 +154,4 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 ## Tecnologias Utilizadas 💻
 
 ![Readme TechHorizon 2S](https://github.com/TechHorizonBR/API_2_Sem/assets/123211025/48f2020a-d873-4a0b-a818-d29c20157787)
-
 
