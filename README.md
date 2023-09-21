@@ -18,7 +18,7 @@
 <p align="left">Este sistema permite que os professores façam o upload de um arquivo CSV gerado a partir de um formulário preenchido pelos alunos, que, por sua vez, popula o banco de dados. A aplicação oferece uma série de ferramentas que incluem recursos para avaliação, feedbacks e a geração de relatórios para acompanhamento dos alunos</p>
 
 
-<span id="contribuidores"> 
+<span id="equipe"> 
      
 ## Contribuidores 👨‍💻👩‍💻
 
