@@ -4,7 +4,7 @@
      <a href="#sobre">Sobre |</a>
      <a href="#equipe">Contribuidores |</a>
      <a href="#backlog">Product Backlog |</a>
-     <a href="#cronograma">Cronograma de Entregas |</a>
+     <a href="#cronograma">Cronograma de Sprints |</a>
      <a href="#tecnologias">Tecnologias</a>
 </div>
 
@@ -133,8 +133,43 @@
 
 
 <span id="backlog">
+     
+## User stories
+
+<details>
+
+User stories |
+--- |
+Como professor preciso que o sistema seja capaz de ler um arquivo em formato CSV para começar a avaliação |
+Como professor preciso que os dados dos alunos sejam armazenados de forma persistente |
+Como professor preciso que o sistema permita inserir quantas avaliações cada aluno realizará |
+Como professor preciso que o sistema consiga identificar se o aluno está cursando TG1, TG2 ou ambos para definir a maneira da avaliação |
+Como professor preciso que o sistema faça distinção do tipo de TG (portfolio, artigo tecnologico ou cientifico, relatório técnico para estágio ou disciplina)
+Como professor preciso que para cada entrega do aluno seja possível atribuir uma nota e um feedback
+Como professor preciso que o sistema valide o nome do professor, no caso do aluno digitar erroneamente no formulário
+Como professor preciso que o sistema possa gerar uma lista de alunos aptos a solicitar certificado
+Como professor preciso que o sistema possa replicar a nota do TG1 para TG2 em caso de relatórios técnicos
+Como professor preciso que seja possível armazenar os detalhes do TG (tipo, problema a ser tratado, etc)
+Como professor preciso que o sistema possa evidenciar os alunos que não estão entregando as atividades
+Como professor preciso que o sistema permita realizar o fechamento de semestre e transporte de notas.
+
+
+</details>
+
 
 ## Product Backlog 📜
+Product Backlog | Prioridade | Status
+--- | --- | ---
+Carregamento do arquivo CSV | 0 | -
+Registro de notas e feedbacks | 1 | -
+Registro de número de avaliações | 2 | -
+Validação dados do orientador | 3 | -
+Replicação de notas em caso de relatórios técnicos | 4 | -
+Geração de relatório de alunos aptos a defesa | 5 | -
+Geração de relatório de notas dos alunos | 6 | -
+Geração de relatório de acompanhamento de entregas | 7 | -
+
+
 
 <span id="cronograma">
 
