@@ -5,6 +5,7 @@
      <a href="#equipe">Contribuidores |</a>
      <a href="#backlog">Product Backlog |</a>
      <a href="#cronograma">Cronograma de Sprints |</a>
+     <a href="#burndown">Gráfico de Burndown |</a>
      <a href="#tecnologias">Tecnologias</a>
 </div>
 
@@ -183,6 +184,15 @@ Kick off do projeto| 21/08/2023| 21/08/2023 ✅
 3| 16/10/2023| 05/11/2023 
 4|  06/11/2023| 26/11/2023 
 Feira de Soluções|  12/12/2023| 12/12/2023 
+
+
+
+<span id="burndown">
+
+## Burndown 🔥
+
+![Sprint 1 (3)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/4f57197e-6ffc-4a54-8d41-28da8e202165)
+
 
 <span id="tecnologias">
 
