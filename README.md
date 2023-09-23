@@ -191,8 +191,7 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 
 ## Burndown 🔥
 
-![Sprint 1 (2)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/b1c4a336-cfe8-4f21-a07f-09f6fef6d2ae)
-
+![Sprint 1 (3)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/4f57197e-6ffc-4a54-8d41-28da8e202165)
 
 
 <span id="tecnologias">
