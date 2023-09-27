@@ -4,7 +4,10 @@
      <a href="#sobre">Sobre |</a>
      <a href="#equipe">Contribuidores |</a>
      <a href="#backlog">Product Backlog |</a>
-     <a href="#cronograma">Cronograma de Sprints |</a>
+     <a href="#userstory">User Stories |</a>
+     <a href="#cronograma">Cronograma de Entregas |</a>
+     <a href="#burndown">Gráfico de Burndown |</a>
+     <a href="#docs">Documentação |</a>
      <a href="#tecnologias">Tecnologias</a>
 </div>
 
@@ -15,7 +18,7 @@
   
 <p align="left">Uma aplicação DESKTOP criada com o objetivo de otimizar o processo de avaliação dos trabalhos de conclusão de curso dos alunos do 5º e 6º período do curso de Análise e Desenvolvimento de Sistemas.
 
-<p align="left">Este sistema permite que os professores façam o upload de um arquivo CSV gerado a partir de um formulário preenchido pelos alunos, que, por sua vez, popula o banco de dados. A aplicação oferece uma série de ferramentas que incluem recursos para avaliação, feedbacks e a geração de relatórios para acompanhamento dos alunos</p>
+<p align="left">Este sistema permite que os professores façam o upload de um arquivo CSV gerado a partir de um formulário preenchido pelos alunos, que, por sua vez, popula o banco de dados. A aplicação oferece uma série de ferramentas que incluem recursos para avaliação, feedbacks e a geração de relatórios para acompanhamento dos alunos.</p>
 
 <span id="equipe"> 
      
@@ -134,55 +137,80 @@
 
 <span id="backlog">
      
-## User stories
+## Product Backlog 📜
+Product Backlog | Prioridade | Status
+--- | --- | ---
+Carregamento do arquivo CSV | 1 | -
+Registro de notas e feedbacks | 2 | -
+Registro de número de avaliações | 3 | -
+Validação dados do orientador | 4 | -
+Replicação de notas em caso de relatórios técnicos | 5 | -
+Geração de relatório de alunos aptos a defesa | 6 | -
+Geração de relatório de notas dos alunos | 7 | -
+Geração de relatório de acompanhamento de entregas | 8 | -
+
+
+<span id="userstory">
+     
+## User stories 🔍
 
 <details>
 
+<summary>Clique aqui para visualizar</summary>
+
 User stories |
 --- |
-Como professor preciso que o sistema seja capaz de ler um arquivo em formato CSV para começar a avaliação |
-Como professor preciso que os dados dos alunos sejam armazenados de forma persistente |
-Como professor preciso que o sistema permita inserir quantas avaliações cada aluno realizará |
-Como professor preciso que o sistema consiga identificar se o aluno está cursando TG1, TG2 ou ambos para definir a maneira da avaliação |
-Como professor preciso que o sistema faça distinção do tipo de TG (portfolio, artigo tecnologico ou cientifico, relatório técnico para estágio ou disciplina)
-Como professor preciso que para cada entrega do aluno seja possível atribuir uma nota e um feedback
-Como professor preciso que o sistema valide o nome do professor, no caso do aluno digitar erroneamente no formulário
-Como professor preciso que o sistema possa gerar uma lista de alunos aptos a solicitar certificado
-Como professor preciso que o sistema possa replicar a nota do TG1 para TG2 em caso de relatórios técnicos
-Como professor preciso que seja possível armazenar os detalhes do TG (tipo, problema a ser tratado, etc)
-Como professor preciso que o sistema possa evidenciar os alunos que não estão entregando as atividades
-Como professor preciso que o sistema permita realizar o fechamento de semestre e transporte de notas.
+Como professor, necessito que o sistema seja capaz de ler arquivos no formato CSV para iniciar a avaliação.
+Como professor, necessito que os dados dos alunos sejam armazenados de forma persistente para que eu possa consultá-los em qualquer momento.
+Como professor, necessito que o sistema permita inserir o número necessário de entregas para cada turma de TG, a fim de realizar as avaliações.
+Como professor, necessito que o sistema seja capaz de identificar se o aluno está matriculado no TG1, TG2 ou em ambos, a fim de definir a abordagem de avaliação adequada.
+Como professor, necessito que o sistema faça a distinção entre os tipos de TG (portfolio, artigo tecnológico ou científico, relatório técnico para estágio ou disciplina) para que eu possa gerenciar cada tipo de forma adequada.
+Como professor, necessito que seja possível atribuir uma nota e fornecer feedback para cada entrega do aluno, para que eu possa consultá-los no futuro.
+Como professor, necessito que o sistema valide o nome do professor, para que eu possa corrigir erros caso o aluno o digite incorretamente.
+Como professor, necessito que o sistema possa gerar uma lista de alunos aptos para a defesa do projeto, a fim de facilitar o processo de certificação.
+Como professor, gostaria que o sistema replicasse a nota do TG1 para TG2 em caso de relatórios técnicos, a fim de manter a consistência nas avaliações.
+Como professor, gostaria que o sistema permitisse o armazenamento dos detalhes do TG (tipo, problema a ser tratado, etc.) para referência futura e análise dos projetos dos alunos.
+Como professor, gostaria que o sistema destacasse os alunos que não estão entregando as atividades, para que eu possa identificar e abordar problemas nas entregas.
+Como professor, necessito que o sistema permita o fechamento do semestre e o transporte de notas, para facilitar o processo de aprovação dos alunos.
 
 
 </details>
 
-
-## Product Backlog 📜
-Product Backlog | Prioridade | Status
---- | --- | ---
-Carregamento do arquivo CSV | 0 | -
-Registro de notas e feedbacks | 1 | -
-Registro de número de avaliações | 2 | -
-Validação dados do orientador | 3 | -
-Replicação de notas em caso de relatórios técnicos | 4 | -
-Geração de relatório de alunos aptos a defesa | 5 | -
-Geração de relatório de notas dos alunos | 6 | -
-Geração de relatório de acompanhamento de entregas | 7 | -
-
-
-
 <span id="cronograma">
 
-## Cronograma 🗓️
+## Cronograma de Entregas 🗓️
 
 Sprint| Início| Entrega  
 --- | --- | --- 
 Kick off do projeto| 21/08/2023| 21/08/2023 ✅
-<a href="">1</a>| 04/09/2023| 24/09/2023 ✅
+1| 04/09/2023| 24/09/2023 ✅
 2| 25/09/2023| 15/10/2023 
 3| 16/10/2023| 05/11/2023 
 4|  06/11/2023| 26/11/2023 
 Feira de Soluções|  12/12/2023| 12/12/2023 
+
+
+
+<span id="burndown">
+
+## Burndown 🔥
+
+<details>
+     
+<summary>Sprint 1</summary>
+
+![Sprint 1 (3)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/4f57197e-6ffc-4a54-8d41-28da8e202165)
+     
+</details>
+
+<span id="docs">
+
+## Documentação 📜
+
+- <a href="https://github.com/TechHorizonBR/API_2_Sem/blob/main/Docs/ModelagemDeDadosInicial.png">Modelagem de Dados</a>
+- <a href="https://github.com/TechHorizonBR/API_2_Sem/blob/main/Docs/DiagramaClassesIMG.png">Diagrama de Classes</a>
+- <a href="https://www.figma.com/file/c0g436FKcqlxVzvQkhjapb/WireFrame---API_2S?type=design&node-id=0%3A1&mode=design&t=zESC1cV3qporI61q-1">Protótipo de Telas</a>
+
 
 <span id="tecnologias">
 
