@@ -1,6 +1,7 @@
 package Model.DAO;
 
 import Model.ConexaoBD.ConexaoBD;
+import Model.DTO.OrientadorDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
