@@ -29,7 +29,7 @@ public class SistemaDAO {
             stmtAluno.setString(1, aluno.getNome());
             stmtAluno.setString(2, aluno.getEmailFatec());
             stmtAluno.setString(3, aluno.getEmailPessoal());
-            stmtAluno.setInt(4, aluno.getIdOrientador());
+            stmtAluno.setLong(4, aluno.getIdOrientador());
             stmtAluno.executeUpdate();
             //System.out.println("Aluno adiconado com sucesso");
 
@@ -67,7 +67,7 @@ public class SistemaDAO {
             ResultSet rs = connection.createStatement().executeQuery(sql);
 
             while(rs.next()){
-                alunosEncontrados.add(new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getInt("a.idOrientador"), rs.getInt("m.idTurma"));
+                alunosEncontrados.add(new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getLong("a.idOrientador"), rs.getLong("m.idTurma")));
             }
 
         }catch (SQLException e){
@@ -83,7 +83,7 @@ public class SistemaDAO {
         }
         return alunosEncontrados;
     }
-*/
+
     public void addOrientador(OrientadorDTO orientadorDTO){
         PreparedStatement stmt = null;
         try{
