@@ -177,4 +177,33 @@ public class SistemaDAO {
         return listaTurmas;
     }
 */
+
+    public void updateAluno(AlunoDTO alunoDTO){
+        PreparedStatement stmt = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+
+            String sql = "UPDATE aluno SET nome = ?, emailFatec = ?, emailPessoal = ?, idOrientador = ? WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, alunoDTO.getNome());
+            stmt.setString(2, alunoDTO.getEmailFatec());
+            stmt.setString(3, alunoDTO.getEmailPessoal());
+            stmt.setLong(4, alunoDTO.getIdOrientador());
+            stmt.setLong(5, alunoDTO.getId());
+            stmt.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }catch (ClassNotFoundException e){
+            System.out.println(e.getMessage());
+        }finally {
+            try{
+                connection.close();
+                stmt.close();
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
