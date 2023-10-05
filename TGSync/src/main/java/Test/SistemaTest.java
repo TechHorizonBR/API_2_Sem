@@ -1,19 +1,13 @@
 package Test;
 
-import Model.ConexaoBD.ConexaoBD;
 import Model.DAO.SistemaDAO;
 import Model.DTO.AlunoDTO;
 import Model.DTO.OrientadorDTO;
 import Model.DTO.TurmaDTO;
-import Model.Service.TgService;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class SistemaTest {
     public static void main(String[] args){
-        //SistemaDAO sistemaDAO = new SistemaDAO();
+        SistemaDAO sistemaDAO = new SistemaDAO();
 
         //sistemaDAO.addAluno(new AlunoDTO("Jhony", "jhony.santos8@fatec.sp.gov.br", "santosjhony@email.com", 2));
       // System.out.println(sistemaDAO.getAllAlunos());
@@ -28,16 +22,8 @@ public class SistemaTest {
 
 */
 
-        //AlunoDTO alunoDTO = new AlunoDTO(13L, "André", "andre@email.com", "andre@fatec.sp.gov.br", Long.valueOf(3));
+        AlunoDTO alunoDTO = new AlunoDTO(13L, "André", "andre@email.com", "andre@fatec.sp.gov.br", Long.valueOf(3));
 
-        //sistemaDAO.updateAluno(alunoDTO);
-
-        //System.out.println("Aluno: "+sistemaDAO.getAlunoPorEmail("teset@fatec.com"));
-        //System.out.println("Orientador: "+sistemaDAO.getOrientadorPorEmail("professor@email.com"));
-        //System.out.println("Pegando Orientador por id: "+sistemaDAO.getOrientadorPorId(2L));
-        //System.out.println(sistemaDAO.getAllTurmas());
-
-        TgService.registrarTg("C:\\Users\\santo\\OneDrive\\Documentos\\csv.csv");
-
+        sistemaDAO.updateAluno(alunoDTO);
     }
 }
