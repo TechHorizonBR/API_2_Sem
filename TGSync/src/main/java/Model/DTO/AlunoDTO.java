@@ -75,6 +75,10 @@ public class AlunoDTO {
         this.idTurma = idTurma;
     }
 
+    public String toString(){
+        return "\n"+this.nome+"\n"+this.emailFatec+"\n";
+    }
+
 //    public void addNota(Nota nota){
 //        listaNotas.add(nota);
 //    }

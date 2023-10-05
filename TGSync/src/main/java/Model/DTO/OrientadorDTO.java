@@ -1,23 +1,23 @@
 package Model.DTO;
 
 public class OrientadorDTO {
-    private Integer id;
+    private Long id;
     private String nome;
     private String emailFatec;
 
     public OrientadorDTO(){
     }
-    public OrientadorDTO(Integer id, String nome, String emailFatec) {
+    public OrientadorDTO(Long id, String nome, String emailFatec) {
         this.id = id;
         this.nome = nome;
         this.emailFatec = emailFatec;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
