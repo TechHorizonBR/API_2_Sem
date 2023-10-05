@@ -1,13 +1,17 @@
 package Model.ConexaoBD;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBD {
-    public static Connection ConexaoBD() throws SQLException {
-        Connection connection = DriverManager.getConnection("localhost:3307/TGSync", "root","28312515");
+    public static Connection ConexaoBD() throws SQLException, ClassNotFoundException {
+
+        Connection connection = null;
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/tgsync", "devs", "password123");
+
         return connection;
     }
-
 }
