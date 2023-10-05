@@ -9,5 +9,7 @@ public class AlunoTest {
         System.out.println(alunoDAO.getAlunoPorId(Long.valueOf(1)));
 
         System.out.println(alunoDAO.getAlunoPorId(12L));
+
+        System.out.println(alunoDAO.getAllAlunos());
     }
 }
