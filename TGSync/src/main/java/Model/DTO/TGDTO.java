@@ -1,4 +1,4 @@
-package Model.Dto;
+package Model.DTO;
 
 public class TGDTO {
 
@@ -11,7 +11,7 @@ public class TGDTO {
 
     public TGDTO(Long id, String tipo, String disciplina, String problema, String empresa, Long idAluno) {
         this.id = id;
-            this.tipo = tipo;
+        this.tipo = tipo;
         this.disciplina = disciplina;
         this.problema = problema;
         this.empresa = empresa;
