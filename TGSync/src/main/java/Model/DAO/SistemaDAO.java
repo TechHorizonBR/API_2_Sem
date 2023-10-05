@@ -206,4 +206,93 @@ public class SistemaDAO {
             }
         }
     }
+
+    public AlunoDTO getAlunoPorEmail(String emailFatec) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = ConexaoBD.ConexaoBD();
+
+            String sql = "SELECT a.*, m.idTurma FROM aluno a INNER JOIN matricula m ON a.id = m.idAluno WHERE a.emailFatec = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, emailFatec);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                AlunoDTO alunoDTO = new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("emailPessoal"), rs.getString("a.emailFatec"), rs.getLong("a.idOrientador"), rs.getLong("m.idTurma"));
+                return alunoDTO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+
+    public OrientadorDTO getOrientadorPorEmail(String email){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM orientador WHERE emailFatec = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                OrientadorDTO orientadorDTO = new OrientadorDTO(rs.getLong("id"), rs.getString("emailFatec"), rs.getString("nome"));
+                return orientadorDTO;
+            }
+        }catch (SQLException e){
+            e.getMessage();
+        }catch (ClassNotFoundException e){
+            e.getMessage();
+        }finally {
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.getMessage();
+            }
+        }
+        return null;
+    }
+
+    public OrientadorDTO getOrientadorPorId(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM orientador WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                OrientadorDTO orientadorDTO = new OrientadorDTO(rs.getLong("id"), rs.getString("nome"), rs.getString("emailFatec"));
+                return orientadorDTO;
+            }
+
+        }catch (SQLException e){
+            e.getMessage();
+        }catch (ClassNotFoundException e){
+            e.getMessage();
+        }finally {
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.getMessage();
+            }
+        }
+        return null;
+    }
 }
