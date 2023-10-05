@@ -1,38 +1,76 @@
 package Model.Dto;
 
-public class TGDto {
+public class TGDTO {
 
-    private Str tema;
-    private Str tipoTg;
-    private Str emailAluno;
+    private Long id;
+    private String tipo;
+    private String disciplina;
+    private String problema;
+    private String empresa;
+    private Long idAluno;
+
+    public TGDTO(Long id, String tipo, String disciplina, String problema, String empresa, Long idAluno) {
+        this.id = id;
+            this.tipo = tipo;
+        this.disciplina = disciplina;
+        this.problema = problema;
+        this.empresa = empresa;
+        this.idAluno = idAluno;}
+
+    public TGDTO(String tipo, String disciplina, String problema, String empresa, Long idAluno) {
+        this.tipo = tipo;
+        this.disciplina = disciplina;
+        this.problema = problema;
+        this.empresa = empresa;
+        this.idAluno = idAluno;}
 
 
-    public TGDto(TGDto tgDto) {
-        this.tgDto = tgDto;
+    public Long getId() {
+        return id;
     }
 
-    public Str getTema() {
-        return tema;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setTema(Str tema) {
-        this.tema = tema;
+    public String getTipo() {
+        return tipo;
     }
 
-    public Str getTipoTg() {
-        return tipoTg;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public void setTipoTg(Str tipoTg) {
-        this.tipoTg = tipoTg;
+    public String getDisciplina() {
+        return disciplina;
     }
 
-    public Str getEmailAluno() {
-        return emailAluno;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 
-    public void setEmailAluno(Str emailAluno) {
-        this.emailAluno = emailAluno;
+    public String getProblema() {
+        return problema;
+    }
+
+    public void setProblema(String problema) {
+        this.problema = problema;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public Long getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(Long idAluno) {
+        this.idAluno = idAluno;
     }
 }
 
