@@ -26,7 +26,8 @@ public class SistemaTest {
 
         //sistemaDAO.updateAluno(alunoDTO);
 
-        System.out.println("Aluno: "+sistemaDAO.getAlunoPorEmail("teset@fatec.com"));
-        System.out.println("Orientador: "+sistemaDAO.getOrientadorPorEmail("professor@email.com"));
+        //System.out.println("Aluno: "+sistemaDAO.getAlunoPorEmail("teset@fatec.com"));
+        //System.out.println("Orientador: "+sistemaDAO.getOrientadorPorEmail("professor@email.com"));
+        System.out.println("Pegando Orientador por id: "+sistemaDAO.getOrientadorPorId(2L));
     }
 }

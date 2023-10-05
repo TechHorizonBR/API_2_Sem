@@ -266,4 +266,33 @@ public class SistemaDAO {
         }
         return null;
     }
+
+    public OrientadorDTO getOrientadorPorId(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM orientador WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                OrientadorDTO orientadorDTO = new OrientadorDTO(rs.getLong("id"), rs.getString("nome"), rs.getString("emailFatec"));
+                return orientadorDTO;
+            }
+
+        }catch (SQLException e){
+            e.getMessage();
+        }catch (ClassNotFoundException e){
+            e.getMessage();
+        }finally {
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.getMessage();
+            }
+        }
+        return null;
+    }
 }
