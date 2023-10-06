@@ -18,6 +18,9 @@ public class TurmaDTO {
 		this.semestre = semestre;
 		this.disciplina = disciplina;
 	}
+
+	public TurmaDTO(){
+	}
 	
 	public Long getId() {
 		return id;
