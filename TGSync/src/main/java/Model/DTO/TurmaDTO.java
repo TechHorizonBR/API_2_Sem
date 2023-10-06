@@ -6,6 +6,12 @@ public class TurmaDTO {
 	private int semestre;
 	private int disciplina;
 	
+	public TurmaDTO(int id, int ano, int semestre, int disciplina){
+		this.id = id;
+		this.ano = ano;
+		this.semestre = semestre;
+		this.disciplina = disciplina;
+	}
 	
 	public int getId() {
 		return id;
