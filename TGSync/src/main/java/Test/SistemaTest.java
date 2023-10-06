@@ -22,8 +22,8 @@ public class SistemaTest {
 
 */
 
-        AlunoDTO alunoDTO = new AlunoDTO(13L, "André", "andre@email.com", "andre@fatec.sp.gov.br", Long.valueOf(3));
+        //AlunoDTO alunoDTO = new AlunoDTO(13L, "André", "andre@email.com", "andre@fatec.sp.gov.br", Long.valueOf(3));
 
-        sistemaDAO.updateAluno(alunoDTO);
+        //sistemaDAO.updateAluno(alunoDTO);
     }
 }

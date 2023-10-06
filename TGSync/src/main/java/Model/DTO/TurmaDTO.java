@@ -1,22 +1,22 @@
 package Model.DTO;
 
 public class TurmaDTO {
-	private int id;
+	private Long id;
 	private int ano;
 	private int semestre;
 	private int disciplina;
 	
-	public TurmaDTO(int id, int ano, int semestre, int disciplina){
+	public TurmaDTO(Long id, int ano, int semestre, int disciplina){
 		this.id = id;
 		this.ano = ano;
 		this.semestre = semestre;
 		this.disciplina = disciplina;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public int getAno() {
