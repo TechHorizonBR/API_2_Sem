@@ -8,8 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class AlunoDAO {
     Connection connection = null;
@@ -53,31 +52,36 @@ public class AlunoDAO {
             }
         }
     }
+    public List<AlunoDTO> getAllAlunos() {
+        Map<Long, AlunoDTO> alunosMap = new HashMap<>();
 
-    public List<AlunoDTO> getAllAlunos(){
-        List<AlunoDTO> alunosEncontrados = new LinkedList<>();
-
-        try{
+        try {
             connection = ConexaoBD.ConexaoBD();
-            String sql = "SELECT a.*, m.idTurma FROM aluno a INNER JOIN matricula m WHERE a.id = m.idAluno";
+            String sql = "SELECT a.id, a.nome, a.emailFatec, a.emailPessoal, a.idOrientador, m.idTurma FROM aluno a INNER JOIN matricula m ON a.id = m.idAluno";
             ResultSet rs = connection.createStatement().executeQuery(sql);
 
-            while(rs.next()){
-                alunosEncontrados.add(new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getLong("a.idOrientador"), rs.getLong("m.idTurma")));
+            while (rs.next()) {
+                Long alunoId = rs.getLong("a.id");
+
+                if (!alunosMap.containsKey(alunoId)) {
+                    AlunoDTO aluno = new AlunoDTO(alunoId, rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getLong("a.idOrientador"));
+                    alunosMap.put(alunoId, aluno);
+                }
+                alunosMap.get(alunoId).setIdTurma(rs.getInt("m.idTurma"));
             }
 
-        }catch (SQLException e){
-            System.out.println("Houve algum erro no SQL"+e.getMessage());
-        }catch (ClassNotFoundException e){
-            System.out.println("Não foi possível encontrar o driver"+e.getMessage());
-        }finally {
-            try{
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
                 connection.close();
-            }catch (SQLException e){
-                System.out.println("Houve algum erro no fechamento da conexão"+e.getMessage());
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        return alunosEncontrados;
+        return new ArrayList<>(alunosMap.values());
     }
 
     public void updateAluno(AlunoDTO alunoDTO){
@@ -121,10 +125,23 @@ public class AlunoDAO {
             stmt.setString(1, emailFatec);
             rs = stmt.executeQuery();
 
+            AlunoDTO alunoDTO = null;
+
             while (rs.next()) {
-                AlunoDTO alunoDTO = new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("emailPessoal"), rs.getString("a.emailFatec"), rs.getLong("a.idOrientador"), rs.getLong("m.idTurma"));
-                return alunoDTO;
+                if (alunoDTO == null) {
+                    alunoDTO = new AlunoDTO(
+                            rs.getLong("a.id"),
+                            rs.getString("a.nome"),
+                            rs.getString("a.emailPessoal"),
+                            rs.getString("a.emailFatec"),
+                            rs.getLong("a.idOrientador")
+                    );
+                }
+
+                alunoDTO.setIdTurma(rs.getInt("m.idTurma"));
             }
+
+            return alunoDTO;
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -139,33 +156,49 @@ public class AlunoDAO {
         return null;
     }
 
-    public AlunoDTO getAlunoPorId(Long id){
+    public AlunoDTO getAlunoPorId(Long id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        try{
+        try {
             connection = ConexaoBD.ConexaoBD();
             String sql = "SELECT a.*, m.idTurma FROM aluno a INNER JOIN matricula m ON m.idAluno = a.id WHERE a.id = ?";
             stmt = connection.prepareStatement(sql);
             stmt.setLong(1, id);
             rs = stmt.executeQuery();
 
-            while(rs.next()){
-                AlunoDTO alunoDTO = new AlunoDTO(rs.getLong("a.id"), rs.getString("a.nome"), rs.getString("emailPessoal"), rs.getString("a.emailFatec"), rs.getLong("a.idOrientador"), rs.getLong("m.idTurma"));
-                return alunoDTO;
+            AlunoDTO alunoDTO = null;
+            List<Integer> idTurmas = new ArrayList<>();
+
+            while (rs.next()) {
+                if (alunoDTO == null) {
+                    alunoDTO = new AlunoDTO(
+                            rs.getLong("a.id"),
+                            rs.getString("a.nome"),
+                            rs.getString("a.emailPessoal"),
+                            rs.getString("a.emailFatec"),
+                            rs.getLong("a.idOrientador")
+                    );
+                }
+
+                int idTurma = rs.getInt("m.idTurma");
+                alunoDTO.setIdTurma(idTurma);
             }
-        }catch (SQLException e){
-            e.getMessage();
-        }catch (ClassNotFoundException e){
-            e.getMessage();
-        }finally {
-            try{
-                if(connection != null) connection.close();
-            }catch (SQLException e){
-                e.getMessage();
+
+            return alunoDTO;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return null;
     }
+
 
 }
