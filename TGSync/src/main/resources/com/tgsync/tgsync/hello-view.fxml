@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="819.0" prefWidth="1311.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="819.0" prefWidth="1311.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.HelloController">
    <children>
       <ImageView fitHeight="147.0" fitWidth="448.0" layoutX="600.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
@@ -23,12 +23,12 @@
       </ImageView>
       <HBox prefHeight="275.0" prefWidth="1234.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Importar CSV">
+            <Button fx:id="onOpenCSVButton" alignment="CENTER" mnemonicParsing="false" onAction="#onOpenCSVButton" prefHeight="25.0" prefWidth="130.0" text="Importar CSV">
                <HBox.margin>
                   <Insets left="300.0" top="250.0" />
                </HBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
                <HBox.margin>
                   <Insets left="400.0" top="250.0" />
                </HBox.margin>
