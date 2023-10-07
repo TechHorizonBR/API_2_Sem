@@ -12,6 +12,15 @@ public class TurmaDTO {
 		this.semestre = semestre;
 		this.disciplina = disciplina;
 	}
+
+	public TurmaDTO(int ano, int semestre, int disciplina){
+		this.ano = ano;
+		this.semestre = semestre;
+		this.disciplina = disciplina;
+	}
+
+	public TurmaDTO(){
+	}
 	
 	public Long getId() {
 		return id;
