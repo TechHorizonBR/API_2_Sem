@@ -1,6 +1,7 @@
 package com.tgsync.tgsync;
 
 import Model.DAO.SistemaDAO;
+import Model.Service.TgService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,9 +31,11 @@ public class HelloController {
                         File file = fileChooser.showOpenDialog(mainScene.getWindow());
                         if (file != null) {
                             openFile(file);
+                            TgService.registrarTg(file.getAbsolutePath());
                         }
                     }
                 });
+
 
     }
     private void openFile(File file) {

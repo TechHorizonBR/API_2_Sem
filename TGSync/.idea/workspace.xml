@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8fc2e7-7f9d-4d9c-9c89-bc7b2b22a246" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DAO/AlunoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DAO/AlunoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Service/TgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Service/TgService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test/AlunoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/AlunoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tgsync/tgsync/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tgsync/tgsync/HelloController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2W2tzHii5kZ7cvvrS8Bm4muHvnU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,7 +53,20 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HelloApplication">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.tgsync.tgsync.HelloApplication" />
+      <module name="TGSync" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tgsync.tgsync.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test.SistemaTest" />
       <module name="TGSync" />
@@ -60,6 +74,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
