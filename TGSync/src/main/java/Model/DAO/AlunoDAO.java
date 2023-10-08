@@ -200,5 +200,29 @@ public class AlunoDAO {
         return null;
     }
 
+    public void addMatriculaAluno(AlunoDTO alunoDTO, TurmaDTO turmaDTO){
+        PreparedStatement stmt = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "INSERT INTO matricula VALUES (?, ?)";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, alunoDTO.getId());
+            stmt.setLong(2, turmaDTO.getId());
+            stmt.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }

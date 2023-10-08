@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8fc2e7-7f9d-4d9c-9c89-bc7b2b22a246" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_10_2023_19_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_10_2023_19_03__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_10_2023_19_03__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_10_2023_19_03__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_20_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_20_35__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_10_2023_14_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_10_2023_14_25__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DAO/AlunoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DAO/AlunoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DTO/AlunoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DTO/AlunoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Service/TgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Service/TgService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test/AlunoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/AlunoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
