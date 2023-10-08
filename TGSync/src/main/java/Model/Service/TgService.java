@@ -22,7 +22,6 @@ public class TgService {
 
             AlunoDAO alunoDAO = new AlunoDAO();
             TGDAO tgdao = new TGDAO();
-            AlunoDTO alunoDTO;
 
             for(String[] linha : linhas){
                 String tipo = linha[7];
@@ -31,30 +30,22 @@ public class TgService {
                 String empresa = linha[9];
                 String email1 = linha[1];
                 String email2 = linha[2];
-
+                AlunoDTO alunoDTO = null;
 
 
                 if (linha[2].isEmpty()){
-                    System.out.println(alunoDAO.getAlunoPorEmail(email1));
-
+                    alunoDTO = alunoDAO.getAlunoPorEmail(linha[1]);
                 }else{
-                    System.out.println(alunoDAO.getAlunoPorEmail(email2));
+                    alunoDTO = alunoDAO.getAlunoPorEmail(linha[2]);
                 }
 
-
-                /* System.out.println("\nTipo: "+tipo+
-                        "\nDiscplina: "+discplina+
-                        "\nProblema: "+problema+
-                        "\nEmpresa: "+empresa+
-                        "\nEmail Aluno: "+linha[2]);*/
-/*
                 if (alunoDTO != null) {
                     Long idAluno = alunoDTO.getId();
                     tgdao.addTg(new TGDTO(tipo, discplina, problema, empresa, idAluno));
-                    System.out.println("encontrou o jhony e deu certo o registro");
+                    System.out.println("Deu certo");
                 } else {
-                    System.err.println("Aluno não encontrado para o email fornecido: " + linha[1]);
-                }*/
+                    System.err.println("Aluno não encontrado para o email fornecido: " + linha[2]);
+                }
             }
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);

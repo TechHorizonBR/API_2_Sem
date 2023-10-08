@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8fc2e7-7f9d-4d9c-9c89-bc7b2b22a246" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tgsync/tgsync/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tgsync/tgsync/HelloController.java" afterDir="false" />
+>>>>>>> 376999219cd1f0084923f7416a5a4807e4a51787
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2W2tzHii5kZ7cvvrS8Bm4muHvnU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -62,6 +69,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.AlunoTest">
     <configuration name="AlunoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test.AlunoTest" />
@@ -69,6 +77,15 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Test.*" />
+=======
+  <component name="RunManager" selected="Application.HelloApplication">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.tgsync.tgsync.HelloApplication" />
+      <module name="TGSync" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tgsync.tgsync.*" />
+>>>>>>> 376999219cd1f0084923f7416a5a4807e4a51787
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,7 +102,11 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Application.AlunoTest" />
+=======
+        <item itemvalue="Application.HelloApplication" />
+>>>>>>> 376999219cd1f0084923f7416a5a4807e4a51787
       </list>
     </recent_temporary>
   </component>

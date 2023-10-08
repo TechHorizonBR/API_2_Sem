@@ -2,29 +2,41 @@ package Model.DTO;
 
 //import java.util.LinkedList;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class AlunoDTO {
     private Long id;
     private String nome;
     private String emailPessoal;
     private String emailFatec;
     private Long idOrientador;
-    private Long idTurma;
+    private List<Integer> idTurmas = new LinkedList<>();
 
-    public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador, Long idTurma){
+    public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Integer> idTurmas){
         this.id = id;
         this.nome = nome;
         this.emailPessoal = emailPessoal;
         this.emailFatec = emailFatec;
         this.idOrientador = idOrientador;
-        this.idTurma = idTurma;
+        this.idTurmas = idTurmas;
     }
 
-    public AlunoDTO(String nome, String emailPessoal, String emailFatec, Long idOrientador, Long idTurma){
+    public AlunoDTO(String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Integer> idTurmas){
         this.nome = nome;
         this.emailPessoal = emailPessoal;
         this.emailFatec = emailFatec;
         this.idOrientador = idOrientador;
-        this.idTurma = idTurma;
+        this.idTurmas = idTurmas;
+    }
+
+    public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador) {
+        this.id = id;
+        this.nome = nome;
+        this.emailPessoal = emailPessoal;
+        this.emailFatec = emailFatec;
+        this.idOrientador = idOrientador;
     }
 //    private List<Nota> listaNotas = new LinkedList<Nota>();
 
@@ -68,11 +80,15 @@ public class AlunoDTO {
         this.idOrientador = idOrientador;
     }
 
-    public Long getIdTurma(){
-        return this.idTurma;
+    public List<Integer> getIdTurmas(){
+        return this.idTurmas;
     }
-    public void setIdTurma(Long idTurma){
-        this.idTurma = idTurma;
+    public void setIdTurma(Integer idTurmas){
+        this.idTurmas.add(idTurmas);
+    }
+
+    public String toString(){
+        return "\n"+this.nome+"\n"+this.emailFatec+"\n"+this.idTurmas+"\n";
     }
 
 //    public void addNota(Nota nota){
