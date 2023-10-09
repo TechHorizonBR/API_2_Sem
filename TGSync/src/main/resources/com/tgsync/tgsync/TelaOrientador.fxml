@@ -67,12 +67,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Slider>
-      <TextField fx:id="labelNomeOrientador" layoutX="22.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <TextField fx:id="labelEmail" layoutX="260.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0">
+      <TextField fx:id="textFieldEmail" layoutX="260.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0" promptText="Email">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -100,5 +95,10 @@
             <Image url="@../../../../../../../../../../Pictures/Plus-removebg-preview.png" />
          </image>
       </ImageView>
+      <TextField fx:id="textFieldNomeOrientador" layoutX="22.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0" promptText="Nome do Orientador">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
    </children>
 </AnchorPane>
