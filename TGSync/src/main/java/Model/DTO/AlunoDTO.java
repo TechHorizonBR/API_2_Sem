@@ -12,9 +12,9 @@ public class AlunoDTO {
     private String emailPessoal;
     private String emailFatec;
     private Long idOrientador;
-    private List<Integer> idTurmas = new LinkedList<>();
+    private List<Long> idTurmas = new LinkedList<>();
 
-    public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Integer> idTurmas){
+    public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Long> idTurmas){
         this.id = id;
         this.nome = nome;
         this.emailPessoal = emailPessoal;
@@ -23,14 +23,19 @@ public class AlunoDTO {
         this.idTurmas = idTurmas;
     }
 
-    public AlunoDTO(String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Integer> idTurmas){
+    public AlunoDTO(String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Long> idTurmas){
         this.nome = nome;
         this.emailPessoal = emailPessoal;
         this.emailFatec = emailFatec;
         this.idOrientador = idOrientador;
         this.idTurmas = idTurmas;
     }
-
+    public AlunoDTO(String nome, String emailPessoal, String emailFatec, Long idOrientador){
+        this.nome = nome;
+        this.emailPessoal = emailPessoal;
+        this.emailFatec = emailFatec;
+        this.idOrientador = idOrientador;
+    }
     public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador) {
         this.id = id;
         this.nome = nome;
@@ -80,10 +85,10 @@ public class AlunoDTO {
         this.idOrientador = idOrientador;
     }
 
-    public List<Integer> getIdTurmas(){
+    public List<Long> getIdTurmas(){
         return this.idTurmas;
     }
-    public void setIdTurma(Integer idTurmas){
+    public void setIdTurma(Long idTurmas){
         this.idTurmas.add(idTurmas);
     }
 

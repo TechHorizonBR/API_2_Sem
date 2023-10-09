@@ -67,7 +67,7 @@ public class AlunoDAO {
                     AlunoDTO aluno = new AlunoDTO(alunoId, rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getLong("a.idOrientador"));
                     alunosMap.put(alunoId, aluno);
                 }
-                alunosMap.get(alunoId).setIdTurma(rs.getInt("m.idTurma"));
+                alunosMap.get(alunoId).setIdTurma(rs.getLong("m.idTurma"));
             }
 
         } catch (SQLException e) {
@@ -138,7 +138,7 @@ public class AlunoDAO {
                     );
                 }
 
-                alunoDTO.setIdTurma(rs.getInt("m.idTurma"));
+                alunoDTO.setIdTurma(rs.getLong("m.idTurma"));
             }
 
             return alunoDTO;
@@ -168,7 +168,7 @@ public class AlunoDAO {
             rs = stmt.executeQuery();
 
             AlunoDTO alunoDTO = null;
-            List<Integer> idTurmas = new ArrayList<>();
+            List<Long> idTurmas = new ArrayList<>();
 
             while (rs.next()) {
                 if (alunoDTO == null) {
@@ -181,7 +181,7 @@ public class AlunoDAO {
                     );
                 }
 
-                int idTurma = rs.getInt("m.idTurma");
+                Long idTurma = rs.getLong("m.idTurma");
                 alunoDTO.setIdTurma(idTurma);
             }
 

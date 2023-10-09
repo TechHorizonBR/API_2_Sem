@@ -28,42 +28,31 @@ public class AlunoService {
             OrientadorDAO orientadorDAO = new OrientadorDAO();
             OrientadorDTO orientadorDTO = new OrientadorDTO();
             AlunoDTO alunoDTO;
-
             String emailFatec = null;
 
-            for ( String[] linha: linhas){
-                if (linha[2].isEmpty()){
-                    emailFatec= linha[1];
-                }
-                else {
+            for (String[] linha : linhas) {
+                if (linha[2].isEmpty()) {
+                    emailFatec = linha[1];
+                } else {
                     emailFatec = linha[2];
                 }
 
                 alunoDTO = alunoDAO.getAlunoPorEmail(emailFatec);
-
                 orientadorDTO = orientadorDAO.getOrientadorPorEmail(linha[5]);
 
-                if (alunoDTO != null){
-                    alunoDAO.updateAluno(new AlunoDTO(linha[3], linha[1], emailFatec, orientadorDTO.getId(), turmaDTO.getId()));
-
+                if (alunoDTO != null) {
+                    AlunoDTO updateAluno = new AlunoDTO(alunoDTO.getId(), linha[3], linha[1], emailFatec, orientadorDTO.getId());
+                    alunoDAO.updateAluno(updateAluno);
+                    alunoDAO.addMatriculaAluno(alunoDTO, turmaDTO);
+                } else {
+                    alunoDAO.addAluno(new AlunoDTO(linha[3], linha[1], emailFatec, orientadorDTO.getId()), turmaDTO);
                 }
-                else {
-                    alunoDAO.addAluno(new AlunoDTO(linha[3], linha[1], emailFatec, orientadorDTO.getId(), turmaDTO.getId());
             }
-
-
-
-
-
-
-
-        }catch (FileNotFoundException e){
-            e.getMessage();
-        }catch (IOException e) {
-            e.getMessage();
-        }catch(CsvException e){
-            e.getMessage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
         }
-    }
 
+    }
 }
