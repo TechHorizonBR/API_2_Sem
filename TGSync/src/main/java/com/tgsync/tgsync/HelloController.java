@@ -25,6 +25,9 @@ public class HelloController {
     private Button onOpenCSVButton;
 
     final FileChooser fileChooser = new FileChooser();
+
+
+
     @FXML
     protected void onOpenCSVButton() {
         Scene mainScene = HelloApplication.getMainScene();
@@ -51,8 +54,11 @@ public class HelloController {
     private static void configureFileChooser(final FileChooser fileChooser) {
 
         fileChooser.setTitle("Abrir CSV");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivo CSV", "*.csv*")
         );
+
     }
     @FXML
     protected void onViewAllDataButton(){
