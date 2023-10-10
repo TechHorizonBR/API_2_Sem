@@ -173,3 +173,34 @@ CREATE TABLE matricula(
 CREATE USER 'devs'@'localhost' IDENTIFIED BY 'password123';
 GRANT SELECT, INSERT, DELETE, UPDATE on tgsync.* TO 'devs'@'localhost';
 ```
+
+### Para inserir a base de dados de Orientadores:
+
+```
+INSERT INTO orientador(nome, emailFatec)
+VALUES  ('Ana Cecília Rodrigues Medeiros', 'ana.medeiros@fatec.sp.gov.br'),
+        ('Antônio Egydio São Tiago Graça', 'antonio.graca@fatec.sp.gov.br'),
+        ('Arley Ferreira de Souza', 'arley.souza@fatec.sp.gov.br'),
+        ('Cícero Soares da Silva', 'cicero.silva@fatec.sp.gov.br'),
+        ('Claúdio Etelvino de Lima', 'claudio.elima@fatec.sp.gov.br'),
+        ('Cristie Luis Kugelmeier', 'cristie.kugelmeier@fatec.sp.gov.br'),
+        ('Dercy Félix da Silva', 'dfelix2008@fatec.sp.gov.br'),
+        ('Diogo Branquinho Ramos', 'diogo.branquinho@fatec.sp.gov.br'),
+        ('Eduardo Sakaue', 'e.sakaue@fatec.sp.gov.br'),
+        ('Eliane Penha Mergulhão Dias', 'eliane.dias@fatec.sp.gov.br'),
+        ('Emanuel Mineda Carneiro', 'emanuel.mineda@fatec.sp.gov.br'),
+        ('Fabricio Galendes Marques de Carvalho', 'fabricio.carvalho01@fatec.sp.gov.br'),
+        ('Fernando Masaroni Ashikaga', 'fmasanori@fatec.sp.gov.br'),
+        ('Geraldo José Lombardi de Souza', 'geraldo.souza3@fatec.sp.gov.br'),
+        ('Gerson da Penha Neto', 'gerson.penha@fatec.sp.gov.br'),
+        ('Giuliano Araújo Bertoti', 'giuliano.bertoti@fatec.sp.gov.br'),
+        ('Guaraci Lima de Morais', 'guaraci.morais@fatec.sp.gov.br'),
+        ('Jean Carlos Lourenço Costa', 'jean.costa4@fatec.sp.gov.br'),
+        ('Joares Lidovino dos Reis', 'joares.lidovino@fatec.sp.gov.br'),
+        ('José Walmir Gonçalves Duque', 'walmir.duque@fatec.sp.gov.br'),
+        ('Juliana Forin Pasquini Martinez', 'pasquini.juliana01@fatec.sp.gov.br'),
+        ('Lise Virgínia Vieira de Azevedo', 'lise.azevedo@fatec.sp.gov.br'),
+        ('Nanci de Oliveira', 'nanci.oliveira@fatec.sp.gov.br'),
+        ('Nilo Jerônimo Vieira', 'nilo.vieira@fatec.sp.gov.br'),
+        ('Reinaldo Gen Ichiro Arakaki', 'reinaldo.arakaki@fatec.sp.gov.br');
+```
