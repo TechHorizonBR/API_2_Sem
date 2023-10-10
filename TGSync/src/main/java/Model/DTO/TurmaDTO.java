@@ -46,4 +46,8 @@ public class TurmaDTO {
 	public void setDisciplina(int disciplina) {
 		this.disciplina = disciplina;
 	}
+	@Override
+	public String toString(){
+		return String.format("Id: %s,\nAno: %s,\nSemestre: %s,\nDisciplina: TG%s\n", this.id, this.ano, this.semestre, this.disciplina);
+	}
 }

@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TurmaDAO {
-    Connection connection = null;
+    static Connection connection = null;
 
     public void addTurma(TurmaDTO turmaDTO) {
         PreparedStatement stmt = null;
@@ -82,6 +82,34 @@ public class TurmaDAO {
                 if(connection != null) connection.close();
             }catch (SQLException e){
                 e.getMessage();
+            }
+        }
+        return null;
+    }
+    public static TurmaDTO getTurmaPorAtributo(TurmaDTO turmaDTO){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM turma WHERE ano = ? and semestre = ? and disciplina = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, turmaDTO.getAno());
+            stmt.setInt(2, turmaDTO.getSemestre());
+            stmt.setInt(3, turmaDTO.getDisciplina());
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                return new TurmaDTO(rs.getLong("id"), rs.getInt("ano"), rs.getInt("semestre"), rs.getInt("disciplina"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
             }
         }
         return null;

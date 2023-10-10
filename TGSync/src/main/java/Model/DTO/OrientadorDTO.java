@@ -13,6 +13,11 @@ public class OrientadorDTO {
         this.emailFatec = emailFatec;
     }
 
+    public OrientadorDTO(String nome, String emailFatec) {
+        this.nome = nome;
+        this.emailFatec = emailFatec;
+    }
+
     public Long getId() {
         return id;
     }

@@ -224,5 +224,33 @@ public class AlunoDAO {
         }
     }
 
+    public List<Long> getAllMatriculaPorIdTurma(TurmaDTO turmaDTO){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Long> matriculasEncontradas = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM matricula WHERE idTurma = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, turmaDTO.getId());
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                matriculasEncontradas.add(rs.getLong("idAluno"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return matriculasEncontradas;
+    }
 
 }

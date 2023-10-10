@@ -28,7 +28,7 @@
                   <Insets left="300.0" top="250.0" />
                </HBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
+            <Button fx:id="onViewAllDataButton" alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
                <HBox.margin>
                   <Insets left="400.0" top="250.0" />
                </HBox.margin>
