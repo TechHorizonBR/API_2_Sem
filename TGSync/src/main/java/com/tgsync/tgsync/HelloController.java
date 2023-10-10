@@ -72,7 +72,7 @@ public class HelloController {
                     @Override
                     public void handle(final ActionEvent e) {
                         try {
-                            loadView("seeAllSample.fxml");
+                            loadView("TelaAlunos.fxml");
                         } catch (IOException ex) {
                             Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
                             throw new RuntimeException(ex);
@@ -85,13 +85,13 @@ public class HelloController {
     private void loadView(String absoluteName) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
-        VBox newVBox = loader.load();
+        AnchorPane pane = loader.load();
 
 
         Scene mainScene = HelloApplication.getMainScene();
         VBox mainVBox = (VBox) mainScene.getRoot();
         mainVBox.getChildren().clear();
-                mainVBox.getChildren().addAll(newVBox.getChildren());
+        mainVBox.getChildren().addAll(pane.getChildren());
 
 
     }
