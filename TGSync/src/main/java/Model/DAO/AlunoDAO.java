@@ -224,40 +224,33 @@ public class AlunoDAO {
         }
     }
 
-    public List<AlunoDTO> getAllAlunosPorTurma(TurmaDTO turmaDTO){
-        PreparedStatement stmtMatricula = null;
-        ResultSet rsMatricula = null;
-        PreparedStatement stmtAluno = null;
-        ResultSet rsAluno = null;
-        List<Long> idsAlunos = new LinkedList<>();
-        List<AlunoDTO> alunosEncontrados = new LinkedList<>();
+    public List<Long> getAllMatriculaPorIdTurma(TurmaDTO turmaDTO){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Long> matriculasEncontradas = new LinkedList<>();
+
         try{
             connection = ConexaoBD.ConexaoBD();
-            String sqlMatricula = "SELECT * FROM matricula WHERE idTurma = ?";
-            stmtMatricula = connection.prepareStatement(sqlMatricula);
-            stmtMatricula.setLong(1, turmaDTO.getId());
-            rsMatricula = stmtMatricula.executeQuery();
+            String sql = "SELECT * FROM matricula WHERE idTurma = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, turmaDTO.getId());
+            rs = stmt.executeQuery();
 
-            while(rsMatricula.next()){
-                idsAlunos.add(rsMatricula.getLong("idAluno"));
-            }
-            if (!idsAlunos.isEmpty()){
-                for(Long id : idsAlunos){
-                    alunosEncontrados.add(getAlunoPorId(id));
-                }
+            while(rs.next()){
+                matriculasEncontradas.add(rs.getLong("idAluno"));
             }
         }catch (SQLException e){
             e.printStackTrace();
         }catch (ClassNotFoundException e){
             e.printStackTrace();
-        }finally{
+        }finally {
             try{
                 if(connection!=null) connection.close();
             }catch (SQLException e){
                 e.printStackTrace();
             }
         }
-        return alunosEncontrados;
+        return matriculasEncontradas;
     }
 
 }
