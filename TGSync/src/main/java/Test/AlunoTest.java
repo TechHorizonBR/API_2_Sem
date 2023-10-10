@@ -21,8 +21,10 @@ public class AlunoTest {
 
        // alunoDAO.addMatriculaAluno(alunoDTO, turmaDTO);
 
-        List<AlunoDTO> listaAlunos = alunoDAO.getAllAlunosPorTurma(TurmaDAO.getTurmaPorAtributo(new TurmaDTO(2023,1,1)));
+        //List<AlunoDTO> listaAlunos = alunoDAO.getAllAlunosPorTurma(TurmaDAO.getTurmaPorAtributo(new TurmaDTO(2023,1,1)));
 
-        System.out.println(listaAlunos);
+        //System.out.println(listaAlunos);
+
+        System.out.println(alunoDAO.getAllMatriculaPorIdTurma(new TurmaDTO(7L, 2023,1,1)));
     }
 }
