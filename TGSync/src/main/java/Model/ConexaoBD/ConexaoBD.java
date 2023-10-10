@@ -10,7 +10,7 @@ public class ConexaoBD {
 
         Connection connection = null;
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/tgsync", "devs", "password123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tgsync", "devs", "password123");
 
         return connection;
     }
