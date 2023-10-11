@@ -94,7 +94,7 @@
                         <Insets right="40.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="btnOK" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="OK" textFill="WHITE">
+                  <Button fx:id="onOkButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnOkButton" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="OK" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
@@ -109,15 +109,15 @@
             </HBox>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="826.0">
                <content>
-                  <TableView prefHeight="497.0" prefWidth="1239.0">
-                    <columns>
-                      <TableColumn minWidth="200.0" prefWidth="200.0" resizable="false" text="Nome" />
-                      <TableColumn minWidth="200.0" prefWidth="200.0" text="Email" />
-                        <TableColumn minWidth="200.0" prefWidth="200.0" text="Email Fatec" />
-                        <TableColumn minWidth="200.0" prefWidth="200.0" text="Nome Orientador" />
-                        <TableColumn prefWidth="200.00" text="Email Orientador" />
-                        <TableColumn prefWidth="200.0" text="Tipo TG" />
-                    </columns>
+                  <TableView fx:id="tabelaAlunos" prefHeight="497.0" prefWidth="1239.0">
+                     <columns>
+                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="200.0" resizable="false" text="Nome" />
+                        <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="colunaEmailFatec" minWidth="200.0" prefWidth="200.0" text="Email Fatec" />
+                        <TableColumn fx:id="colunaNomeOrientador" minWidth="200.0" prefWidth="200.0" text="Nome Orientador" />
+                        <TableColumn fx:id="colunaEmailOrientador" prefWidth="200.00" text="Email Orientador" />
+                        <TableColumn fx:id="colunaTipoTG" prefWidth="200.0" text="Tipo TG" />
+                     </columns>
                   </TableView>
                </content>
                <VBox.margin>
