@@ -41,4 +41,10 @@ public class OrientadorDTO {
     public void setEmail(String emailFatec) {
         this.emailFatec = emailFatec;
     }
+
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }
+
