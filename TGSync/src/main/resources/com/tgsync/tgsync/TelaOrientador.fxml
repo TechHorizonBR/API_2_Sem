@@ -3,101 +3,87 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
    <children>
-      <Button fx:id="ButtonAlunos" layoutX="20.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Alunos" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="ButtonAlunos" layoutX="60.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Alunos" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <Button fx:id="ButtonCadastro" layoutX="164.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Cadastro" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="ButtonCadastro" layoutX="270.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Cadastro" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <Button fx:id="ButtonRelatorios" layoutX="310.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Relatórios" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="ButtonRelatorios" layoutX="480.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Relatórios" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <Button fx:id="ButtonConfiguracoes" layoutX="455.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
+      <Button fx:id="ButtonConfiguracoes" layoutX="690.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Arial Black" size="11.0" />
          </font></Button>
-      <Button fx:id="ButtonCadastrar" layoutX="495.0" layoutY="86.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="88.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Cadastrar" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button fx:id="ButtonCadastrar" layoutX="690.0" layoutY="83.0" mnemonicParsing="false" onAction="#adicionarOrientador" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Cadastrar" textAlignment="JUSTIFY" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <Button accessibleRole="TEXT" layoutX="22.0" layoutY="135.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="280.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Orientador Cadastrados" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button accessibleRole="TEXT" cancelButton="true" defaultButton="true" layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="390.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Orientador Cadastrados" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <Button accessibleRole="TEXT" layoutX="302.0" layoutY="135.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="280.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Email" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button accessibleRole="TEXT" cancelButton="true" defaultButton="true" layoutX="450.0" layoutY="135.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="390.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Email" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font></Button>
-      <ListView fx:id="listOrientadorCadastrados" layoutX="22.0" layoutY="161.0" prefHeight="212.0" prefWidth="280.0" />
-      <ListView fx:id="listEmail" layoutX="302.0" layoutY="161.0" prefHeight="212.0" prefWidth="280.0" />
-      <Slider layoutX="287.0" layoutY="161.0" orientation="VERTICAL" prefHeight="212.0" prefWidth="14.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Slider>
-      <Slider layoutX="566.0" layoutY="161.0" orientation="VERTICAL" prefHeight="212.0" prefWidth="14.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Slider>
-      <TextField fx:id="labelNomeOrientador" layoutX="22.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0">
+      <ListView fx:id="listOrientadores" layoutX="60.0" layoutY="169.0" prefHeight="296.0" prefWidth="390.0" />
+      <ListView fx:id="listEmail" layoutX="450.0" layoutY="169.0" prefHeight="296.0" prefWidth="390.0" />
+      <TextField fx:id="textFieldNomeOrientador" layoutX="60.0" layoutY="84.0" prefHeight="20.0" prefWidth="270.0" promptText="Nome do Orientador">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="labelEmail" layoutX="260.0" layoutY="85.0" prefHeight="20.0" prefWidth="225.0">
+      <TextField fx:id="textFieldEmail" layoutX="378.0" layoutY="84.0" prefHeight="20.0" prefWidth="270.0" promptText="Email do Orientador">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="107.0" layoutY="29.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="171.0" layoutY="26.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../Pictures/cap-removebg-preview.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="260.0" layoutY="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../../Pictures/Plus-removebg-preview.png" />
+            <Image url="@../../../assets/cap-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="559.0" layoutY="29.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="388.0" layoutY="26.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../Pictures/Eng-removebg-preview.png" />
+            <Image url="@../../../assets/plus-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="410.0" layoutY="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="598.0" layoutY="26.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../Pictures/Plus-removebg-preview.png" />
+            <Image url="@../../../assets/plus-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="807.0" layoutY="26.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/eng-removebg-preview.png" />
          </image>
       </ImageView>
    </children>
