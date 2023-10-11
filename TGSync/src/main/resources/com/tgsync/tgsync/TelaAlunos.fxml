@@ -36,7 +36,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="40.0" right="80.0" />
+                        <Insets left="40.0" right="102.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btnCadastro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Cadastro" textFill="WHITE">
@@ -44,7 +44,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="80.0" />
+                        <Insets right="102.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btnRelatorios" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Relatórios" textFill="WHITE">
@@ -52,7 +52,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="80.0" />
+                        <Insets right="102.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btnConfiguracoes" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
