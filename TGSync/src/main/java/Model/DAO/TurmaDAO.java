@@ -86,7 +86,7 @@ public class TurmaDAO {
         }
         return null;
     }
-    public static TurmaDTO getTurmaPorAtributo(TurmaDTO turmaDTO){
+    public TurmaDTO getTurmaPorAtributo(TurmaDTO turmaDTO){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try{
