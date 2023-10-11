@@ -1,7 +1,9 @@
 package com.tgsync.tgsync;
 
+import Model.util.Alerts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -24,7 +26,7 @@ public class TelaOrientadorController extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaOrientador.fxml"));
 
-        telaOrientador = new Scene(fxmlLoader.load(), 600, 400);
+        telaOrientador = new Scene(fxmlLoader.load(), 900, 500);
 
         stage.setTitle("TGSync");
         stage.setScene(telaOrientador);
@@ -88,28 +90,35 @@ public class TelaOrientadorController extends Application {
         String email = textFieldEmail.getText();
         OrientadorDTO searchOrientador = orientadorDAO.getOrientadorPorEmail(email);
         if (searchOrientador != null) {
+            Alerts.showAlert("ERRO!","","O Orientador já existe.", Alert.AlertType.ERROR);
+        } else if (email.equals("")||nome.equals("")) {
+            Alerts.showAlert("ERRO!","","Preenchimento obrigatório.", Alert.AlertType.ERROR);
+        } else {
+            OrientadorDTO orientador = new OrientadorDTO(null, nome, email); // Use os valores dos campos de texto
+            orientadorDAO.addOrientador(orientador);
+
+            // Atualize as listas após adicionar um novo orientador
+            List<OrientadorDTO> orientadores = orientadorDAO.getAllOrientador();
+            List<String> emails = new LinkedList<>();
+            List<String> nomes = new LinkedList<>();
+            for(OrientadorDTO orientadorDTO:orientadores){
+                emails.add(orientadorDTO.getEmail());
+                nomes.add(orientadorDTO.getNome());
+            }
+
+            listOrientadores.getItems().clear();
+            listEmail.getItems().clear();
+            listOrientadores.getItems().addAll(nomes);
+            listEmail.getItems().addAll(emails);
+
+            // Limpe os campos de entrada após adicionar
+            textFieldNomeOrientador.clear();
+            textFieldEmail.clear();
+
+            Alerts.showAlert("SUCESSO!","","Orientador cadastrado com sucesso.", Alert.AlertType.CONFIRMATION);
 
         }
 
-        OrientadorDTO orientador = new OrientadorDTO(null, nome, email); // Use os valores dos campos de texto
-        orientadorDAO.addOrientador(orientador);
 
-        // Atualize as listas após adicionar um novo orientador
-        List<OrientadorDTO> orientadores = orientadorDAO.getAllOrientador();
-        List<String> emails = new LinkedList<>();
-        List<String> nomes = new LinkedList<>();
-        for(OrientadorDTO orientadorDTO:orientadores){
-            emails.add(orientadorDTO.getEmail());
-            nomes.add(orientadorDTO.getNome());
-        }
-
-        listOrientadores.getItems().clear();
-        listEmail.getItems().clear();
-        listOrientadores.getItems().addAll(nomes);
-        listEmail.getItems().addAll(emails);
-
-        // Limpe os campos de entrada após adicionar
-        textFieldNomeOrientador.clear();
-        textFieldEmail.clear();
     }
 }
