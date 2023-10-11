@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="819.0" prefWidth="1311.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.HelloController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.HelloController">
    <children>
       <ImageView fitHeight="147.0" fitWidth="448.0" layoutX="600.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
             <Image url="@../../../assets/logo-tgsync.png" />
          </image>
          <VBox.margin>
-            <Insets bottom="50.0" left="400.0" right="300.0" top="150.0" />
+            <Insets bottom="50.0" left="250.0" right="250.0" top="100.0" />
          </VBox.margin>
          <viewport>
             <Rectangle2D />
@@ -25,15 +25,18 @@
          <children>
             <Button fx:id="onOpenCSVButton" alignment="CENTER" mnemonicParsing="false" onAction="#onOpenCSVButton" prefHeight="25.0" prefWidth="130.0" text="Importar CSV">
                <HBox.margin>
-                  <Insets left="300.0" top="250.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
             <Button fx:id="onViewAllDataButton" alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
                <HBox.margin>
-                  <Insets left="400.0" top="250.0" />
+                  <Insets left="310.0" />
                </HBox.margin>
             </Button>
          </children>
+         <VBox.margin>
+            <Insets left="166.0" right="166.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
