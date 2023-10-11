@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
+<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
    <children>
       <VBox prefHeight="175.0" prefWidth="1195.0">
          <children>
@@ -109,14 +109,14 @@
             </HBox>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="826.0">
                <content>
-                  <TableView prefHeight="497.0" prefWidth="1239.0">
+                  <TableView fx:id="tabelaAlunos" prefHeight="497.0" prefWidth="1239.0">
                     <columns>
-                      <TableColumn minWidth="200.0" prefWidth="200.0" resizable="false" text="Nome" />
-                      <TableColumn minWidth="200.0" prefWidth="200.0" text="Email" />
-                        <TableColumn minWidth="200.0" prefWidth="200.0" text="Email Fatec" />
-                        <TableColumn minWidth="200.0" prefWidth="200.0" text="Nome Orientador" />
-                        <TableColumn prefWidth="200.00" text="Email Orientador" />
-                        <TableColumn prefWidth="200.0" text="Tipo TG" />
+                      <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="200.0" resizable="false" text="Nome" />
+                      <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="colunaEmailFatec" minWidth="200.0" prefWidth="200.0" text="Email Fatec" />
+                        <TableColumn fx:id="colunaNomeOrientador" minWidth="200.0" prefWidth="200.0" text="Nome Orientador" />
+                        <TableColumn fx:id="colunaEmailOrientador" prefWidth="200.00" text="Email Orientador" />
+                        <TableColumn fx:id="colunaTipoTG" prefWidth="200.0" text="Tipo TG" />
                     </columns>
                   </TableView>
                </content>

@@ -3,30 +3,31 @@ package com.tgsync.tgsync;
 import Model.DAO.AlunoDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.AlunoDTO;
+import Model.DTO.OrientadorDTO;
+import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 import Model.util.Alerts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class TelaAlunosController {
+
+    private TurmaDAO turmaDAO;
+
+
+    private AlunoDAO alunoDAODep;
+    public void TelaAlunosController(AlunoDAO alunoDAO, TurmaDAO turmaDAO){
+        this.turmaDAO = turmaDAO;
+        this.alunoDAODep = alunoDAO;
+    }
 
     @FXML
     private Button btnAlunos;
@@ -62,22 +63,28 @@ public class TelaAlunosController {
     private ImageView imgLogo;
 
     @FXML
-    private ListView<?> lvwEmailInstitucional;
-
-    @FXML
-    private ListView<?> lvwEmailOrientador;
-
-    @FXML
-    private ListView<?> lvwEmailPessoal;
-
-    @FXML
-    private ListView<?> lvwNome;
-
-    @FXML
-    private ListView<?> lvwNomeOrientador;
-
-    @FXML
     private AnchorPane pnlPrincipal;
+
+    @FXML
+    private TableView<AlunoDTO> tabelaAlunos;
+
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaEmail;
+
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaEmailFatec;
+
+    @FXML
+    private TableColumn<OrientadorDTO, String> colunaEmailOrientador;
+
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaNome;
+
+    @FXML
+    private TableColumn<OrientadorDTO, String> colunaNomeOrientador;
+
+    @FXML
+    private TableColumn<TGDTO, String> colunaTipoTG;
 
     @FXML
     private TextField txtAno;
@@ -89,30 +96,44 @@ public class TelaAlunosController {
     private TextField txtTG;
 
     public void OnOkButton(ActionEvent event) {
-        Integer ano = Integer.parseInt(txtAno.getText());
-        Integer semestre = Integer.parseInt(txtSemestre.getText());
-        Integer tg = Integer.parseInt(txtTG.getText());
+        if (alunoDAODep == null) {
+            throw new IllegalStateException("Service is null");
+        }
 
-        TurmaDAO turmaDAO = new TurmaDAO();
-        AlunoDAO alunoDAO = new AlunoDAO();
+        if (txtAno.getText().equals("") || txtSemestre.getText().equals("") || txtTG.getText().equals("")){
+            Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
+        }else{
 
-        List<Long> listMatricula = new LinkedList<>();
-        List<AlunoDTO> listAlunos = new LinkedList<>();
-        TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
+            Integer ano = Integer.parseInt(txtAno.getText());
+            Integer semestre = Integer.parseInt(txtSemestre.getText());
+            Integer tg = Integer.parseInt(txtTG.getText());
+
+            List<Long> listMatricula = new LinkedList<>();
+            List<AlunoDTO> listAlunos = new LinkedList<>();
+            TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
 
 
-        if (turmaDTO != null){
-            listMatricula = alunoDAO.getAllMatriculaPorIdTurma(turmaDTO);
+            if (turmaDTO != null){
+                listMatricula = alunoDAODep.getAllMatriculaPorIdTurma(turmaDTO);
 
-            if (!listMatricula.isEmpty()){
-                for (Long matricula: listMatricula){
-                    listAlunos.add(alunoDAO.getAlunoPorId(matricula));
+                if (!listMatricula.isEmpty()){
+                    for (Long matricula: listMatricula){
+                        listAlunos.add(alunoDAODep.getAlunoPorId(matricula));
+                    }
+                    obsAluno = FXCollections.observableArrayList(listAlunos);
+                    colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                    tabelaAlunos.setItems(obsAluno);
                 }
-                System.out.println(listAlunos);
+            } else{
+                Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
             }
-        } else{
-            Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
+
         }
 
     }
+
+    private ObservableList<AlunoDTO> obsAluno;
+    private ObservableList<OrientadorDTO> obsOrientador;
+    private ObservableList<TGDTO> obsTG;
+
 }
