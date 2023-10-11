@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
    <children>
       <Button fx:id="ButtonAlunos" layoutX="60.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Alunos" textAlignment="CENTER" textFill="WHITE">
          <cursor>
