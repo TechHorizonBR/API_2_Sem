@@ -7,10 +7,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TurmaService {
     public static void registrarTurma() throws ParseException {
         TurmaDAO turmadao = new TurmaDAO();
+        List<TurmaDTO> todasTurmas;
+        int novaturma = 0;
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //        Date hoje = new Date(); //Recebe data do computador com horario
@@ -34,7 +39,17 @@ public class TurmaService {
             semestre = 2;
         }
 
-        turmadao.addTurma(new TurmaDTO(ano, semestre, 1));
-        turmadao.addTurma(new TurmaDTO(ano, semestre, 2));
+        todasTurmas = turmadao.getAllTurmas();
+        //Verifica se ja existem turmas com mesmo semestre e ano
+        for(TurmaDTO dados : todasTurmas){
+            if(dados.getSemestre() == semestre && dados.getAno() == ano){
+                novaturma = 1;
+            }
+        }
+
+        if(novaturma == 0){
+            turmadao.addTurma(new TurmaDTO(ano, semestre, 1));
+            turmadao.addTurma(new TurmaDTO(ano, semestre, 2));
+        }
     }
 }
