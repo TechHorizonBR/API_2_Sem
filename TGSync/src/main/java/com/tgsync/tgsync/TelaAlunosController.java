@@ -1,13 +1,16 @@
 package com.tgsync.tgsync;
 
 import Model.DAO.AlunoDAO;
+import Model.DAO.TGDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.AlunoDTO;
 import Model.DTO.OrientadorDTO;
 import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 import Model.util.Alerts;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,19 +18,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class TelaAlunosController {
-
-    private TurmaDAO turmaDAO;
-
-
-    private AlunoDAO alunoDAODep;
-    public void TelaAlunosController(AlunoDAO alunoDAO, TurmaDAO turmaDAO){
-        this.turmaDAO = turmaDAO;
-        this.alunoDAODep = alunoDAO;
-    }
 
     @FXML
     private Button btnAlunos;
@@ -39,34 +36,9 @@ public class TelaAlunosController {
     private Button btnConfiguracoes;
 
     @FXML
-    private Button btnEmailInstitucional;
-
-    @FXML
-    private Button btnEmailOrientador;
-
-    @FXML
-    private Button btnEmailPessoal;
-
-    @FXML
-    private Button btnNome;
-
-    @FXML
-    private Button btnNomeOrientador;
-
-    @FXML
-    private Button onOkButton;
-
-    @FXML
     private Button btnRelatorios;
-
     @FXML
-    private ImageView imgLogo;
-
-    @FXML
-    private AnchorPane pnlPrincipal;
-
-    @FXML
-    private TableView<AlunoDTO> tabelaAlunos;
+    private TableColumn<AlunoDTO, String> colunaNome;
 
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmail;
@@ -75,16 +47,26 @@ public class TelaAlunosController {
     private TableColumn<AlunoDTO, String> colunaEmailFatec;
 
     @FXML
-    private TableColumn<OrientadorDTO, String> colunaEmailOrientador;
+    private TableColumn<AlunoDTO, String> colunaEmailOrientador;
+
 
     @FXML
-    private TableColumn<AlunoDTO, String> colunaNome;
+    private TableColumn<AlunoDTO, String> colunaNomeOrientador;
 
     @FXML
-    private TableColumn<OrientadorDTO, String> colunaNomeOrientador;
+    private TableColumn<AlunoDTO, String> colunaTipoTG;
 
     @FXML
-    private TableColumn<TGDTO, String> colunaTipoTG;
+    private ImageView imgLogo;
+
+    @FXML
+    private Button onOkButton;
+
+    @FXML
+    private AnchorPane pnlPrincipal;
+
+    @FXML
+    private TableView<AlunoDTO> tabelaAlunos;
 
     @FXML
     private TextField txtAno;
@@ -94,35 +76,95 @@ public class TelaAlunosController {
 
     @FXML
     private TextField txtTG;
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaProblema;
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaEmpresa;
+    @FXML
+    private TableColumn<AlunoDTO, String> colunaDiscplina;
 
-    public void OnOkButton(ActionEvent event) {
-        if (alunoDAODep == null) {
-            throw new IllegalStateException("Service is null");
-        }
 
-        if (txtAno.getText().equals("") || txtSemestre.getText().equals("") || txtTG.getText().equals("")){
+    ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
+
+    @FXML
+    void OnOkButton(ActionEvent event) {
+        listAlunos.clear();
+        tabelaAlunos.setItems(null);
+        tabelaAlunos.setItems(listAlunos);
+        AlunoDAO alunoDAO = new AlunoDAO();
+        TurmaDAO turmaDAO = new TurmaDAO();
+        TGDAO tgdao = new TGDAO();
+
+        if (txtAno.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTG.getText().isEmpty()){
             Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
+        }else if(txtAno.getText().matches(".*[a-zA-Z].*")||txtTG.getText().matches(".*[a-zA-Z].*")||txtSemestre.getText().matches(".*[a-zA-Z].*")) {
+            Alerts.showAlert("Atenção", "", "Os campos não aceita letras, apenas números!", Alert.AlertType.WARNING);
         }else{
-
+            boolean anoLetra = txtAno.getText().matches(".*[a-zA-Z].*");
             Integer ano = Integer.parseInt(txtAno.getText());
             Integer semestre = Integer.parseInt(txtSemestre.getText());
             Integer tg = Integer.parseInt(txtTG.getText());
 
+
             List<Long> listMatricula = new LinkedList<>();
-            List<AlunoDTO> listAlunos = new LinkedList<>();
             TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
 
-
             if (turmaDTO != null){
-                listMatricula = alunoDAODep.getAllMatriculaPorIdTurma(turmaDTO);
+                listMatricula = alunoDAO.getAllMatriculaPorIdTurma(turmaDTO);
 
                 if (!listMatricula.isEmpty()){
                     for (Long matricula: listMatricula){
-                        listAlunos.add(alunoDAODep.getAlunoPorId(matricula));
+                        listAlunos.add(alunoDAO.getAlunoPorId(matricula));
                     }
-                    obsAluno = FXCollections.observableArrayList(listAlunos);
+                    for (AlunoDTO aluno : listAlunos) {
+                        aluno.getNomeOrientador();
+                        aluno.getEmailOrientador();
+                    }
+                    listAlunos = FXCollections.observableArrayList(alunoDAO.getAllAlunos());
                     colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                    tabelaAlunos.setItems(obsAluno);
+                    colunaEmail.setCellValueFactory(new PropertyValueFactory<>("emailPessoal"));
+                    colunaEmailFatec.setCellValueFactory(new PropertyValueFactory<>("emailFatec"));
+                    colunaNomeOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeOrientador()));
+                    colunaEmailOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmailOrientador()));
+                    colunaTipoTG.setCellValueFactory(cellData -> {
+                        AlunoDTO aluno = cellData.getValue();
+                        TGDTO tgDoAluno = tgdao.getTgPorIdAluno(aluno.getId());
+                        if (tgDoAluno != null) {
+                            return new SimpleStringProperty(tgDoAluno.getTipo());
+                        } else {
+                            return new SimpleStringProperty("");
+                        }
+                    });
+                    colunaDiscplina.setCellValueFactory(cellData -> {
+                        AlunoDTO aluno = cellData.getValue();
+                        TGDTO tgdto = tgdao.getTgPorIdAluno(aluno.getId());
+                        if(tgdto!=null){
+                            return new SimpleStringProperty(tgdto.getDisciplina());
+                        }else {
+                            return new SimpleStringProperty("");
+                        }
+                    });
+                    colunaEmpresa.setCellValueFactory(cellData -> {
+                        AlunoDTO aluno = cellData.getValue();
+                        TGDTO tgdto = tgdao.getTgPorIdAluno(aluno.getId());
+                        if(tgdto!=null){
+                            return new SimpleStringProperty(tgdto.getEmpresa());
+                        }else {
+                            return new SimpleStringProperty("");
+                        }
+                    });
+                    colunaProblema.setCellValueFactory(cellData -> {
+                        AlunoDTO aluno = cellData.getValue();
+                        TGDTO tgdto = tgdao.getTgPorIdAluno(aluno.getId());
+                        if(tgdto!=null){
+                            return new SimpleStringProperty(tgdto.getProblema());
+                        }else {
+                            return new SimpleStringProperty("");
+                        }
+                    });
+
+
+                    tabelaAlunos.setItems(listAlunos);
                 }
             } else{
                 Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
@@ -130,10 +172,10 @@ public class TelaAlunosController {
 
         }
 
+
+
     }
-
-    private ObservableList<AlunoDTO> obsAluno;
-    private ObservableList<OrientadorDTO> obsOrientador;
-    private ObservableList<TGDTO> obsTG;
-
+    public void initialize(URL url, ResourceBundle rb){
+        
+    }
 }

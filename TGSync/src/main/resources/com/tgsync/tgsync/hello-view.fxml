@@ -7,8 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.HelloController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-border-color: #778899;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.HelloController">
    <children>
       <ImageView fitHeight="147.0" fitWidth="448.0" layoutX="600.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
@@ -23,15 +24,21 @@
       </ImageView>
       <HBox prefHeight="275.0" prefWidth="1234.0">
          <children>
-            <Button fx:id="onOpenCSVButton" alignment="CENTER" mnemonicParsing="false" onAction="#onOpenCSVButton" prefHeight="25.0" prefWidth="130.0" text="Importar CSV">
+            <Button fx:id="onOpenCSVButton" alignment="CENTER" mnemonicParsing="false" onAction="#onOpenCSVButton" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey; -fx-min-height: 20;" text="Importar CSV" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="onViewAllDataButton" alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="25.0" prefWidth="130.0" text="Visualizar">
+            <Button fx:id="onViewAllDataButton" alignment="CENTER" mnemonicParsing="false" onAction="#onViewAllDataButton" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey; -fx-min-height: 20;" text="Visualizar" textFill="WHITE">
                <HBox.margin>
                   <Insets left="310.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
          </children>
          <VBox.margin>

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
+<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
    <children>
       <VBox prefHeight="175.0" prefWidth="1195.0">
          <children>
@@ -68,11 +68,11 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="115.0" prefWidth="1181.0">
+            <HBox prefHeight="115.0" prefWidth="1500.0">
                <children>
                   <TextField fx:id="txtTG" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="192.0" promptText="TG">
                      <HBox.margin>
-                        <Insets bottom="40.0" left="40.0" right="40.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
                      </HBox.margin>
                      <padding>
                         <Insets left="5.0" right="50.0" />
@@ -83,7 +83,7 @@
                         <Insets left="5.0" right="50.0" />
                      </padding>
                      <HBox.margin>
-                        <Insets right="40.0" />
+                        <Insets right="40.0" top="20.0" />
                      </HBox.margin>
                   </TextField>
                   <TextField fx:id="txtAno" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="192.0" promptText="Ano">
@@ -91,7 +91,7 @@
                         <Insets left="5.0" right="50.0" />
                      </padding>
                      <HBox.margin>
-                        <Insets right="40.0" />
+                        <Insets right="40.0" top="20.0" />
                      </HBox.margin>
                   </TextField>
                   <Button fx:id="onOkButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnOkButton" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="OK" textFill="WHITE">
@@ -99,7 +99,7 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets top="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -107,9 +107,9 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="826.0">
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="826.0">
                <content>
-                  <TableView fx:id="tabelaAlunos" prefHeight="497.0" prefWidth="1239.0">
+                  <TableView fx:id="tabelaAlunos" prefHeight="497.0" prefWidth="1800.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="200.0" resizable="false" text="Nome" />
                         <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="200.0" text="Email" />
@@ -117,6 +117,9 @@
                         <TableColumn fx:id="colunaNomeOrientador" minWidth="200.0" prefWidth="200.0" text="Nome Orientador" />
                         <TableColumn fx:id="colunaEmailOrientador" prefWidth="200.00" text="Email Orientador" />
                         <TableColumn fx:id="colunaTipoTG" prefWidth="200.0" text="Tipo TG" />
+                        <TableColumn fx:id="colunaEmpresa" minWidth="200.0" prefWidth="200.0" text="Empresa" />
+                        <TableColumn fx:id="colunaDiscplina" minWidth="200.0" prefWidth="200.0" text="Disciplina" />
+                        <TableColumn fx:id="colunaProblema" minWidth="200.0" prefWidth="200.0" text="Problema" />
                      </columns>
                   </TableView>
                </content>

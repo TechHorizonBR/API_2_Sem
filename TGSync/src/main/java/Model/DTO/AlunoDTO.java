@@ -2,6 +2,8 @@ package Model.DTO;
 
 //import java.util.LinkedList;
 
+import Model.DAO.OrientadorDAO;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,4 +105,14 @@ public class AlunoDTO {
 //    public List<Nota> getNotas(){
 //        return listaNotas;
 //    }
+    public String getNomeOrientador(){
+        OrientadorDAO orientador = new OrientadorDAO();
+        OrientadorDTO orientadorDTO = orientador.getOrientadorPorId(this.idOrientador);
+        return orientadorDTO.getNome();
+    }
+    public String getEmailOrientador(){
+        OrientadorDAO orientador = new OrientadorDAO();
+        OrientadorDTO orientadorDTO = orientador.getOrientadorPorId(this.idOrientador);
+        return orientadorDTO.getEmail();
+    }
 }

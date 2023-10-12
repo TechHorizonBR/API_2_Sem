@@ -7,4 +7,5 @@ module com.tgsync.tgsync {
 
     opens com.tgsync.tgsync to javafx.fxml;
     exports com.tgsync.tgsync;
+    opens Model.DTO to javafx.base;
 }
