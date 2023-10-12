@@ -13,6 +13,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AlunoService {
@@ -24,7 +25,6 @@ public class AlunoService {
             List<String[]> linhas = csvReader.readAll();
 
             AlunoDAO alunoDAO = new AlunoDAO();
-            TurmaDAO turmaDAO = new TurmaDAO();
             OrientadorDAO orientadorDAO = new OrientadorDAO();
             OrientadorDTO orientadorDTO = new OrientadorDTO();
             AlunoDTO alunoDTO;
@@ -37,17 +37,104 @@ public class AlunoService {
                     emailFatec = linha[2];
                 }
 
-                alunoDTO = alunoDAO.getAlunoPorEmail(emailFatec);
+                alunoDTO = alunoDAO.getAlunoPorEmailSemMatricula(emailFatec);
                 orientadorDTO = orientadorDAO.getOrientadorPorEmail(linha[5]);
 
-                if (alunoDTO != null) {
-                    AlunoDTO updateAluno = new AlunoDTO(alunoDTO.getId(), linha[3], linha[1], emailFatec, orientadorDTO.getId());
-                    alunoDAO.updateAluno(updateAluno);
-                    alunoDAO.addMatriculaAluno(alunoDTO, turmaDTO);
-                } else {
-                    alunoDAO.addAluno(new AlunoDTO(linha[3], linha[1], emailFatec, orientadorDTO.getId()), turmaDTO);
+                Long idOrientador = null;
+                if(orientadorDTO!=null){
+                    idOrientador = orientadorDTO.getId();
                 }
-            }
+
+                if (alunoDTO != null) {
+                    AlunoDTO updateAluno = new AlunoDTO(alunoDTO.getId(), linha[3], linha[1], emailFatec, idOrientador);
+                    alunoDAO.updateAluno(updateAluno);
+
+                    if(linha[6].equals("TG1")){
+                        turmaDTO.setDisciplina(1);
+                        AlunoDTO alunoMatricula = alunoDAO.getAlunoPorEmail(updateAluno.getEmailFatec());
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        for(Long idMatricula : alunoMatricula.getIdTurmas()){
+                            if(!(idMatricula == turmaDTO.getId())){
+                                alunoDAO.addMatriculaAluno(updateAluno, turmaDTO);
+                                break;
+                            }
+                        }
+                    } else if (linha[6].equals("TG2")) {
+                        turmaDTO.setDisciplina(2);
+                        AlunoDTO alunoMatricula = alunoDAO.getAlunoPorEmail(updateAluno.getEmailFatec());
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        for(Long idMatricula : alunoMatricula.getIdTurmas()){
+                            if(!(idMatricula == turmaDTO.getId())){
+                                alunoDAO.addMatriculaAluno(updateAluno, turmaDTO);
+                                break;
+                            }
+                        }
+                    }else if(linha[6].equals("TG1 e TG2")){
+                        turmaDTO.setDisciplina(1);
+                        AlunoDTO alunoMatricula = alunoDAO.getAlunoPorEmail(updateAluno.getEmailFatec());
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        for(Long idMatricula : alunoMatricula.getIdTurmas()){
+                            if(!(idMatricula == turmaDTO.getId())){
+                                alunoDAO.addMatriculaAluno(updateAluno, turmaDTO);
+                                break;
+                            }
+                        }
+                        turmaDTO.setDisciplina(2);
+                        alunoMatricula = alunoDAO.getAlunoPorEmail(updateAluno.getEmailFatec());
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        for(Long idMatricula : alunoMatricula.getIdTurmas()){
+                            if(!(idMatricula == turmaDTO.getId())){
+                                alunoDAO.addMatriculaAluno(updateAluno, turmaDTO);
+                                break;
+                            }
+                        }
+                    }
+                }else{
+                    if(linha[6].equals("TG1")){
+                        turmaDTO.setDisciplina(1);
+                        AlunoDTO novoAluno = new AlunoDTO(linha[3], linha[1], emailFatec, idOrientador);
+                        alunoDAO.addAluno(novoAluno);
+                        AlunoDTO buscaAluno = alunoDAO.getAlunoPorEmailSemMatricula(novoAluno.getEmailFatec());
+
+                        if(buscaAluno!=null){
+                            turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                            alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
+                        }
+                        else{
+                            System.out.println("TESTE");
+                        }
+                    } else if (linha[6].equals("TG2")) {
+                        turmaDTO.setDisciplina(2);
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        AlunoDTO novoAluno = new AlunoDTO(linha[3], linha[1], emailFatec, idOrientador);
+                        alunoDAO.addAluno(novoAluno);
+                        System.out.println(novoAluno.getEmailFatec());
+                        AlunoDTO buscaAluno = alunoDAO.getAlunoPorEmailSemMatricula(novoAluno.getEmailFatec());
+                        if(buscaAluno!=null){
+                            alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
+                        }else{
+                            System.out.println("TESTE2");
+                        }
+                    }else if(linha[6].equals("TG1 e TG2")){
+                        turmaDTO.setDisciplina(1);
+                        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                        AlunoDTO novoAluno = new AlunoDTO(linha[3], linha[1], emailFatec, idOrientador);
+                        alunoDAO.addAluno(novoAluno);
+                        AlunoDTO buscaAluno = alunoDAO.getAlunoPorEmailSemMatricula(novoAluno.getEmailFatec());
+                        if(buscaAluno!=null){
+                            alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
+                            turmaDTO.setDisciplina(2);
+                            turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+                            alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
+                        }else{
+                            System.out.println("O aluno foi inserido mas tá nulo");
+                        }
+
+                    }
+                }
+
+                }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (CsvException e) {

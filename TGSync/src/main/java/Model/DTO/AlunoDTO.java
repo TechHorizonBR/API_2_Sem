@@ -108,11 +108,22 @@ public class AlunoDTO {
     public String getNomeOrientador(){
         OrientadorDAO orientador = new OrientadorDAO();
         OrientadorDTO orientadorDTO = orientador.getOrientadorPorId(this.idOrientador);
-        return orientadorDTO.getNome();
+        if (orientadorDTO != null) {
+            return orientadorDTO.getNome();
+        } else {
+            return "N/A";
+        }
     }
     public String getEmailOrientador(){
         OrientadorDAO orientador = new OrientadorDAO();
         OrientadorDTO orientadorDTO = orientador.getOrientadorPorId(this.idOrientador);
-        return orientadorDTO.getEmail();
+        if (orientadorDTO != null) {
+            return orientadorDTO.getEmail();
+        } else {
+            return "N/A";
+        }
+    }
+    public void setOrientador(OrientadorDTO orientador) {
+        this.idOrientador = orientador.getId();
     }
 }

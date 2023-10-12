@@ -12,33 +12,23 @@ import java.util.*;
 
 public class AlunoDAO {
     Connection connection = null;
-    public void addAluno(AlunoDTO aluno, TurmaDTO turmaDTO){
-        PreparedStatement stmtAluno = null;
-        PreparedStatement stmtMatricula = null;
+    public void addAluno(AlunoDTO aluno){
+        PreparedStatement stmt = null;
 
         try{
             connection = ConexaoBD.ConexaoBD();
 
             String sql = "INSERT INTO aluno(nome, emailFatec, emailPessoal, idOrientador) VALUES (?, ?, ?, ?)";
-            stmtAluno = connection.prepareStatement(sql);
-            stmtAluno.setString(1, aluno.getNome());
-            stmtAluno.setString(2, aluno.getEmailFatec());
-            stmtAluno.setString(3, aluno.getEmailPessoal());
-            stmtAluno.setLong(4, aluno.getIdOrientador());
-            stmtAluno.executeUpdate();
-            //System.out.println("Aluno adiconado com sucesso");
-
-            ResultSet generatedKeys = stmtAluno.getGeneratedKeys();
-            long alunoId = -1;
-
-            if(generatedKeys.next()){
-                alunoId = generatedKeys.getLong(1);
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, aluno.getNome());
+            stmt.setString(2, aluno.getEmailFatec());
+            stmt.setString(3, aluno.getEmailPessoal());
+            if(aluno.getIdOrientador() != null){
+                stmt.setLong(4, aluno.getIdOrientador());
+            }else{
+                stmt.setNull(4, java.sql.Types.BIGINT);
             }
-
-            String sqlMatricula = "INSERT INTO matricula VALUES(?, ?)";
-            stmtMatricula.setLong(1, alunoId);
-            stmtMatricula.setLong(2, turmaDTO.getId());
-            stmtMatricula.executeUpdate();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -54,17 +44,18 @@ public class AlunoDAO {
     }
     public List<AlunoDTO> getAllAlunos() {
         Map<Long, AlunoDTO> alunosMap = new HashMap<>();
+        List<AlunoDTO> alunos = new LinkedList<>();
 
         try {
             connection = ConexaoBD.ConexaoBD();
-            String sql = "SELECT a.id, a.nome, a.emailFatec, a.emailPessoal, a.idOrientador, m.idTurma FROM aluno a INNER JOIN matricula m ON a.id = m.idAluno";
+            String sql = "SELECT a.id, a.nome, a.emailFatec, a.emailPessoal, a.idOrientador, m.idTurma FROM aluno a INNER JOIN matricula m ON a.id = m.idAluno";//
             ResultSet rs = connection.createStatement().executeQuery(sql);
 
             while (rs.next()) {
                 Long alunoId = rs.getLong("a.id");
 
                 if (!alunosMap.containsKey(alunoId)) {
-                    AlunoDTO aluno = new AlunoDTO(alunoId, rs.getString("a.nome"), rs.getString("a.emailFatec"), rs.getString("a.emailPessoal"), rs.getLong("a.idOrientador"));
+                    AlunoDTO aluno = new AlunoDTO(alunoId, rs.getString("a.nome"), rs.getString("a.emailPessoal"), rs.getString("a.emailFatec"), rs.getLong("a.idOrientador"));
                     alunosMap.put(alunoId, aluno);
                 }
                 alunosMap.get(alunoId).setIdTurma(rs.getLong("m.idTurma"));
@@ -253,4 +244,43 @@ public class AlunoDAO {
         return matriculasEncontradas;
     }
 
+    public AlunoDTO getAlunoPorEmailSemMatricula(String emailFatec) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = ConexaoBD.ConexaoBD();
+
+            String sql = "SELECT * FROM aluno WHERE emailFatec = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, emailFatec);
+            rs = stmt.executeQuery();
+
+            AlunoDTO alunoDTO = null;
+
+            while (rs.next()) {
+                alunoDTO = new AlunoDTO(
+                            rs.getLong("id"),
+                            rs.getString("nome"),
+                            rs.getString("emailPessoal"),
+                            rs.getString("emailFatec"),
+                            rs.getLong("idOrientador")
+                    );
+
+            }
+
+            return alunoDTO;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

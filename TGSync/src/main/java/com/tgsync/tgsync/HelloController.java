@@ -1,7 +1,9 @@
 package com.tgsync.tgsync;
 
 import Model.DAO.SistemaDAO;
+import Model.Service.AlunoService;
 import Model.Service.TgService;
+import Model.Service.TurmaService;
 import Model.util.Alerts;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +21,8 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.zip.DataFormatException;
 
 //import static jdk.jfr.consumer.EventStream.openFile;
 
@@ -43,12 +47,23 @@ public class HelloController {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
-                        configureFileChooser(fileChooser);
-                        File file = fileChooser.showOpenDialog(mainScene.getWindow());
-                        if (file != null) {
-                            openFile(file);
-                            TgService.registrarTg(file.getAbsolutePath());
+                        try{
+                            if(TurmaService.registrarTurma()){
+                                configureFileChooser(fileChooser);
+                                File file = fileChooser.showOpenDialog(mainScene.getWindow());
+                                if (file != null) {
+                                    openFile(file);
+                                    AlunoService.registrarAluno(file.getAbsolutePath(), TurmaService.buscarTurmaComDataDoPC());
+                                    TgService.registrarTg(file.getAbsolutePath());
+                                    Alerts.showAlert("Sucesso!", "", "Upload realizado com sucesso!", Alert.AlertType.CONFIRMATION);
+                                }
+                            }else{
+                                Alerts.showAlert("ATENÇÃO!!", "", "Não é possível realizar duas vezes o upload no mesmo semestre/ano.", Alert.AlertType.WARNING);
+                            }
+                        } catch (ParseException ex) {
+                            Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Entre em contato com o seu administrador.", Alert.AlertType.WARNING);
                         }
+
                     }
                 });
 

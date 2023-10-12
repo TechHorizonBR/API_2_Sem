@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AlunoTest {
     public static void main(String[] args) {
-        //AlunoDAO alunoDAO = new AlunoDAO();
+        AlunoDAO alunoDAO = new AlunoDAO();
         //System.out.println(alunoDAO.getAllAlunos());
         //System.out.println(alunoDAO.getAlunoPorEmail("novoemailFatec@fatec.com"));
         //System.out.println(alunoDAO.getAlunoPorId(12L));
@@ -21,8 +21,8 @@ public class AlunoTest {
 
         //alunoDAO.addMatriculaAluno(alunoDTO, turmaDTO);
 
-        //List<AlunoDTO> listaAlunos = alunoDAO.getAllAlunosPorTurma(TurmaDAO.getTurmaPorAtributo(new TurmaDTO(2023,1,1)));
+        List<AlunoDTO> listaAlunos = alunoDAO.getAllAlunos();
 
-       // System.out.println(listaAlunos);
+       System.out.println(listaAlunos);
     }
 }

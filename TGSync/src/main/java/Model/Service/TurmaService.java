@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TurmaService {
-    public static void registrarTurma() throws ParseException {
+    public static boolean registrarTurma() throws ParseException {
         TurmaDAO turmadao = new TurmaDAO();
         List<TurmaDTO> todasTurmas;
         int novaturma = 0;
@@ -50,6 +50,33 @@ public class TurmaService {
         if(novaturma == 0){
             turmadao.addTurma(new TurmaDTO(ano, semestre, 1));
             turmadao.addTurma(new TurmaDTO(ano, semestre, 2));
+            return true;
+        }else{
+            return false;
         }
+    }
+    public static TurmaDTO buscarTurmaComDataDoPC() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date hoje = new Date(); //Recebe data do computador com horario
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date hoje = cal.getTime(); //Recebe data do computador sem horario
+
+        Integer ano = cal.get(Calendar.YEAR); //Recebe apenas o ano
+        int semestre = 0;
+
+        Date dia_esp = sdf.parse((ano+"-06-30"));
+
+        if((hoje.equals(dia_esp))||(hoje.before(dia_esp))){
+            semestre = 1;
+        }else{
+            semestre = 2;
+        }
+        return new TurmaDTO(ano, semestre, 0);
     }
 }

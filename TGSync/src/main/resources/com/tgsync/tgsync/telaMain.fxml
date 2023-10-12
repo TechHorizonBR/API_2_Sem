@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
+    <children>
+        <ImageView fx:id="imgLogo" fitHeight="250.0" fitWidth="547.0" layoutX="228.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/logo-tgsync.png" />
+            </image>
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+        </ImageView>
+        <MenuBar prefHeight="26.0" prefWidth="900.0">
+            <Menu text="Alunos">
+                <MenuItem text="Visualizar alunos" onAction="#onVisualizarAlunosClicked" fx:id="visualizarAlunos"/>
+                <MenuItem text="Pendências" />
+                <MenuItem text="Atribuir notas e feedbacks" />
+            </Menu>
+            <Menu text="Cadastros">
+                <MenuItem text="Orientadores" onAction="#onOrientadores"/>
+                <MenuItem text="Definir entregas" />
+            </Menu>
+            <Menu text="Relatórios">
+                <MenuItem text="Aptos a Defesa" />
+                <MenuItem text="Entregas" />
+                <MenuItem text="Fechamento" />
+                <MenuItem text="Feedbacks" />
+            </Menu>
+            <Menu text="Configurações">
+                <MenuItem text="Histórico" />
+                <MenuItem text="Tela Inicial" />
+            </Menu>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </MenuBar>
+    </children>
+</AnchorPane>

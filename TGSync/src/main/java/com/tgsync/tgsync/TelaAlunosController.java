@@ -120,7 +120,7 @@ public class TelaAlunosController {
                         aluno.getNomeOrientador();
                         aluno.getEmailOrientador();
                     }
-                    listAlunos = FXCollections.observableArrayList(alunoDAO.getAllAlunos());
+                    listAlunos = FXCollections.observableArrayList(listAlunos);
                     colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     colunaEmail.setCellValueFactory(new PropertyValueFactory<>("emailPessoal"));
                     colunaEmailFatec.setCellValueFactory(new PropertyValueFactory<>("emailFatec"));
