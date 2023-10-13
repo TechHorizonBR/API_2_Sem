@@ -3,19 +3,19 @@ package Model.DTO;
 public class OrientadorDTO {
     private Long id;
     private String nome;
-    private String emailFatec;
+    private String email;
 
     public OrientadorDTO(){
     }
     public OrientadorDTO(Long id, String nome, String emailFatec) {
         this.id = id;
         this.nome = nome;
-        this.emailFatec = emailFatec;
+        this.email = emailFatec;
     }
 
     public OrientadorDTO(String nome, String emailFatec) {
         this.nome = nome;
-        this.emailFatec = emailFatec;
+        this.email = emailFatec;
     }
 
     public Long getId() {
@@ -35,11 +35,11 @@ public class OrientadorDTO {
     }
 
     public String getEmail() {
-        return emailFatec;
+        return email;
     }
 
     public void setEmail(String emailFatec) {
-        this.emailFatec = emailFatec;
+        this.email = emailFatec;
     }
 
     @Override

@@ -100,7 +100,6 @@ public class TelaAlunosController {
         }else if(txtAno.getText().matches(".*[a-zA-Z].*")||txtTG.getText().matches(".*[a-zA-Z].*")||txtSemestre.getText().matches(".*[a-zA-Z].*")) {
             Alerts.showAlert("Atenção", "", "Os campos não aceita letras, apenas números!", Alert.AlertType.WARNING);
         }else{
-            boolean anoLetra = txtAno.getText().matches(".*[a-zA-Z].*");
             Integer ano = Integer.parseInt(txtAno.getText());
             Integer semestre = Integer.parseInt(txtSemestre.getText());
             Integer tg = Integer.parseInt(txtTG.getText());

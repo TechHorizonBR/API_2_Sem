@@ -1,18 +1,20 @@
 package com.tgsync.tgsync;
 
+import Model.DTO.AlunoDTO;
 import Model.util.Alerts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Model.DAO.OrientadorDAO;
 import Model.DTO.OrientadorDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -54,6 +56,8 @@ public class TelaOrientadorController extends Application {
     private Button ButtonConfiguracoes;
     @FXML
     private Button ButtonCadastrar;
+    @FXML
+    private ImageView imgLogo;
 
     // TextField
     @FXML
@@ -63,29 +67,34 @@ public class TelaOrientadorController extends Application {
 
     // ListView
     @FXML
-    private ListView<String> listOrientadores;
-    @FXML
-    private ListView<String> listEmail;
+    private TableColumn<OrientadorDTO, String> colunaNome;
 
+    @FXML
+    private TableColumn<OrientadorDTO, String> colunaEmail;
+
+    @FXML
+    private TableView<OrientadorDTO> tabelaOrientadores;
+    ObservableList<OrientadorDTO> orientadores = FXCollections.observableArrayList();
     // Data Base
     private OrientadorDAO orientadorDAO;
     public void initialize() {
         orientadorDAO = new OrientadorDAO();
-
-        // Carregar dados do banco de dados para as listas
-        List<OrientadorDTO> orientadores = orientadorDAO.getAllOrientador();
-        List<String> emails = new LinkedList<>();
-        List<String> nomes = new LinkedList<>();
-        for(OrientadorDTO orientadorDTO:orientadores){
-            emails.add(orientadorDTO.getEmail());
-            nomes.add(orientadorDTO.getNome());
+        List<OrientadorDTO> listaOrientadores = orientadorDAO.getAllOrientador();
+        if(!listaOrientadores.isEmpty()){
+            for(OrientadorDTO orientadorDTO : listaOrientadores){
+                orientadores.add(orientadorDTO);
+            }
         }
+        // Carregar dados do banco de dados para as listas
 
-        listOrientadores.getItems().addAll(nomes);
-        listEmail.getItems().addAll(emails);
+        orientadores = FXCollections.observableArrayList(orientadores);
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tabelaOrientadores.setItems(orientadores);
     }
     @FXML
     private void adicionarOrientador(ActionEvent event) {
+
         String nome = textFieldNomeOrientador.getText();
         String email = textFieldEmail.getText();
         OrientadorDTO searchOrientador = orientadorDAO.getOrientadorPorEmail(email);
@@ -94,22 +103,23 @@ public class TelaOrientadorController extends Application {
         } else if (email.equals("")||nome.equals("")) {
             Alerts.showAlert("ERRO!","","Preenchimento obrigatório.", Alert.AlertType.ERROR);
         } else {
+            orientadores.clear();
+            tabelaOrientadores.setItems(null);
             OrientadorDTO orientador = new OrientadorDTO(null, nome, email); // Use os valores dos campos de texto
             orientadorDAO.addOrientador(orientador);
 
-            // Atualize as listas após adicionar um novo orientador
-            List<OrientadorDTO> orientadores = orientadorDAO.getAllOrientador();
-            List<String> emails = new LinkedList<>();
-            List<String> nomes = new LinkedList<>();
-            for(OrientadorDTO orientadorDTO:orientadores){
-                emails.add(orientadorDTO.getEmail());
-                nomes.add(orientadorDTO.getNome());
+            List<OrientadorDTO> listaOrientadores = orientadorDAO.getAllOrientador();
+            if(!listaOrientadores.isEmpty()){
+                for(OrientadorDTO orientadorDTO : listaOrientadores){
+                    orientadores.add(orientadorDTO);
+                }
             }
+            // Carregar dados do banco de dados para as listas
 
-            listOrientadores.getItems().clear();
-            listEmail.getItems().clear();
-            listOrientadores.getItems().addAll(nomes);
-            listEmail.getItems().addAll(emails);
+            orientadores = FXCollections.observableArrayList(orientadores);
+            colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+            tabelaOrientadores.setItems(orientadores);
 
             // Limpe os campos de entrada após adicionar
             textFieldNomeOrientador.clear();
