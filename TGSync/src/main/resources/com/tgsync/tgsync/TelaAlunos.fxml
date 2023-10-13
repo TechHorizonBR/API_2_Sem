@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
+<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0">
          <children>
@@ -39,6 +39,13 @@
                      <HBox.margin>
                         <Insets left="40.0" right="102.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/cap-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button fx:id="btnCadastro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Cadastro" textFill="WHITE">
                      <font>
@@ -47,22 +54,43 @@
                      <HBox.margin>
                         <Insets right="102.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/plus-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button fx:id="btnRelatorios" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Relatórios" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="102.0" />
+                        <Insets right="80.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/plus-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btnConfiguracoes" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
+                  <Button fx:id="btnConfiguracoes" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
                      <font>
-                        <Font name="Arial Black" size="12.0" />
+                        <Font name="Arial Black" size="11.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="80.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/eng-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
                <VBox.margin>
@@ -146,7 +174,7 @@
             <HBox prefHeight="69.0" prefWidth="900.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" />
-                  <Button fx:id="onVoltar" onAction="#onVoltarMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Voltar" textFill="WHITE" translateX="615.0">
+                  <Button fx:id="onVoltar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVoltarMain" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Voltar" textFill="WHITE" translateX="615.0">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
