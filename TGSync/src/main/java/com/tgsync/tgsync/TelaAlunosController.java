@@ -86,6 +86,8 @@ public class TelaAlunosController {
 
     ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
 
+
+
     @FXML
     void OnOkButton(ActionEvent event) {
         listAlunos.clear();
@@ -172,6 +174,10 @@ public class TelaAlunosController {
         }
 
 
+
+    }
+    @FXML
+    public void onVoltarMain(ActionEvent event){
 
     }
     public void initialize(URL url, ResourceBundle rb){
