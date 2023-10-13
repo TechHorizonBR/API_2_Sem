@@ -22,7 +22,7 @@
                       <MenuItem text="Atribuir notas e feedbacks" />
                   </Menu>
                   <Menu text="Cadastros">
-                      <MenuItem onAction="#onOrientadores" text="Orientadores" />
+                      <MenuItem fx:id="orientadores" onAction="#onOrientadores" text="Orientadores"  />
                       <MenuItem text="Definir entregas" />
                   </Menu>
                   <Menu text="Relatórios">
@@ -33,7 +33,7 @@
                   </Menu>
                   <Menu text="Configurações">
                       <MenuItem text="Histórico" />
-                      <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
+                      <MenuItem fx:id="telaInicial" onAction="#onTelaInicial" text="Tela Inicial" />
                   </Menu>
                   <cursor>
                       <Cursor fx:constant="HAND" />
