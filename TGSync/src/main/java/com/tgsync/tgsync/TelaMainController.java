@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TelaMainController extends Application {
+public class TelaMainController{
 
     @FXML
     private MenuItem visualizarAlunos;
@@ -26,28 +26,6 @@ public class TelaMainController extends Application {
     private ImageView imgLogo;
     @FXML
     private Parent root;
-    private Stage primaryStage;
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("telaMain.fxml"));
-            Parent root = loader.load();
-            Scene mainScene = new Scene(root);
-
-            primaryStage.setScene(mainScene);
-            primaryStage.setTitle("TGSync");
-            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-tgsync.png")));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void onVisualizarAlunosClicked() {

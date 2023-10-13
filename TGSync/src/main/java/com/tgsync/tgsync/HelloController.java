@@ -87,7 +87,7 @@ public class HelloController {
                     @Override
                     public void handle(final ActionEvent e) {
                         try {
-                            loadView("TelaAlunos.fxml");
+                            loadView("telaMain.fxml");
                         } catch (IOException ex) {
                             Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
                             throw new RuntimeException(ex);
