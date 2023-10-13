@@ -2,6 +2,7 @@ package com.tgsync.tgsync;
 
 
 import Model.util.Alerts;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,6 +43,8 @@ public class TelaMainController{
     private MenuItem relatorioFeedbacks;
     @FXML
     private MenuItem telaInicial;
+    @FXML
+    private MenuItem sair;
 
     @FXML
     private ImageView imgLogo;
@@ -88,14 +91,18 @@ public class TelaMainController{
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
-                        try {
+                        /*try {
                             loadView("hello-view.fxml");
                         } catch (IOException ex) {
                             Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
                             throw new RuntimeException(ex);
-                        }
+                        }*/
                     }
                 });
+    }
+    @FXML
+    private void encerrarSistema(ActionEvent event){
+        Platform.exit();;
     }
 
     private void loadView(String absoluteName) throws IOException {

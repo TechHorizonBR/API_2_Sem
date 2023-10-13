@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="895.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
+<AnchorPane prefHeight="600.0" prefWidth="895.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
       <children>
       <VBox layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
          <children>
@@ -109,12 +109,12 @@
             </HBox>
             <HBox prefHeight="78.0" prefWidth="988.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email do Orientador:" translateX="42.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Orientador:" translateX="42.0">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="textFieldEmail" prefHeight="30.0" prefWidth="270.0" promptText="Email do Orientador">
+                  <TextField fx:id="textFieldNomeOrientador" prefHeight="30.0" prefWidth="270.0" promptText="Nome do Orientador">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
@@ -122,12 +122,12 @@
                         <Insets left="-95.0" right="70.0" top="20.0" />
                      </HBox.margin>
                   </TextField>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Orientador:">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email do Orientador:">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="textFieldNomeOrientador" prefHeight="30.0" prefWidth="270.0" promptText="Nome do Orientador">
+                  <TextField fx:id="textFieldEmail" prefHeight="30.0" prefWidth="270.0" promptText="Email do Orientador">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
@@ -148,9 +148,9 @@
                   </Button>
                </children>
             </HBox>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="810.0">
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="810.0">
                <content>
-                  <TableView fx:id="tabelaOrientadores" prefHeight="410.0" prefWidth="849.0">
+                  <TableView fx:id="tabelaOrientadores" prefHeight="301.0" prefWidth="850.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome" />
                         <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="408.7999572753906" text="Email" />
@@ -161,11 +161,21 @@
                   <Insets left="40.0" />
                </VBox.margin>
             </ScrollPane>
-            <ImageView fitHeight="30.0" fitWidth="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/eng-removebg-preview.png" />
-               </image>
-            </ImageView>
+            <HBox alignment="TOP_RIGHT" prefHeight="48.0" prefWidth="888.0">
+               <children>
+                  <Button fx:id="buttonVoltar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVoltar" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Voltar" textAlignment="CENTER" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Black" size="11.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="50.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

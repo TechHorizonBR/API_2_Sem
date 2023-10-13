@@ -13,12 +13,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,6 +42,8 @@ public class TelaAlunosController {
 
     @FXML
     private Button btnRelatorios;
+    @FXML
+    private Button onVoltar;
     @FXML
     private TableColumn<AlunoDTO, String> colunaNome;
 
@@ -178,6 +185,32 @@ public class TelaAlunosController {
     }
     @FXML
     public void onVoltarMain(ActionEvent event){
+        onVoltar.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        try {
+                            loadView("telaMain.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+
+
+    private void loadView(String absoluteName) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
+        AnchorPane pane = loader.load();
+
+
+        Scene mainScene = HelloApplication.getMainScene();
+        VBox mainVBox = (VBox) mainScene.getRoot();
+        mainVBox.getChildren().clear();
+        mainVBox.getChildren().addAll(pane.getChildren());
+
 
     }
     public void initialize(URL url, ResourceBundle rb){

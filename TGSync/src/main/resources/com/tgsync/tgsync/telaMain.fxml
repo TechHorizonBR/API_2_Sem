@@ -34,6 +34,7 @@
                   <Menu text="Configurações">
                       <MenuItem text="Histórico" />
                       <MenuItem fx:id="telaInicial" onAction="#onTelaInicial" text="Tela Inicial" />
+                      <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                   </Menu>
                   <cursor>
                       <Cursor fx:constant="HAND" />
