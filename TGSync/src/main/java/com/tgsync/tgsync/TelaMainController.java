@@ -1,5 +1,6 @@
 package com.tgsync.tgsync;
 
+import Model.util.Alerts;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,11 +51,15 @@ public class TelaMainController extends Application {
 
     @FXML
     private void onVisualizarAlunosClicked() {
-        System.out.println("trocando de tela");
+        System.out.println("Tela Alunos");
     }
     @FXML
     private void onOrientadores() {
-        System.out.println("trocando de tela orientadores");
+        System.out.println("Tela Orientadores");
     }
 
+    @FXML
+    private void onTelaInicial(){
+        System.out.println("Tela Inicial/Upload");
+    }
 }

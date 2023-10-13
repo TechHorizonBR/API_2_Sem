@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="root" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
     <children>
@@ -21,12 +22,12 @@
         </ImageView>
         <MenuBar prefHeight="26.0" prefWidth="900.0">
             <Menu text="Alunos">
-                <MenuItem text="Visualizar alunos" onAction="#onVisualizarAlunosClicked" fx:id="visualizarAlunos"/>
+                <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar alunos" />
                 <MenuItem text="Pendências" />
                 <MenuItem text="Atribuir notas e feedbacks" />
             </Menu>
             <Menu text="Cadastros">
-                <MenuItem text="Orientadores" onAction="#onOrientadores"/>
+                <MenuItem onAction="#onOrientadores" text="Orientadores" />
                 <MenuItem text="Definir entregas" />
             </Menu>
             <Menu text="Relatórios">
@@ -37,11 +38,12 @@
             </Menu>
             <Menu text="Configurações">
                 <MenuItem text="Histórico" />
-                <MenuItem text="Tela Inicial" />
+                <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
             </Menu>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </MenuBar>
+      <Text fill="#0000006b" layoutX="377.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© Copyright - TechHorizon" textAlignment="CENTER" />
     </children>
 </AnchorPane>
