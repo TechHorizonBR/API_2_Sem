@@ -124,7 +124,7 @@ CREATE TABLE aluno(
     nome VARCHAR(255) NOT NULL,
     emailFatec VARCHAR(255) NOT NULL,
     emailPessoal VARCHAR(255) NOT NULL,
-    idOrientador BIGINT NOT NULL,
+    idOrientador BIGINT,
     UNIQUE INDEX (emailFatec),
     FOREIGN KEY (idOrientador) REFERENCES orientador(id)
 );
