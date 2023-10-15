@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-
+//
 public class TgService {
     public static void registrarTg(String caminhoCSV) {
         try (CSVReader csvReader = new CSVReaderBuilder(new FileReader(caminhoCSV))

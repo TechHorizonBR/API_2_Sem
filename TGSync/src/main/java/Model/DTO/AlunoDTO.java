@@ -105,6 +105,7 @@ public class AlunoDTO {
 //    public List<Nota> getNotas(){
 //        return listaNotas;
 //    }
+//
     public String getNomeOrientador(){
         OrientadorDAO orientador = new OrientadorDAO();
         OrientadorDTO orientadorDTO = orientador.getOrientadorPorId(this.idOrientador);
