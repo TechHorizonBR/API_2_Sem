@@ -196,12 +196,22 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 
 <details>
      
+<summary>Sprint 1</summary>
+
+![Sprint 1 (3)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/a6b39d5b-f7a3-4bba-812d-f76b7d309a2b)
+
+     
+</details>
+
+<details>
+     
 <summary>Sprint 2</summary>
 
 ![Sprint 2 (4)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/4dc33bcb-504c-4bef-bad7-3a9fde7fc980)
 
-     
 </details>
+
+
 
 <span id="docs">
 
