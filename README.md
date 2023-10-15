@@ -158,7 +158,7 @@ Geração de relatório de acompanhamento de entregas | 8 | -
 
 <summary>Clique aqui para visualizar</summary>
 
-User stories | Prioridade Backlog 
+User stories | Prioridade Item Backlog 
 --- | --- 
 Como professor, necessito que o sistema seja capaz de ler arquivos no formato CSV para iniciar a avaliação. | 1
 Como professor, necessito que os dados dos alunos sejam armazenados de forma persistente para que eu possa consultá-los em qualquer momento. | 1
