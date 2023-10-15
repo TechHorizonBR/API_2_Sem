@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
+    <children>
+      <VBox prefHeight="275.0" prefWidth="900.0">
+         <children>
+              <MenuBar prefHeight="25.0" prefWidth="569.0">
+                  <Menu text="Alunos">
+                      <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar alunos" />
+                      <MenuItem text="Pendências" />
+                      <MenuItem text="Atribuir notas e feedbacks" />
+                  </Menu>
+                  <Menu text="Cadastros">
+                      <MenuItem fx:id="orientadores" onAction="#onOrientadores" text="Orientadores"  />
+                      <MenuItem text="Definir entregas" />
+                  </Menu>
+                  <Menu text="Relatórios">
+                      <MenuItem text="Aptos a Defesa" />
+                      <MenuItem text="Entregas" />
+                      <MenuItem text="Fechamento" />
+                      <MenuItem text="Feedbacks" />
+                  </Menu>
+                  <Menu text="Configurações">
+                      <MenuItem text="Histórico" />
+                      <MenuItem fx:id="telaInicial" onAction="#onTelaInicial" text="Tela Inicial" />
+                      <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
+                  </Menu>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </MenuBar>
+              <ImageView fx:id="imgLogo" fitHeight="250.0" fitWidth="547.0" pickOnBounds="true" preserveRatio="true" translateX="250.0" translateY="150.0">
+                  <image>
+                      <Image url="@../../../assets/logo-tgsync.png" />
+                  </image>
+                  <viewport>
+                      <Rectangle2D />
+                  </viewport>
+              </ImageView>
+            <Text fill="#0000006b" strokeType="OUTSIDE" strokeWidth="0.0" text="© Copyright - TechHorizon" textAlignment="CENTER" translateX="400.0" translateY="300.0" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

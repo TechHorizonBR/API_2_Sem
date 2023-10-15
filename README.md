@@ -140,10 +140,10 @@
 ## Product Backlog 📜
 Product Backlog | Prioridade | Status
 --- | --- | ---
-Carregamento do arquivo CSV | 1 | -
+Carregamento do arquivo CSV | 1 | ✅
 Registro de notas e feedbacks | 2 | -
 Registro de número de avaliações | 3 | -
-Validação dados do orientador | 4 | -
+Validação dados do orientador | 4 | ✅
 Replicação de notas em caso de relatórios técnicos | 5 | -
 Geração de relatório de alunos aptos a defesa | 6 | -
 Geração de relatório de notas dos alunos | 7 | -
@@ -158,21 +158,20 @@ Geração de relatório de acompanhamento de entregas | 8 | -
 
 <summary>Clique aqui para visualizar</summary>
 
-User stories |
---- |
-Como professor, necessito que o sistema seja capaz de ler arquivos no formato CSV para iniciar a avaliação.
-Como professor, necessito que os dados dos alunos sejam armazenados de forma persistente para que eu possa consultá-los em qualquer momento.
-Como professor, necessito que o sistema permita inserir o número necessário de entregas para cada turma de TG, a fim de realizar as avaliações.
-Como professor, necessito que o sistema seja capaz de identificar se o aluno está matriculado no TG1, TG2 ou em ambos, a fim de definir a abordagem de avaliação adequada.
-Como professor, necessito que o sistema faça a distinção entre os tipos de TG (portfolio, artigo tecnológico ou científico, relatório técnico para estágio ou disciplina) para que eu possa gerenciar cada tipo de forma adequada.
-Como professor, necessito que seja possível atribuir uma nota e fornecer feedback para cada entrega do aluno, para que eu possa consultá-los no futuro.
-Como professor, necessito que o sistema valide o nome do professor, para que eu possa corrigir erros caso o aluno o digite incorretamente.
-Como professor, necessito que o sistema possa gerar uma lista de alunos aptos para a defesa do projeto, a fim de facilitar o processo de certificação.
-Como professor, gostaria que o sistema replicasse a nota do TG1 para TG2 em caso de relatórios técnicos, a fim de manter a consistência nas avaliações.
-Como professor, gostaria que o sistema permitisse o armazenamento dos detalhes do TG (tipo, problema a ser tratado, etc.) para referência futura e análise dos projetos dos alunos.
-Como professor, gostaria que o sistema destacasse os alunos que não estão entregando as atividades, para que eu possa identificar e abordar problemas nas entregas.
-Como professor, necessito que o sistema permita o fechamento do semestre e o transporte de notas, para facilitar o processo de aprovação dos alunos.
-
+User stories | Prioridade Item Backlog 
+--- | --- 
+Como professor, necessito que o sistema seja capaz de ler arquivos no formato CSV para iniciar a avaliação. | 1
+Como professor, necessito que os dados dos alunos sejam armazenados de forma persistente para que eu possa consultá-los em qualquer momento. | 1
+Como professor, gostaria que o sistema permitisse o armazenamento dos detalhes do TG (tipo, problema a ser tratado, etc.) para referência futura e análise dos projetos dos alunos. | 1
+Como professor, necessito que seja possível atribuir uma nota e fornecer feedback para cada entrega do aluno, para que eu possa consultá-los no futuro. | 2
+Como professor, necessito que o sistema permita inserir o número necessário de entregas para cada turma de TG, a fim de realizar as avaliações. | 3
+Como professor, necessito que o sistema seja capaz de identificar se o aluno está matriculado no TG1, TG2 ou em ambos, a fim de definir a abordagem de avaliação adequada. | 3
+Como professor, necessito que o sistema faça a distinção entre os tipos de TG (portfolio, artigo tecnológico ou científico, relatório técnico para estágio ou disciplina) para que eu possa gerenciar cada tipo de forma adequada. | 3
+Como professor, necessito que o sistema valide o nome do professor, para que eu possa corrigir erros caso o aluno o digite incorretamente. | 4
+Como professor, gostaria que o sistema replicasse a nota do TG1 para TG2 em caso de relatórios técnicos, a fim de manter a consistência nas avaliações. | 5
+Como professor, necessito que o sistema possa gerar uma lista de alunos aptos para a defesa do projeto, a fim de facilitar o processo de certificação. | 6
+Como professor, necessito que o sistema permita o fechamento do semestre e o transporte de notas, para facilitar o processo de aprovação dos alunos. | 7
+Como professor, gostaria que o sistema destacasse os alunos que não estão entregando as atividades, para que eu possa identificar e abordar problemas nas entregas. | 8
 
 </details>
 
@@ -181,10 +180,10 @@ Como professor, necessito que o sistema permita o fechamento do semestre e o tra
 ## Cronograma de Entregas 🗓️
 
 Sprint| Início| Entrega  
---- | --- | --- 
+--- | --- | ---
 Kick off do projeto| 21/08/2023| 21/08/2023 ✅
 1| 04/09/2023| 24/09/2023 ✅
-2| 25/09/2023| 15/10/2023 
+2| 25/09/2023| 15/10/2023 ✅
 3| 16/10/2023| 05/11/2023 
 4|  06/11/2023| 26/11/2023 
 Feira de Soluções|  12/12/2023| 12/12/2023 
@@ -197,9 +196,9 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 
 <details>
      
-<summary>Sprint 1</summary>
+<summary>Sprint 2</summary>
 
-![Sprint 1 (3)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/4f57197e-6ffc-4a54-8d41-28da8e202165)
+![Sprint 2 (1)](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/b03d1292-b1c6-4992-ba45-383955ac7b43)
      
 </details>
 
@@ -210,6 +209,7 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 - <a href="https://github.com/TechHorizonBR/API_2_Sem/blob/main/Docs/ModelagemDeDadosInicial.png">Modelagem de Dados</a>
 - <a href="https://github.com/TechHorizonBR/API_2_Sem/blob/main/Docs/DiagramaClassesIMG.png">Diagrama de Classes</a>
 - <a href="https://www.figma.com/file/c0g436FKcqlxVzvQkhjapb/WireFrame---API_2S?type=design&node-id=0%3A1&mode=design&t=zESC1cV3qporI61q-1">Protótipo de Telas</a>
+- <a href="https://github.com/TechHorizonBR/API_2_Sem/tree/Sprint2/Database">Banco de Dados</a>
 
 
 <span id="tecnologias">
