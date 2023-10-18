@@ -36,9 +36,10 @@ public class AlunoService {
                 } else {
                     emailFatec = linha[2];
                 }
+                String emailOrientador = linha[5].trim();
 
                 alunoDTO = alunoDAO.getAlunoPorEmailSemMatricula(emailFatec);
-                orientadorDTO = orientadorDAO.getOrientadorPorEmail(linha[5]);
+                orientadorDTO = orientadorDAO.getOrientadorPorEmail(emailOrientador);
 
                 Long idOrientador = null;
                 if(orientadorDTO!=null){
