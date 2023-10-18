@@ -24,7 +24,7 @@
                       <MenuItem text="Atribuir notas e feedbacks" />
                   </Menu>
                   <Menu text="Cadastros">
-                      <MenuItem fx:id="orientadores" onAction="#onOrientadores" text="Orientadores" />
+                      <MenuItem fx:id="telaOrientadores" onAction="#onOrientadores" text="Orientadores" />
                       <MenuItem text="Definir entregas" />
                   </Menu>
                   <Menu text="Relatórios">

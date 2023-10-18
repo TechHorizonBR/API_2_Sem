@@ -34,7 +34,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
-                    <MenuItem fx:id="menuOrientadores" mnemonicParsing="false" text="Orientadores" onAction="#onOrientadores"/>
+                    <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" text="Orientadores" onAction="#onOrientadores"/>
                         <MenuItem mnemonicParsing="false" text="Definir Entregas" />
                   </items>
                 </Menu>
@@ -49,7 +49,7 @@
                   <Menu mnemonicParsing="false" text="Configurações">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Histórico" />
-                        <MenuItem fx:id="voltar" mnemonicParsing="false" text="Tela Inicial" onAction="#onVoltar"/>
+                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" text="Tela Inicial" onAction="#onTelaInicial"/>
                         <MenuItem fx:id="sair" mnemonicParsing="false" text="Sair" onAction="#encerrarSistema" />
                      </items>
                   </Menu>
