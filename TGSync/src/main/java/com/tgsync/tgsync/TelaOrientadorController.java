@@ -2,6 +2,7 @@ package com.tgsync.tgsync;
 
 import Model.DTO.AlunoDTO;
 import Model.util.Alerts;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TelaOrientadorController{
+
+    @FXML
+    private MenuItem visualizarAlunos;
+    @FXML
+    private MenuItem pendencias;
+    @FXML
+    private MenuItem notasFeedbacks;
+    @FXML
+    private MenuItem menuOrientadores;
+    @FXML
+    private MenuItem entregas;
+    @FXML
+    private MenuItem relatorioDefesa;
+    @FXML
+    private MenuItem relatorioEntrega;
+    @FXML
+    private MenuItem relatorioFechamento;
+    @FXML
+    private MenuItem relatorioFeedbacks;
+    @FXML
+    private MenuItem voltar;
+    @FXML
+    private MenuItem sair;
 
     // Buttons
     @FXML
@@ -56,6 +80,7 @@ public class TelaOrientadorController{
 
     @FXML
     private TableView<OrientadorDTO> tabelaOrientadores;
+    @FXML
     ObservableList<OrientadorDTO> orientadores = FXCollections.observableArrayList();
     // Data Base
     private OrientadorDAO orientadorDAO;
@@ -116,7 +141,7 @@ public class TelaOrientadorController{
 
     @FXML
     public void onVoltar(ActionEvent event){
-        buttonVoltar.setOnAction(
+        voltar.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
@@ -130,6 +155,62 @@ public class TelaOrientadorController{
                 });
     }
 
+
+
+
+    @FXML
+    private void onVisualizarAlunosClicked() {
+        System.out.println("Tela Alunos");
+        visualizarAlunos.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        try {
+                            loadView("TelaAlunos.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+    @FXML
+    private void onOrientadores() {
+        System.out.println("Tela Orientadores");
+        menuOrientadores.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        try {
+                            loadView("TelaOrientador.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+
+    @FXML
+    private void onTelaInicial(){
+        System.out.println("Tela Inicial/Upload");
+        /*telaInicial.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        /*try {
+                            loadView("hello-view.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });*/
+    }
+    @FXML
+    private void encerrarSistema(ActionEvent event){
+        Platform.exit();;
+    }
 
     private void loadView(String absoluteName) throws IOException {
 

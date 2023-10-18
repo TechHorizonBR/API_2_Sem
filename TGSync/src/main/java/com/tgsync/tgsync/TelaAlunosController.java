@@ -8,6 +8,7 @@ import Model.DTO.OrientadorDTO;
 import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 import Model.util.Alerts;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -32,18 +33,27 @@ import java.util.ResourceBundle;
 public class TelaAlunosController {
 
     @FXML
-    private Button btnAlunos;
-
+    private MenuItem visualizarAlunos;
     @FXML
-    private Button btnCadastro;
-
+    private MenuItem pendencias;
     @FXML
-    private Button btnConfiguracoes;
-
+    private MenuItem notasFeedbacks;
     @FXML
-    private Button btnRelatorios;
+    private MenuItem menuOrientadores;
     @FXML
-    private Button onVoltar;
+    private MenuItem entregas;
+    @FXML
+    private MenuItem relatorioDefesa;
+    @FXML
+    private MenuItem relatorioEntrega;
+    @FXML
+    private MenuItem relatorioFechamento;
+    @FXML
+    private MenuItem relatorioFeedbacks;
+    @FXML
+    private MenuItem voltar;
+    @FXML
+    private MenuItem sair;
     @FXML
     private TableColumn<AlunoDTO, String> colunaNome;
 
@@ -184,8 +194,8 @@ public class TelaAlunosController {
 
     }
     @FXML
-    public void onVoltarMain(ActionEvent event){
-        onVoltar.setOnAction(
+    public void onVoltar(ActionEvent event){
+        voltar.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
@@ -200,6 +210,62 @@ public class TelaAlunosController {
     }
 
 
+
+
+    @FXML
+    private void onVisualizarAlunosClicked() {
+        System.out.println("Tela Alunos");
+        visualizarAlunos.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        try {
+                            loadView("TelaAlunos.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+    @FXML
+    private void onOrientadores() {
+        System.out.println("Tela Orientadores");
+        menuOrientadores.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        try {
+                            loadView("TelaOrientador.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+
+    @FXML
+    private void onTelaInicial(){
+        System.out.println("Tela Inicial/Upload");
+        /*telaInicial.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        /*try {
+                            loadView("hello-view.fxml");
+                        } catch (IOException ex) {
+                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });*/
+    }
+    @FXML
+    private void encerrarSistema(ActionEvent event){
+        Platform.exit();;
+    }
+
     private void loadView(String absoluteName) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
@@ -213,7 +279,5 @@ public class TelaAlunosController {
 
 
     }
-    public void initialize(URL url, ResourceBundle rb){
-        
-    }
+
 }

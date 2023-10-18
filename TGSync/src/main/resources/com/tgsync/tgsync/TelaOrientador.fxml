@@ -4,6 +4,9 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,6 +23,38 @@
       <children>
       <VBox layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
          <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Alunos">
+                  <items>
+                    <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" text="Visualizar Alunos" onAction="#onVisualizarAlunosClicked"/>
+                        <MenuItem mnemonicParsing="false" text="Pendências" />
+                        <MenuItem mnemonicParsing="false" text="Atribuir Notas e Feedbacks" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Cadastros">
+                  <items>
+                    <MenuItem fx:id="menuOrientadores" mnemonicParsing="false" text="Orientadores" onAction="#onOrientadores"/>
+                        <MenuItem mnemonicParsing="false" text="Definir Entregas" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatórios">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Aptos a defesa" />
+                        <MenuItem mnemonicParsing="false" text="Entregas" />
+                        <MenuItem mnemonicParsing="false" text="Fechamento" />
+                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Configurações">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Histórico" />
+                        <MenuItem fx:id="voltar" mnemonicParsing="false" text="Tela Inicial" onAction="#onVoltar"/>
+                        <MenuItem fx:id="sair" mnemonicParsing="false" text="Sair" onAction="#encerrarSistema" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
             <ImageView fx:id="imgLogo" fitHeight="75.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/logo-tgsync.png" />
@@ -28,85 +63,17 @@
                   <Rectangle2D />
                </viewport>
                <VBox.margin>
-                  <Insets left="40.0" top="20.0" />
+                  <Insets bottom="-20.0" left="35.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <HBox prefHeight="57.0" prefWidth="988.0">
-               <children>
-                  <Button fx:id="ButtonAlunos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Alunos" textAlignment="CENTER" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="40.0" right="90.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../assets/cap-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="ButtonCadastro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Cadastro" textAlignment="CENTER" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="90.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../assets/plus-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="ButtonRelatorios" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Relatórios" textAlignment="CENTER" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="90.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../assets/plus-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="ButtonConfiguracoes" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Configurações" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Black" size="11.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="90.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../assets/eng-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ORIENTADORES" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="45.0" />
+               </VBox.margin>
+            </Text>
             <HBox prefHeight="78.0" prefWidth="988.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Orientador:" translateX="42.0">
@@ -147,10 +114,13 @@
                      </HBox.margin>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </HBox>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="810.0">
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="810.0">
                <content>
-                  <TableView fx:id="tabelaOrientadores" prefHeight="301.0" prefWidth="850.0">
+                  <TableView fx:id="tabelaOrientadores" prefHeight="346.0" prefWidth="850.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome" />
                         <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="408.7999572753906" text="Email" />
@@ -161,21 +131,7 @@
                   <Insets left="40.0" />
                </VBox.margin>
             </ScrollPane>
-            <HBox alignment="TOP_RIGHT" prefHeight="48.0" prefWidth="888.0">
-               <children>
-                  <Button fx:id="buttonVoltar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVoltar" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: lightslategrey; -fx-border-color: dimgrey;" text="Voltar" textAlignment="CENTER" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Black" size="11.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="50.0" top="20.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="900.0" />
          </children>
       </VBox>
    </children>
