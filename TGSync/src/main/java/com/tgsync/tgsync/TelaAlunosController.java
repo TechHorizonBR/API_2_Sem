@@ -35,41 +35,28 @@ public class TelaAlunosController extends MudancaTelas {
 
     @FXML
     private TableColumn<AlunoDTO, String> colunaNome;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmail;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmailFatec;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmailOrientador;
-
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaNomeOrientador;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaTipoTG;
-
     @FXML
     private ImageView imgLogo;
-
     @FXML
     private Button onOkButton;
-
     @FXML
     private AnchorPane pnlPrincipal;
-
     @FXML
     private TableView<AlunoDTO> tabelaAlunos;
-
     @FXML
     private TextField txtAno;
-
     @FXML
     private TextField txtSemestre;
-
     @FXML
     private TextField txtTG;
     @FXML
@@ -78,11 +65,7 @@ public class TelaAlunosController extends MudancaTelas {
     private TableColumn<AlunoDTO, String> colunaEmpresa;
     @FXML
     private TableColumn<AlunoDTO, String> colunaDiscplina;
-
-
     ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
-
-
 
     @FXML
     void OnOkButton(ActionEvent event) {
@@ -159,17 +142,11 @@ public class TelaAlunosController extends MudancaTelas {
                             return new SimpleStringProperty("");
                         }
                     });
-
-
                     tabelaAlunos.setItems(listAlunos);
                 }
             } else{
                 Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
             }
-
         }
-
-
-
     }
 }

@@ -30,16 +30,11 @@ public class HelloController {
 
     @FXML
     private Button onOpenCSVButton;
-
     @FXML
     private Button onViewAllDataButton;
     @FXML
     private VBox vBox;
-
     final FileChooser fileChooser = new FileChooser();
-
-
-
     @FXML
     protected void onOpenCSVButton() {
         Scene mainScene = HelloApplication.getMainScene();
@@ -63,17 +58,12 @@ public class HelloController {
                         } catch (ParseException ex) {
                             Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Entre em contato com o seu administrador.", Alert.AlertType.WARNING);
                         }
-
                     }
                 });
-
-
     }
     private void openFile(File file) {
         System.out.println("Caminho: "+ file.getAbsolutePath());
     }
-
-
     private static void configureFileChooser(final FileChooser fileChooser) {
 
         fileChooser.setTitle("Abrir CSV");
@@ -95,14 +85,9 @@ public class HelloController {
                     }
                 });
     }
-
-
     private void loadView(String absoluteName) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
         AnchorPane pane = loader.load();
-
-
         Scene mainScene = HelloApplication.getMainScene();
         VBox mainVBox = (VBox) mainScene.getRoot();
         mainVBox.getChildren().clear();
