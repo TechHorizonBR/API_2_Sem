@@ -68,4 +68,32 @@ public class EntregaDAO {
         }
         return entregasEncontradas;
     }
+
+    public EntregaDTO getEntregaPorId(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM entrega WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+            while(rs.next()) {
+                EntregaDTO entregaDTO = new EntregaDTO(rs.getLong("id"), rs.getDate("dataEntrega"), rs.getString("titulo"), rs.getLong("idTurma"));
+                return entregaDTO;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

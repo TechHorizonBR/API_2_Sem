@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class AlunoDAO {
+public class    AlunoDAO {
     Connection connection = null;
     public void addAluno(AlunoDTO aluno){
         PreparedStatement stmt = null;
