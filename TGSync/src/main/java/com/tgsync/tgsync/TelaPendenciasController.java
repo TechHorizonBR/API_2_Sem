@@ -1,2 +1,8 @@
-package com.tgsync.tgsync;public class TelaPendenciasController {
+
+package com.tgsync.tgsync;
+
+import javafx.fxml.FXML;
+
+
+public class TelaPendenciasController {
 }

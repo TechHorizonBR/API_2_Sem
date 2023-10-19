@@ -4,29 +4,36 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class NotaDTO {
-    private Long idNota;
+    private Long id;
     private String feedback;
-    private List<Long> idEntrega = new LinkedList<>();
-    private List<Long> id = new LinkedList<>(); //id = idAluno
 
-    public NotaDTO(Long idNota, String feedback, LinkedList<Long> idEntrega, LinkedList<Long> id){
-        this.idNota = idNota;
+    private Double valor;
+
+    private Long idAluno;
+
+    private Long idEntrega;
+
+    public NotaDTO(Long id, String feedback, Double valor, Long idAluno, Long idEntrega){
+        this.id = id;
         this.feedback = feedback;
+        this.valor = valor;
+        this.idAluno = idAluno;
         this.idEntrega = idEntrega;
-        this.id = id;
+
     }
 
-    public NotaDTO(String feedback, LinkedList<Long>idEntrega, LinkedList<Long> id){
-        this.feedback =  feedback;
+    public NotaDTO(String feedback, Double valor, Long idAluno, Long idEntrega) {
+        this.feedback = feedback;
+        this.valor = valor;
+        this.idAluno = idAluno;
         this.idEntrega = idEntrega;
-        this.id = id;
     }
 
-    public Long getIdNota() {
-        return this.idNota;
+    public Long getId() {
+        return this.id;
     }
-    public void setIdNota (Long idNota) {
-        this.idNota = idNota;
+    public void setId (Long id) {
+        this.id = id;
     }
     public String getFeedback(){
         return this.feedback;
@@ -34,19 +41,24 @@ public class NotaDTO {
     public void setFeedback (String feedback) {
         this.feedback = feedback;
     }
-    public List<Long> getIdEntrega(){
-        return this.idEntrega;
+    public Double getValor(){
+        return this.valor;
     }
-    public void setIdEntrega(Long idEntrega){
-        this.idEntrega.add(idEntrega);
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
-    public List<Long> getid (){
-        return this.id;
+    public Long getIdAluno(){
+        return this.idAluno;
     }
-    public void setId (Long id){
-        this.id.add(id);
+    public void setIdAluno(Long idAluno) {
+        this.idAluno = idAluno;
     }
 
+    public Long getIdEntrega() {
+        return idEntrega;
+    }
+
+    public void setIdEntrega(Long idEntrega) {
+        this.idEntrega = idEntrega;
+    }
 }
-
-

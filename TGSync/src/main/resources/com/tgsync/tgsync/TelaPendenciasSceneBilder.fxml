@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.embed.swing.SwingNode?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SwingNode layoutX="237.0" layoutY="219.0" />
+      <TableView layoutX="21.0" layoutY="141.0" prefHeight="239.0" prefWidth="561.0">
+        <columns>
+          <TableColumn prefWidth="166.0" text="Nome" />
+          <TableColumn minWidth="0.0" prefWidth="164.0" text="e-mail Aluno" />
+            <TableColumn minWidth="0.0" prefWidth="58.0" text="Tipo TG" />
+            <TableColumn prefWidth="172.0" text="e-mail Orientador" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
