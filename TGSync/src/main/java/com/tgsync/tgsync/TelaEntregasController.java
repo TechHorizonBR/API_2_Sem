@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class TelaEntregasController extends MudancaTelas {
@@ -37,7 +39,6 @@ public class TelaEntregasController extends MudancaTelas {
 
     @FXML
     private TextField textFieldTitulo;
-
 
     @FXML
     public void adicionarEntrega(ActionEvent event){
@@ -64,9 +65,9 @@ public class TelaEntregasController extends MudancaTelas {
             turmaService.setDisciplina(tg);
             turmaService = TurmaDAO.getTurmaPorAtributo(turmaService);
 
-            entregaDAO.addEntrega(new EntregaDTO(data, titulo));
-
-
+            LocalDateTime localDateTime = data.atStartOfDay();
+            Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            entregaDAO.addEntrega(new EntregaDTO(date,"titulo"), turmaService);
         }
 
     }

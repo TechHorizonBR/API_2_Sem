@@ -69,17 +69,22 @@ public class MudancaTelas {
     public void encerrarSistema(ActionEvent event){
         Platform.exit();
     }
-
+    @FXML
+    public void telaEntregas(ActionEvent event){
+        try{
+            loadView("telaEntregas.fxml");
+        }catch (IOException e){
+            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(e);
+        }
+    }
     public void loadView(String absoluteName) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
         AnchorPane pane = loader.load();
         Scene mainScene = HelloApplication.getMainScene();
         VBox mainVBox = (VBox) mainScene.getRoot();
         mainVBox.getChildren().clear();
         mainVBox.getChildren().addAll(pane.getChildren());
-
-
     }
 
 }

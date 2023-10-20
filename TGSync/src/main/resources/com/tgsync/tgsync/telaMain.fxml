@@ -25,7 +25,7 @@
                   </Menu>
                   <Menu text="Cadastros">
                       <MenuItem fx:id="telaOrientadores" onAction="#onOrientadores" text="Orientadores" />
-                      <MenuItem text="Definir entregas" />
+                      <MenuItem fx:id="entregas" text="Definir entregas" onAction="#telaEntregas" />
                   </Menu>
                   <Menu text="Relatórios">
                       <MenuItem text="Aptos a Defesa" />
