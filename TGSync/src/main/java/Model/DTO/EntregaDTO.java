@@ -26,7 +26,7 @@ public class EntregaDTO {
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
      }
-     public EntregaDTO(Date dataEntrega, String tituloEntrega) {
+     public EntregaDTO(LocalDate dataEntrega, String tituloEntrega) {
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
      }
