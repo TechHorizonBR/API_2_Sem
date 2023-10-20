@@ -23,13 +23,21 @@ public class TelaEntregasController extends MudancaTelas {
     private Button ButtonCadastrar;
 
     @FXML
-    private TableColumn<EntregaDTO, Date> colunaDataEntrega;
+    private TableColumn<EntregaDTO, Date> colunaDataEntregaTG1;
 
     @FXML
-    private TableColumn<EntregaDTO, String> colunaTitulo;
+    private TableColumn<EntregaDTO, String> colunaTituloTG1;
 
     @FXML
-    private TableView<EntregaDTO> tabelaEntregas;
+    private TableView<EntregaDTO> tabelaEntregasTG1;
+    @FXML
+    private TableColumn<EntregaDTO, Date> colunaDataEntregaTG2;
+
+    @FXML
+    private TableColumn<EntregaDTO, String> colunaTituloTG2;
+
+    @FXML
+    private TableView<EntregaDTO> tabelaEntregasTG2;
 
     @FXML
     private ComboBox<Integer> comboBoxTG;
