@@ -45,10 +45,11 @@ public class TelaEntregasController extends MudancaTelas {
         String titulo = textFieldTitulo.getText();
         LocalDate data = dateDataEntrega.getValue();
         Integer tg = comboBoxTG.getValue();
-
+        System.out.println(titulo);
         LocalDate dataAtual = LocalDate.now();
-
-        if (titulo.equals("")){
+        if(tg == null){
+            Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
+        } else if (titulo.equals("")){
             Alerts.showAlert("Atenção!", "", "Não é possível cadastrar uma entrega com o título vazio.", Alert.AlertType.WARNING);
         }else if (data.isBefore(dataAtual)){
             Alerts.showAlert("Atenção!","","Não é possível inserir uma data anterior a atual", Alert.AlertType.WARNING);
@@ -67,7 +68,10 @@ public class TelaEntregasController extends MudancaTelas {
 
             LocalDateTime localDateTime = data.atStartOfDay();
             Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            entregaDAO.addEntrega(new EntregaDTO(date,"titulo"), turmaService);
+            entregaDAO.addEntrega(new EntregaDTO(date,titulo), turmaService);
+            textFieldTitulo.setText("");
+            dateDataEntrega.setValue(null);
+            comboBoxTG.setValue(null);
         }
 
     }
