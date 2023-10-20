@@ -72,4 +72,32 @@ public class NotaDAO {
         }
         return null;
     }
+
+    public NotaDTO getNotaPorId(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM nota WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                NotaDTO notaDTO = new NotaDTO(rs.getLong("id"), rs.getString("feedback"), rs.getDouble("valor"), rs.getLong("idAluno"), rs.getLong("idEntrega"));
+                return notaDTO;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }
