@@ -12,8 +12,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -129,7 +136,33 @@ public class TelaEntregasController extends MudancaTelas {
         colunaDataEntregaTG1.setCellValueFactory(new PropertyValueFactory<>("dataEntregaFormatada"));
         tabelaEntregasTG1.setItems(obsListEntregasTG1);
     }
+    @FXML
+    void tableClickTG1(MouseEvent event) {
+        int i = tabelaEntregasTG1.getSelectionModel().getSelectedIndex();
+        EntregaDTO entregaDTO = (EntregaDTO)tabelaEntregasTG1.getItems().get(i);
+        System.out.println(entregaDTO);
 
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarEntrega.fxml"));
+            Parent root = loader.load();
+
+            EditarEntregaController editarEntregaController = loader.getController();
+
+            // Passe a mensagem para o controlador da tela de pop-up
+            editarEntregaController.setMessage(entregaDTO.getTituloEntrega(), entregaDTO.getIdEntrega(), 1);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Editar Entrega");
+            Scene scene = new Scene(root);
+            popupStage.setScene(scene);
+
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

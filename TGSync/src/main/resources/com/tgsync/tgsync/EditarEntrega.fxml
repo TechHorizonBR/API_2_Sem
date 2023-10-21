@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.EditarEntregaController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="62.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/logo-tgsync.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <VBox.margin>
+                  <Insets bottom="-20.0" left="20.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EDITAR ENTREGA" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="10.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="26.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id:" wrappingWidth="46.1898193359375">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="26.0" top="22.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="txtId" strokeType="OUTSIDE" strokeWidth="0.0" text="1" wrappingWidth="46.1898193359375">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="-18.0" top="22.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TG:" wrappingWidth="46.1898193359375">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="26.0" top="15.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="txtTg" strokeType="OUTSIDE" strokeWidth="0.0" text="1" wrappingWidth="46.1898193359375">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="-18.0" top="15.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Título:" wrappingWidth="46.1898193359375">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="26.0" top="15.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="FieldTitulo" prefHeight="26.0" prefWidth="227.0">
+                     <HBox.margin>
+                        <Insets left="85.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data de entrega: " wrappingWidth="131.78986358642578">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="26.0" top="15.0" />
+                     </HBox.margin>
+                  </Text>
+                  <DatePicker fx:id="campoData">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="ButtonCadastrar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Salvar" textAlignment="JUSTIFY" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="400.0" top="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
