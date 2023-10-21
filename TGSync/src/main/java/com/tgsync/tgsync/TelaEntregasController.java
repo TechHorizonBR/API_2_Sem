@@ -7,15 +7,21 @@ import Model.DTO.TurmaDTO;
 import Model.Service.TurmaService;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 public class TelaEntregasController extends MudancaTelas {
 
@@ -47,6 +53,16 @@ public class TelaEntregasController extends MudancaTelas {
 
     @FXML
     private TextField textFieldTitulo;
+    @FXML
+    ObservableList<EntregaDTO> obsListEntregasTG1 = FXCollections.observableArrayList();
+
+    public void initialize(){
+        try{
+            updateTableTG1();
+        }catch (ParseException e) {
+            System.out.println("Alguma coisa deu erradi");
+        }
+    }
 
     @FXML
     public void adicionarEntrega(ActionEvent event){
@@ -77,12 +93,43 @@ public class TelaEntregasController extends MudancaTelas {
             LocalDateTime localDateTime = data.atStartOfDay();
             Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
             entregaDAO.addEntrega(new EntregaDTO(date,titulo), turmaService);
+            try{
+                updateTableTG1();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
             textFieldTitulo.setText("");
             dateDataEntrega.setValue(null);
             comboBoxTG.setValue(null);
+            Alerts.showAlert("SUCESSO!", "", "Entrega adicionada com sucesso", Alert.AlertType.CONFIRMATION);
         }
 
     }
+    public void updateTableTG1() throws ParseException {
+        EntregaDAO entregaDAO = new EntregaDAO();
+        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
+        turmaDTO.setDisciplina(1);
+        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+
+        obsListEntregasTG1.clear();
+        tabelaEntregasTG1.setItems(null);
+
+        List<EntregaDTO> listEntrega = entregaDAO.getEntregasPorIdTurma(turmaDTO);
+        SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+
+        if(!listEntrega.isEmpty()){
+            for(EntregaDTO entrega : listEntrega){
+                obsListEntregasTG1.add(entrega);
+            }
+        }
+
+        obsListEntregasTG1 = FXCollections.observableArrayList(obsListEntregasTG1);
+        colunaTituloTG1.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
+        colunaDataEntregaTG1.setCellValueFactory(new PropertyValueFactory<>("dataEntregaFormatada"));
+        tabelaEntregasTG1.setItems(obsListEntregasTG1);
+    }
+
 
 }
 
