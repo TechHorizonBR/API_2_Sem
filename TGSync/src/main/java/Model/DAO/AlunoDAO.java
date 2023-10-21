@@ -94,7 +94,7 @@ public class    AlunoDAO {
             System.out.println(e.getMessage());
         }catch (ClassNotFoundException e){
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             try{
                 connection.close();
                 stmt.close();
