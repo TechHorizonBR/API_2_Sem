@@ -1,5 +1,8 @@
 package Model.DTO;
 
+import javafx.beans.property.SimpleStringProperty;
+
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 public class EntregaDTO {
@@ -58,6 +61,11 @@ public class EntregaDTO {
      @Override
      public String toString(){
           return String.format("Id Entrega: %s\nTitulo Entrega: %s\nData entrega: %s\nId turma: %s", this.idEntrega, this.tituloEntrega, this.dataEntrega, this.idTurma);
+     }
+     public SimpleStringProperty dataEntregaFormatadaProperty() {
+          SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+          String dataFormatada = formatoSaida.format(dataEntrega);
+          return new SimpleStringProperty(dataFormatada);
      }
 }
 

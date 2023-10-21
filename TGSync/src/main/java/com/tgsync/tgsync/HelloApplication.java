@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
         stage.setTitle("TGSync");
         stage.setScene(mainScene);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-tgsync.png")));
+        stage.setResizable(false);
 
         stage.show();
     }
