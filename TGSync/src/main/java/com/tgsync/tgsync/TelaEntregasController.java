@@ -7,7 +7,6 @@ import Model.DTO.TurmaDTO;
 import Model.Service.TurmaService;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -140,17 +138,16 @@ public class TelaEntregasController extends MudancaTelas {
     void tableClickTG1(MouseEvent event) {
         int i = tabelaEntregasTG1.getSelectionModel().getSelectedIndex();
         EntregaDTO entregaDTO = (EntregaDTO)tabelaEntregasTG1.getItems().get(i);
-        System.out.println(entregaDTO);
+        openTelaEditarEntrega(entregaDTO);
+    }
 
-
+    public void openTelaEditarEntrega(EntregaDTO entregaDTO){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarEntrega.fxml"));
             Parent root = loader.load();
 
             EditarEntregaController editarEntregaController = loader.getController();
-
-            // Passe a mensagem para o controlador da tela de pop-up
-            editarEntregaController.setMessage(entregaDTO.getTituloEntrega(), entregaDTO.getIdEntrega(), 1);
+            editarEntregaController.setMessage(entregaDTO);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);

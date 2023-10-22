@@ -117,7 +117,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ButtonCadastrar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Salvar" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Button fx:id="ButtonCadastrar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Salvar" textAlignment="JUSTIFY" textFill="WHITE" onAction="#updateEntrega">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
