@@ -3,7 +3,6 @@ package Model.DTO;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 public class EntregaDTO {
      private Long idEntrega;
@@ -40,8 +39,8 @@ public class EntregaDTO {
      public void setIdEntrega(Long idEntrega) {
           this.idEntrega = idEntrega;
      }
-     public Date getDataEntrega(){
-          return dataEntrega;
+     public java.sql.Date getDataEntrega(){
+          return (java.sql.Date) dataEntrega;
      }
      public void setDataEntrega (Date dataEntrega){
           this.dataEntrega = dataEntrega;

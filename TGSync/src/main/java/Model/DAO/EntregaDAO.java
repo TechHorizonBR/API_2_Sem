@@ -96,4 +96,34 @@ public class EntregaDAO {
         }
         return null;
     }
+
+    public EntregaDTO updateEntrega (EntregaDTO entregaDTO) {
+        PreparedStatement stmt = null;
+
+
+        try {
+            connection = ConexaoBD.ConexaoBD();
+
+            String sql = "INSERT INTO entrega(titulo, dataEntrega, idTurma) VALUES(?,?,?)";
+            PreparedStatement smt = connection.prepareStatement(sql);
+            stmt.setString(1, entregaDTO.getTituloEntrega());
+            stmt.setDate(2, entregaDTO.getDataEntrega());
+            stmt.setLong(3, entregaDTO.getIdTurmas());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+
+            }
+        }
+        return entregaDTO;
+    }
 }
