@@ -39,8 +39,8 @@ public class EntregaDTO {
      public void setIdEntrega(Long idEntrega) {
           this.idEntrega = idEntrega;
      }
-     public java.sql.Date getDataEntrega(){
-          return (java.sql.Date) dataEntrega;
+     public Date getDataEntrega(){
+          return this.dataEntrega;
      }
      public void setDataEntrega (Date dataEntrega){
           this.dataEntrega = dataEntrega;
