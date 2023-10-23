@@ -104,11 +104,12 @@ public class EntregaDAO {
         try {
             connection = ConexaoBD.ConexaoBD();
 
-            String sql = "INSERT INTO entrega(titulo, dataEntrega, idTurma) VALUES(?,?,?)";
-            PreparedStatement smt = connection.prepareStatement(sql);
+            String sql = "UPDATE entrega SET titulo = ?, dataEntrega = ? WHERE id = ?";
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, entregaDTO.getTituloEntrega());
-            stmt.setDate(2, entregaDTO.getDataEntrega());
-            stmt.setLong(3, entregaDTO.getIdTurmas());
+            java.util.Date utilDate = entregaDTO.getDataEntrega();
+            stmt.setTimestamp(2, new Timestamp(utilDate.getTime()));
+            stmt.setLong(3, entregaDTO.getIdEntrega());
 
             stmt.executeUpdate();
 
