@@ -101,7 +101,7 @@ public class NotaDAO {
         return null;
 
     }
-    public void UpdateNota(NotaDTO notaDTO) {
+    public void updateNota(NotaDTO notaDTO) {
         PreparedStatement stmt = null;
 
         try {

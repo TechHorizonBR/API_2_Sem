@@ -61,4 +61,9 @@ public class NotaDTO {
     public void setIdEntrega(Long idEntrega) {
         this.idEntrega = idEntrega;
     }
+
+    @Override
+    public String toString(){
+        return String.format("id: %s\n feedback: %s\n valor: %s\n", this.id, this.feedback, this.valor);
+    }
 }
