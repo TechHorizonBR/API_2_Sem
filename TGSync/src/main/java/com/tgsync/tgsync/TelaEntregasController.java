@@ -65,7 +65,7 @@ public class TelaEntregasController extends MudancaTelas {
         try{
             updateTableTG1();
         }catch (ParseException e) {
-            System.out.println("Alguma coisa deu erradi");
+            e.printStackTrace();
         }
     }
 
@@ -74,7 +74,6 @@ public class TelaEntregasController extends MudancaTelas {
         String titulo = textFieldTitulo.getText();
         LocalDate data = dateDataEntrega.getValue();
         Integer tg = comboBoxTG.getValue();
-        System.out.println(titulo);
         LocalDate dataAtual = LocalDate.now();
         if(tg == null){
             Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
@@ -143,10 +142,11 @@ public class TelaEntregasController extends MudancaTelas {
 
     public void openTelaEditarEntrega(EntregaDTO entregaDTO){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarEntrega.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaEditarEntrega.fxml"));
             Parent root = loader.load();
 
-            EditarEntregaController editarEntregaController = loader.getController();
+            TelaEditarEntregaController editarEntregaController = loader.getController();
+            editarEntregaController.setTelaEntregasController(this);
             editarEntregaController.setMessage(entregaDTO);
 
             Stage popupStage = new Stage();
@@ -160,6 +160,12 @@ public class TelaEntregasController extends MudancaTelas {
             e.printStackTrace();
         }
     }
-
+    public void updateTablesFromEditController() {
+        try {
+            updateTableTG1();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

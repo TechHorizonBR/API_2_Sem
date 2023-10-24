@@ -1,23 +1,32 @@
 package com.tgsync.tgsync;
 
+import Model.DAO.EntregaDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.EntregaDTO;
 import Model.DTO.TurmaDTO;
+import Model.Service.TurmaService;
 import Model.util.Alerts;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class EditarEntregaController {
+public class TelaEditarEntregaController {
+
+    private TelaEntregasController telaEntregasController;
+    public void setTelaEntregasController(TelaEntregasController telaEntregasController){
+        this.telaEntregasController = telaEntregasController;
+    }
 
     @FXML
     private Button ButtonCadastrar;
@@ -52,14 +61,15 @@ public class EditarEntregaController {
     }
 
     @FXML
-    public void updateEntrega(){
+    public void updateEntrega() throws ParseException {
         Long id = Long.valueOf(txtId.getText());
         String titulo = FieldTitulo.getText().trim();
         Integer tg = Integer.valueOf(txtTg.getText());
         LocalDate dataEntrega = campoData.getValue();
         LocalDate dataAtual = LocalDate.now();
-        System.out.println(dataEntrega);
-        System.out.println(dataAtual);
+        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
+        turmaDTO.setDisciplina(tg);
+        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
 
         if(titulo.equals("")){
             Alerts.showAlert("ATENÇÃO", "", "É obrigatório o preenchimento do título.", Alert.AlertType.WARNING);
@@ -68,7 +78,11 @@ public class EditarEntregaController {
         } else if(dataEntrega.isBefore(dataAtual)){
             Alerts.showAlert("ATENÇÃO", "", "A data deve ser superior à data atual e não pode ser nula.", Alert.AlertType.WARNING);
         }else{
-            System.out.println("UPDATE DA ENTREGA");
+            EntregaDAO entregaDAO = new EntregaDAO();
+            LocalDateTime localDateTime = dataEntrega.atStartOfDay();
+            Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            entregaDAO.updateEntrega(new EntregaDTO(id, date, titulo, turmaDTO.getId()));
+            telaEntregasController.updateTablesFromEditController();
             Alerts.showAlert("SUCESSO!", "","Atualização de entrega realizada com sucesso.",Alert.AlertType.CONFIRMATION );
         }
     }
