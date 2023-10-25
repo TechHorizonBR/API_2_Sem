@@ -22,6 +22,11 @@ import java.util.List;
 
 public class TelaFeedbackController {
 
+    private TelaAlunosController telaAlunosController;
+    public void injecaoDepFeedback(TelaAlunosController telaAlunosController){
+        this.telaAlunosController = telaAlunosController;
+    }
+
     @FXML
     private Button btnFeedbackSave;
 

@@ -3,10 +3,7 @@ package com.tgsync.tgsync;
 import Model.DAO.AlunoDAO;
 import Model.DAO.TGDAO;
 import Model.DAO.TurmaDAO;
-import Model.DTO.AlunoDTO;
-import Model.DTO.OrientadorDTO;
-import Model.DTO.TGDTO;
-import Model.DTO.TurmaDTO;
+import Model.DTO.*;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
 import javafx.application.Platform;
@@ -18,12 +15,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +51,8 @@ public class TelaAlunosController extends MudancaTelas {
     @FXML
     private Button onOkButton;
     @FXML
+    private Button onAvaliacaoFeedbackButton;
+    @FXML
     private AnchorPane pnlPrincipal;
     @FXML
     private TableView<AlunoDTO> tabelaAlunos;
@@ -66,6 +69,48 @@ public class TelaAlunosController extends MudancaTelas {
     @FXML
     private TableColumn<AlunoDTO, String> colunaDiscplina;
     ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
+
+    @FXML
+    void onTableClick(MouseEvent event) {
+        int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
+        AlunoDTO alunoDTO = (AlunoDTO)tabelaAlunos.getItems().get(i);
+        Integer ano = Integer.parseInt(txtAno.getText());
+        Integer semestre = Integer.parseInt(txtSemestre.getText());
+        Integer tg = Integer.parseInt(txtTG.getText());
+        TurmaDTO turmaDTO = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(ano,semestre,tg));
+        if (turmaDTO != null){
+            openTelaFeedback(alunoDTO, turmaDTO);
+        }else{
+            Alerts.showAlert("Atenção!", "", "Alguma coisa ocorreu errado.", Alert.AlertType.WARNING);
+        }
+
+    }
+
+    public void openTelaFeedback(AlunoDTO alunoDTO, TurmaDTO turmaDTO){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFeedback.fxml"));
+            Parent root = loader.load();
+
+            TelaFeedbackController telaFeedbackController = loader.getController();
+            telaFeedbackController.injecaoDepFeedback(this);
+            telaFeedbackController.receberAluno(alunoDTO);
+            telaFeedbackController.receberTurma(turmaDTO);
+
+            //TelaEditarEntregaController editarEntregaController = loader.getController();
+            //editarEntregaController.setTelaEntregasController(this);
+            //editarEntregaController.setMessage(entregaDTO);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("TGSync");
+            Scene scene = new Scene(root);
+            popupStage.setScene(scene);
+
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void OnOkButton(ActionEvent event) {

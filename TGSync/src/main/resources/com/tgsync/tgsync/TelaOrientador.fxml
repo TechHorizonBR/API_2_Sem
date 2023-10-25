@@ -122,7 +122,7 @@
                <content>
                   <TableView fx:id="tabelaOrientadores" prefHeight="346.0" prefWidth="850.0">
                      <columns>
-                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome" />
+                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome"/>
                         <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="408.7999572753906" text="Email" />
                      </columns>
                   </TableView>
