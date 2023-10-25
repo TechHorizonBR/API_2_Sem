@@ -1,5 +1,7 @@
 package Model.DTO;
 
+import Model.DAO.EntregaDAO;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -60,6 +62,16 @@ public class NotaDTO {
 
     public void setIdEntrega(Long idEntrega) {
         this.idEntrega = idEntrega;
+    }
+
+    public String getEntregaNome(){
+        EntregaDAO entregaDAO = new EntregaDAO();
+        EntregaDTO entregaDTO = entregaDAO.getEntregaPorId(this.idEntrega);
+        if(entregaDTO.getTituloEntrega() != null){
+            return entregaDTO.getTituloEntrega();
+        }else{
+            return "N/A";
+        }
     }
 
     @Override

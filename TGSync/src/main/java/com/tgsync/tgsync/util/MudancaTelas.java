@@ -47,6 +47,15 @@ public class MudancaTelas {
             throw new RuntimeException(ex);
         }
     }
+
+    public void onNotasFeedbacksClick(ActionEvent event){
+        try{
+            loadView("TelaFeedback.fxml");
+        } catch (IOException ex){
+            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(ex);
+        }
+    }
     @FXML
     public void onOrientadores(ActionEvent event) {
         try {

@@ -19,13 +19,13 @@
          <children>
               <MenuBar prefHeight="25.0" prefWidth="569.0">
                   <Menu text="Alunos">
+                      <MenuItem onAction="#onNotasFeedbacksClick" text="Atribuir notas e feedbacks" />
                       <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar alunos" />
                       <MenuItem text="Pendências" />
-                      <MenuItem text="Atribuir notas e feedbacks" />
                   </Menu>
                   <Menu text="Cadastros">
                       <MenuItem fx:id="telaOrientadores" onAction="#onOrientadores" text="Orientadores" />
-                      <MenuItem fx:id="entregas" text="Definir entregas" onAction="#telaEntregas" />
+                      <MenuItem fx:id="entregas" onAction="#telaEntregas" text="Definir entregas" />
                   </Menu>
                   <Menu text="Relatórios">
                       <MenuItem text="Aptos a Defesa" />

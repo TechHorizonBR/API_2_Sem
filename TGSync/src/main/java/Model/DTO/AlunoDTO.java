@@ -16,6 +16,8 @@ public class AlunoDTO {
     private Long idOrientador;
     private List<Long> idTurmas = new LinkedList<>();
 
+    public AlunoDTO(){
+    }
     public AlunoDTO(Long id, String nome, String emailPessoal, String emailFatec, Long idOrientador, List<Long> idTurmas){
         this.id = id;
         this.nome = nome;
