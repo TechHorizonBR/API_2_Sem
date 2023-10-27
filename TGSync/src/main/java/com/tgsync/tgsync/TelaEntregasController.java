@@ -105,6 +105,7 @@ public class TelaEntregasController extends MudancaTelas {
             entregaDAO.addEntrega(new EntregaDTO(date, titulo), turmaService);
             try {
                 updateTableTG1();
+                updateTableTG2();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
@@ -204,50 +205,10 @@ public class TelaEntregasController extends MudancaTelas {
     }
 
     @FXML
-    public void adicionarEntregaTG2(ActionEvent event) {
-        String titulo = textFieldTitulo.getText();
-        LocalDate data = dateDataEntrega.getValue();
-        Integer tg = comboBoxTG.getValue();
-        LocalDate dataAtual = LocalDate.now();
-        if (tg == null) {
-            Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
-        } else if (titulo.equals("")) {
-            Alerts.showAlert("Atenção!", "", "Não é possível cadastrar uma entrega com o título vazio.", Alert.AlertType.WARNING);
-        } else if (data.isBefore(dataAtual)) {
-            Alerts.showAlert("Atenção!", "", "Não é possível inserir uma data anterior à atual", Alert.AlertType.WARNING);
-        } else {
-            EntregaDAO entregaDAO = new EntregaDAO();
-            TurmaDAO turmaDAO = new TurmaDAO();
-            TurmaDTO turmaService = new TurmaDTO();
-
-            try {
-                turmaService = TurmaService.buscarTurmaComDataDoPC();
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            turmaService.setDisciplina(2); // Substitua '2' pelo valor apropriado para TG2
-            turmaService = TurmaDAO.getTurmaPorAtributo(turmaService);
-
-            LocalDateTime localDateTime = data.atStartOfDay();
-            Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            entregaDAO.addEntrega(new EntregaDTO(date, titulo), turmaService);
-            try {
-                updateTableTG2();
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            textFieldTitulo.setText("");
-            dateDataEntrega.setValue(null);
-            comboBoxTG.setValue(null);
-            Alerts.showAlert("SUCESSO!", "", "Entrega adicionada com sucesso para TG2", Alert.AlertType.CONFIRMATION);
-        }
-    }
-
-    @FXML
     void tableClickTG2(MouseEvent event) {
         int i = tabelaEntregasTG2.getSelectionModel().getSelectedIndex();
         EntregaDTO entregaDTO = (EntregaDTO) tabelaEntregasTG2.getItems().get(i);
-        openTelaEditarEntrega(entregaDTO);
+        openTelaEditarEntregaTG2(entregaDTO);
     }
 
     public void openTelaEditarEntregaTG2(EntregaDTO entregaDTO) {

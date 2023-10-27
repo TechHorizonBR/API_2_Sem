@@ -179,7 +179,7 @@
                   </ScrollPane>
                   <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="395.0">
                      <content>
-                        <TableView fx:id="tabelaEntregasTG2" prefHeight="346.0" prefWidth="382.0">
+                        <TableView fx:id="tabelaEntregasTG2" prefHeight="346.0" prefWidth="382.0" onMouseClicked="#tableClickTG2">
                            <columns>
                               <TableColumn fx:id="colunaTituloTG2" minWidth="179.1999755501747" prefWidth="189.5999999642372" resizable="false" text="Título" />
                               <TableColumn fx:id="colunaDataEntregaTG2" minWidth="179.99996948242188" prefWidth="192.80001831054688" text="Data de entrega" />
