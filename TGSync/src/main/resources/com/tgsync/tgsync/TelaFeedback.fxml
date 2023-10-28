@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaFeedbackController">
+<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaFeedbackController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0">
          <children>
@@ -71,13 +71,13 @@
                   <Insets left="45.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="826.0">
+            <ScrollPane hbarPolicy="NEVER" hmax="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCellClick" prefHeight="269.0" prefWidth="826.0">
                <content>
-                  <TableView fx:id="tabelaAlunos" prefHeight="410.0" prefWidth="1800.0">
+                  <TableView fx:id="tabelaNotas" onMouseClicked="#onCellClick" prefHeight="410.0" prefWidth="1800.0">
                      <columns>
-                        <TableColumn fx:id="colunaNome" maxWidth="300.0" minWidth="100.0" prefWidth="200.0" resizable="false" text="Entrega" />
-                        <TableColumn fx:id="colunaNome1" maxWidth="300.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Nota" />
-                        <TableColumn fx:id="colunaProblema" maxWidth="610.0" minWidth="200.0" prefWidth="610.0" text="Feedback" />
+                        <TableColumn fx:id="colunaEntrega" maxWidth="300.0" minWidth="100.0" prefWidth="200.0" resizable="false" text="Entrega" />
+                        <TableColumn fx:id="colunaNota" maxWidth="300.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Nota" />
+                        <TableColumn fx:id="colunaFeedback" maxWidth="610.0" minWidth="200.0" prefWidth="610.0" text="Feedback" />
                      </columns>
                   </TableView>
                </content>

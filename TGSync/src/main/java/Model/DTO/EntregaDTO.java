@@ -1,5 +1,6 @@
 package Model.DTO;
 
+import Model.DAO.NotaDAO;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.text.SimpleDateFormat;
@@ -33,6 +34,10 @@ public class EntregaDTO {
           this.tituloEntrega = tituloEntrega;
      }
 
+     public EntregaDTO() {
+
+     }
+
      public Long getIdEntrega(){
           return idEntrega;
      }
@@ -56,6 +61,26 @@ public class EntregaDTO {
      }
      public void setIdTurmas (Long idTurma) {
           this.idTurma = idTurma;
+     }
+
+     public String getNotaAlunos(Long idAluno){
+          NotaDAO notaDAO = new NotaDAO();
+          NotaDTO notaDTO = notaDAO.getNotaPorAlunoEntrega(idAluno, this.idEntrega);
+          if(notaDTO == null){
+               return "-";
+          }else{
+               return (notaDTO.getValor()).toString();
+          }
+     }
+
+     public String getFeedbackAlunos(Long idAluno){
+          NotaDAO notaDAO = new NotaDAO();
+          NotaDTO notaDTO = notaDAO.getNotaPorAlunoEntrega(idAluno, this.idEntrega);
+          if(notaDTO == null){
+               return "-";
+          }else{
+               return (notaDTO.getFeedback());
+          }
      }
      @Override
      public String toString(){

@@ -2,6 +2,7 @@ package Model.DAO;
 
 import Model.ConexaoBD.ConexaoBD;
 import Model.DTO.EntregaDTO;
+import Model.DTO.NotaDTO;
 import Model.DTO.TurmaDTO;
 
 import java.sql.*;
@@ -18,7 +19,7 @@ public class EntregaDAO {
 
         try{
             connection = ConexaoBD.ConexaoBD();
-            String sql = "INSERT INTO entrega(titulo, dataEntrega, idTurma) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO entrega(titulo, dataEntrega, idTurma) VALUES(?, ?, ?); ";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, entregaDTO.getTituloEntrega());
             java.util.Date utilDate = entregaDTO.getDataEntrega();

@@ -14,8 +14,9 @@ public class NotaDAO {
 
     Connection connection = null;
 
-    public void addNota(NotaDTO notaDTO){
+    public int addNota(NotaDTO notaDTO){
         PreparedStatement stmt = null;
+        int success = 0;
 
         try{
             connection = ConexaoBD.ConexaoBD();
@@ -29,8 +30,10 @@ public class NotaDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e){
+            success = 1;
             e.printStackTrace();
         } catch (ClassNotFoundException e){
+            success = 1;
             e.printStackTrace();
         } finally {
             try {
@@ -39,9 +42,10 @@ public class NotaDAO {
                 e.printStackTrace();
             }
         }
+        return success;
     }
 
-    public NotaDTO getNotaPorAlunoEntrega(AlunoDTO alunoDTO, EntregaDTO entregaDTO){
+    public NotaDTO getNotaPorAlunoEntrega(Long alunoId, Long entregaId){
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -49,8 +53,8 @@ public class NotaDAO {
             connection = ConexaoBD.ConexaoBD();
             String sql = "SELECT * FROM nota WHERE idAluno = ? and idEntrega = ?";
             stmt = connection.prepareStatement(sql);
-            stmt.setLong(1,alunoDTO.getId());
-            stmt.setLong(2,entregaDTO.getIdEntrega());
+            stmt.setLong(1,alunoId);
+            stmt.setLong(2,entregaId);
             rs = stmt.executeQuery();
             while (rs.next()){
                 NotaDTO notaDTO = new NotaDTO(rs.getLong("id"), rs.getString("feedback"), rs.getDouble("valor"), rs.getLong("idAluno"), rs.getLong("idEntrega"));
@@ -101,8 +105,9 @@ public class NotaDAO {
         return null;
 
     }
-    public void updateNota(NotaDTO notaDTO) {
+    public int updateNota(NotaDTO notaDTO) {
         PreparedStatement stmt = null;
+        int success = 0;
 
         try {
             connection = ConexaoBD.ConexaoBD();
@@ -117,8 +122,10 @@ public class NotaDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
+            success = 1;
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
+            success = 1;
             System.out.println(e.getMessage());
         } finally {
             try {
@@ -128,5 +135,6 @@ public class NotaDAO {
                 System.out.println(e.getMessage());
             }
         }
+        return success;
     }
 }

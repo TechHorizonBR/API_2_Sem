@@ -73,7 +73,7 @@ public class TelaAlunosController extends MudancaTelas {
     @FXML
     void onTableClick(MouseEvent event) {
         int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
-        AlunoDTO alunoDTO = (AlunoDTO)tabelaAlunos.getItems().get(i);
+        AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
         Integer ano = Integer.parseInt(txtAno.getText());
         Integer semestre = Integer.parseInt(txtSemestre.getText());
         Integer tg = Integer.parseInt(txtTG.getText());
@@ -93,8 +93,10 @@ public class TelaAlunosController extends MudancaTelas {
 
             TelaFeedbackController telaFeedbackController = loader.getController();
             telaFeedbackController.injecaoDepFeedback(this);
-            telaFeedbackController.receberAluno(alunoDTO);
-            telaFeedbackController.receberTurma(turmaDTO);
+//            telaFeedbackController.receberAluno(alunoDTO);
+//            telaFeedbackController.receberTurma(turmaDTO);
+            telaFeedbackController.receberDados(alunoDTO, turmaDTO);
+
 
             //TelaEditarEntregaController editarEntregaController = loader.getController();
             //editarEntregaController.setTelaEntregasController(this);

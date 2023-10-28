@@ -21,7 +21,6 @@ public class NotaDTO {
         this.valor = valor;
         this.idAluno = idAluno;
         this.idEntrega = idEntrega;
-
     }
 
     public NotaDTO(String feedback, Double valor, Long idAluno, Long idEntrega) {
@@ -29,6 +28,10 @@ public class NotaDTO {
         this.valor = valor;
         this.idAluno = idAluno;
         this.idEntrega = idEntrega;
+    }
+
+    public NotaDTO(){
+
     }
 
     public Long getId() {
