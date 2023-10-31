@@ -165,6 +165,9 @@ CREATE TABLE matricula(
     FOREIGN KEY (idTurma) REFERENCES turma(id)
 );
 
+ALTER TABLE entrega 
+ADD tipo varchar(20);
+
 ```
 
 ### Para criação de Usuário:
