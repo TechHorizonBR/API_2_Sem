@@ -1,6 +1,7 @@
 package Model.DTO;
 
 import Model.DAO.NotaDAO;
+import Model.DAO.TurmaDAO;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.text.SimpleDateFormat;
@@ -10,28 +11,33 @@ public class EntregaDTO {
      private Date dataEntrega;
      private String tituloEntrega;
      private Long idTurma;
+     private String tipo;
 
-     public EntregaDTO(Long idEntrega, Date dataEntrega, String tituloEntrega, Long idTurma) {
+     public EntregaDTO(Long idEntrega, Date dataEntrega, String tituloEntrega, Long idTurma, String tipo) {
           this.idEntrega = idEntrega;
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
           this.idTurma = idTurma;
+          this.tipo = tipo;
      }
 
-     public EntregaDTO( Date dataEntrega, String tituloEntrega, Long idTurma) {
+     public EntregaDTO( Date dataEntrega, String tituloEntrega, Long idTurma, String tipo) {
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
           this.idTurma = idTurma;
+          this.tipo = tipo;
      }
 
-     public EntregaDTO(Long idEntrega, Date dataEntrega, String tituloEntrega) {
+     public EntregaDTO(Long idEntrega, Date dataEntrega, String tituloEntrega, String tipo) {
           this.idEntrega = idEntrega;
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
+          this.tipo = tipo;
      }
-     public EntregaDTO(Date dataEntrega, String tituloEntrega) {
+     public EntregaDTO(Date dataEntrega, String tituloEntrega, String tipo) {
           this.dataEntrega = dataEntrega;
           this.tituloEntrega = tituloEntrega;
+          this.tipo = tipo;
      }
 
      public EntregaDTO() {
@@ -62,7 +68,12 @@ public class EntregaDTO {
      public void setIdTurmas (Long idTurma) {
           this.idTurma = idTurma;
      }
-
+     public String getTipo(){
+          return this.tipo;
+     }
+     public void setTipo(String tipo){
+          this.tipo = tipo;
+     }
      public String getNotaAlunos(Long idAluno){
           NotaDAO notaDAO = new NotaDAO();
           NotaDTO notaDTO = notaDAO.getNotaPorAlunoEntrega(idAluno, this.idEntrega);
@@ -90,6 +101,11 @@ public class EntregaDTO {
           SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
           String dataFormatada = formatoSaida.format(dataEntrega);
           return new SimpleStringProperty(dataFormatada);
+     }
+     public String getMatriculaTG(){
+          TurmaDAO turmaDAO = new TurmaDAO();
+          TurmaDTO turmaDTO = turmaDAO.getTurmaPorId(this.idTurma);
+          return String.valueOf(turmaDTO.getDisciplina());
      }
 }
 

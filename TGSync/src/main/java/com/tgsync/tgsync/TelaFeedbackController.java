@@ -2,10 +2,8 @@ package com.tgsync.tgsync;
 
 import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
-import Model.DTO.AlunoDTO;
-import Model.DTO.EntregaDTO;
-import Model.DTO.NotaDTO;
-import Model.DTO.TurmaDTO;
+import Model.DAO.TGDAO;
+import Model.DTO.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -134,7 +132,11 @@ public class TelaFeedbackController {
 
         obsEntrega.clear();
         tabelaNotas.setItems(null);
-        List<EntregaDTO> listaEntrega = entregaDAO.getEntregasPorIdTurma(turma);
+        TGDAO tgdao = new TGDAO();
+        TGDTO tgdto = tgdao.getTgPorIdAluno(aluno.getId());
+        List<EntregaDTO> listaEntrega = entregaDAO.getEntregasPorIdTurmaTipoTG(turma, tgdto );
+        System.out.println(tgdto.getTipo());
+        System.out.println(turma.getId());
 
         for(EntregaDTO entrega : listaEntrega){
             obsEntrega.add(entrega);

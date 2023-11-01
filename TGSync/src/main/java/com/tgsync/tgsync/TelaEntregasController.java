@@ -2,11 +2,13 @@ package com.tgsync.tgsync;
 
 import Model.DAO.EntregaDAO;
 import Model.DAO.TurmaDAO;
+import Model.DTO.AlunoDTO;
 import Model.DTO.EntregaDTO;
 import Model.DTO.TurmaDTO;
 import Model.Service.TurmaService;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,25 +36,23 @@ public class TelaEntregasController extends MudancaTelas {
     private Button ButtonCadastrar;
 
     @FXML
-    private TableColumn<EntregaDTO, Date> colunaDataEntregaTG1;
+    private TableColumn<EntregaDTO, Date> colunaDataEntregaTG;
+    @FXML
+    private TableColumn<EntregaDTO, String> colunaMatriculaTG;
 
     @FXML
-    private TableColumn<EntregaDTO, String> colunaTituloTG1;
+    private TableColumn<EntregaDTO, String> colunaTituloTG;
+    @FXML
+    private TableColumn<EntregaDTO, String> colunaTipoTG;
 
     @FXML
     private TableView<EntregaDTO> tabelaEntregasTG1;
 
     @FXML
-    private TableColumn<EntregaDTO, Date> colunaDataEntregaTG2;
-
-    @FXML
-    private TableColumn<EntregaDTO, String> colunaTituloTG2;
-
-    @FXML
-    private TableView<EntregaDTO> tabelaEntregasTG2;
-
-    @FXML
     private ComboBox<Integer> comboBoxTG;
+    @FXML
+    private ComboBox<String> comboBoxTipoTG;
+
 
     @FXML
     private DatePicker dateDataEntrega;
@@ -68,8 +68,7 @@ public class TelaEntregasController extends MudancaTelas {
 
     public void initialize() {
         try {
-            updateTableTG1();
-            updateTableTG2();
+            updateTableTG();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -80,13 +79,17 @@ public class TelaEntregasController extends MudancaTelas {
         String titulo = textFieldTitulo.getText();
         LocalDate data = dateDataEntrega.getValue();
         Integer tg = comboBoxTG.getValue();
+        String tipoTg = comboBoxTipoTG.getValue();
         LocalDate dataAtual = LocalDate.now();
         if (tg == null) {
             Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
         } else if (titulo.equals("")) {
             Alerts.showAlert("Atenção!", "", "Não é possível cadastrar uma entrega com o título vazio.", Alert.AlertType.WARNING);
         } else if (data.isBefore(dataAtual)) {
-            Alerts.showAlert("Atenção!", "", "Não é possível inserir uma data anterior a atual", Alert.AlertType.WARNING);
+            Alerts.showAlert("Atenção!", "", "Não é possível inserir uma data anterior a atual.", Alert.AlertType.WARNING);
+        } else if (tipoTg.equals("")) {
+            Alerts.showAlert("Atenção!", "", "É obrigatório selecionar um tipo de TG.", Alert.AlertType.WARNING);
+
         } else {
             EntregaDAO entregaDAO = new EntregaDAO();
             TurmaDAO turmaDAO = new TurmaDAO();
@@ -102,31 +105,36 @@ public class TelaEntregasController extends MudancaTelas {
 
             LocalDateTime localDateTime = data.atStartOfDay();
             Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            entregaDAO.addEntrega(new EntregaDTO(date, titulo), turmaService);
+            entregaDAO.addEntrega(new EntregaDTO(date, titulo, tipoTg), turmaService);
             try {
-                updateTableTG1();
-                updateTableTG2();
+                updateTableTG();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
             textFieldTitulo.setText("");
             dateDataEntrega.setValue(null);
             comboBoxTG.setValue(null);
+            comboBoxTipoTG.setValue(null);
             Alerts.showAlert("SUCESSO!", "", "Entrega adicionada com sucesso", Alert.AlertType.CONFIRMATION);
         }
 
     }
 
-    public void updateTableTG1() throws ParseException {
+    public void updateTableTG() throws ParseException {
         EntregaDAO entregaDAO = new EntregaDAO();
-        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
-        turmaDTO.setDisciplina(1);
-        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+        TurmaDTO turmaDTOTG1 = TurmaService.buscarTurmaComDataDoPC();
+        turmaDTOTG1.setDisciplina(1);
+        turmaDTOTG1 = TurmaDAO.getTurmaPorAtributo(turmaDTOTG1);
+
+        TurmaDTO turmaDTOTG2 = TurmaService.buscarTurmaComDataDoPC();
+        turmaDTOTG2.setDisciplina(2);
+        turmaDTOTG2 = TurmaDAO.getTurmaPorAtributo(turmaDTOTG2);
+
 
         obsListEntregasTG1.clear();
         tabelaEntregasTG1.setItems(null);
 
-        List<EntregaDTO> listEntrega = entregaDAO.getEntregasPorIdTurma(turmaDTO);
+        List<EntregaDTO> listEntrega = entregaDAO.getEntregasPorAnoSemestre(turmaDTOTG1, turmaDTOTG2);
         SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -134,16 +142,21 @@ public class TelaEntregasController extends MudancaTelas {
             for (EntregaDTO entrega : listEntrega) {
                 obsListEntregasTG1.add(entrega);
             }
+            for (EntregaDTO entregaDTO : listEntrega) {
+                entregaDTO.getMatriculaTG();
+            }
         }
 
         obsListEntregasTG1 = FXCollections.observableArrayList(obsListEntregasTG1);
-        colunaTituloTG1.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
-        colunaDataEntregaTG1.setCellValueFactory(new PropertyValueFactory<>("dataEntregaFormatada"));
+        colunaTituloTG.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
+        colunaDataEntregaTG.setCellValueFactory(new PropertyValueFactory<>("dataEntregaFormatada"));
+        colunaTipoTG.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        colunaMatriculaTG.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatriculaTG()));
         tabelaEntregasTG1.setItems(obsListEntregasTG1);
     }
 
     @FXML
-    void tableClickTG1(MouseEvent event) {
+    void tableClickTG(MouseEvent event) {
         int i = tabelaEntregasTG1.getSelectionModel().getSelectedIndex();
         EntregaDTO entregaDTO = (EntregaDTO) tabelaEntregasTG1.getItems().get(i);
         openTelaEditarEntrega(entregaDTO);
@@ -172,67 +185,9 @@ public class TelaEntregasController extends MudancaTelas {
 
     public void updateTablesFromEditController() {
         try {
-            updateTableTG1();
-            updateTableTG2();
+            updateTableTG();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }
-
-    public void updateTableTG2() throws ParseException {
-        EntregaDAO entregaDAO = new EntregaDAO();
-        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
-        turmaDTO.setDisciplina(2); // Substitua '2' pelo valor apropriado para TG2
-        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
-
-        obsListEntregasTG2.clear();
-        tabelaEntregasTG2.setItems(null);
-
-        List<EntregaDTO> listEntrega = entregaDAO.getEntregasPorIdTurma(turmaDTO);
-        SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
-
-        if (!listEntrega.isEmpty()) {
-            for (EntregaDTO entrega : listEntrega) {
-                obsListEntregasTG2.add(entrega);
-            }
-        }
-
-        obsListEntregasTG2 = FXCollections.observableArrayList(obsListEntregasTG2);
-        colunaTituloTG2.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
-        colunaDataEntregaTG2.setCellValueFactory(new PropertyValueFactory<>("dataEntregaFormatada"));
-        tabelaEntregasTG2.setItems(obsListEntregasTG2);
-    }
-
-    @FXML
-    void tableClickTG2(MouseEvent event) {
-        int i = tabelaEntregasTG2.getSelectionModel().getSelectedIndex();
-        EntregaDTO entregaDTO = (EntregaDTO) tabelaEntregasTG2.getItems().get(i);
-        openTelaEditarEntregaTG2(entregaDTO);
-    }
-
-    public void openTelaEditarEntregaTG2(EntregaDTO entregaDTO) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaEditarEntrega.fxml"));
-            Parent root = loader.load();
-
-            TelaEditarEntregaController editarEntregaController = loader.getController();
-            editarEntregaController.setTelaEntregasController(this);
-            editarEntregaController.setMessage(entregaDTO);
-
-            Stage popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("Editar Entrega para TG2");
-            Scene scene = new Scene(root);
-            popupStage.setScene(scene);
-
-            popupStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        }
-
-
     }

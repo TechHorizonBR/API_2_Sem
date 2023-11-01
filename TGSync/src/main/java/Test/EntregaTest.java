@@ -17,7 +17,7 @@ public class EntregaTest {
         //System.out.println(entregaDAO.getEntregasPorIdTurma(new TurmaDTO(49L, 2023,1,2)));
 
         System.out.println(entregaDAO.getEntregaPorId(18L));
-        entregaDAO.updateEntrega(new EntregaDTO(18L, dataAtual, "Nova Sprint", 57L ));
+        //entregaDAO.updateEntrega(new EntregaDTO(18L, dataAtual, "Nova Sprint", 57L ));
 
         System.out.println(entregaDAO.getEntregaPorId(18L));
 

@@ -38,15 +38,19 @@ public class TelaEditarEntregaController {
     private DatePicker campoData;
 
     @FXML
-    private Text txtId;
+    private Text txtTipoTG;
 
     @FXML
     private Text txtTg;
+    private Long id;
+    private String tipoTG;
 
     @FXML
     public void setMessage(EntregaDTO entregaDTO){
         FieldTitulo.setText(entregaDTO.getTituloEntrega());
-        txtId.setText(entregaDTO.getIdEntrega().toString());
+        txtTipoTG.setText(entregaDTO.getTipo());
+        this.id = entregaDTO.getIdEntrega();
+        this.tipoTG = entregaDTO.getTipo();
         TurmaDAO turmaDAO = new TurmaDAO();
         TurmaDTO turmaDTO = turmaDAO.getTurmaPorId(entregaDTO.getIdTurmas());
         if(turmaDTO!=null){
@@ -62,7 +66,6 @@ public class TelaEditarEntregaController {
 
     @FXML
     public void updateEntrega() throws ParseException {
-        Long id = Long.valueOf(txtId.getText());
         String titulo = FieldTitulo.getText().trim();
         Integer tg = Integer.valueOf(txtTg.getText());
         LocalDate dataEntrega = campoData.getValue();
@@ -81,7 +84,7 @@ public class TelaEditarEntregaController {
             EntregaDAO entregaDAO = new EntregaDAO();
             LocalDateTime localDateTime = dataEntrega.atStartOfDay();
             Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            entregaDAO.updateEntrega(new EntregaDTO(id, date, titulo, turmaDTO.getId()));
+            entregaDAO.updateEntrega(new EntregaDTO(this.id, date, titulo, turmaDTO.getId(), tipoTG));
             telaEntregasController.updateTablesFromEditController();
             Alerts.showAlert("SUCESSO!", "","Atualização de entrega realizada com sucesso.",Alert.AlertType.CONFIRMATION );
         }
