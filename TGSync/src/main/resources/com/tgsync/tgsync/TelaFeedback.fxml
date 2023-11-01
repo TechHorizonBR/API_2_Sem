@@ -26,14 +26,12 @@
                   <Menu mnemonicParsing="false" text="Alunos">
                      <items>
                         <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
-                        <MenuItem mnemonicParsing="false" text="Pendências" />
-                        <MenuItem mnemonicParsing="false" text="Atribuir Notas e Feedbacks" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Cadastros">
                      <items>
                         <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" onAction="#onOrientadores" text="Orientadores" />
-                        <MenuItem mnemonicParsing="false" text="Definir Entregas" />
+                        <MenuItem fx:id="entregas" mnemonicParsing="false" text="Definir Entregas" onAction="#telaEntregas" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatórios">
@@ -115,7 +113,7 @@
                   <Insets bottom="-20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCellClick" prefHeight="269.0" prefWidth="826.0">
+            <ScrollPane hmax="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCellClick" prefHeight="269.0" prefWidth="826.0">
                <content>
                   <TableView fx:id="tabelaNotas" onMouseClicked="#onCellClick" prefHeight="410.0" prefWidth="1800.0">
                      <columns>

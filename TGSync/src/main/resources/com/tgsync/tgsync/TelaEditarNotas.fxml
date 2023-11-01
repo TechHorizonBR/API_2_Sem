@@ -29,7 +29,7 @@
                   <Insets bottom="-20.0" left="20.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EDITAR ENTREGA" textAlignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NOTAS" textAlignment="CENTER">
                <font>
                   <Font name="Arial Black" size="10.0" />
                </font>

@@ -18,10 +18,6 @@ public class MudancaTelas {
     @FXML
     public MenuItem visualizarAlunos;
     @FXML
-    public MenuItem pendencias;
-    @FXML
-    public MenuItem notasFeedbacks;
-    @FXML
     public MenuItem telaOrientadores;
     @FXML
     public MenuItem entregas;

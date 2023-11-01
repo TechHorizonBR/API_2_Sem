@@ -19,9 +19,7 @@
          <children>
               <MenuBar prefHeight="25.0" prefWidth="569.0">
                   <Menu text="Alunos">
-                      <MenuItem onAction="#onNotasFeedbacksClick" text="Atribuir notas e feedbacks" />
                       <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar alunos" />
-                      <MenuItem text="Pendências" />
                   </Menu>
                   <Menu text="Cadastros">
                       <MenuItem fx:id="telaOrientadores" onAction="#onOrientadores" text="Orientadores" />
@@ -34,7 +32,6 @@
                       <MenuItem text="Feedbacks" />
                   </Menu>
                   <Menu text="Configurações">
-                      <MenuItem text="Histórico" />
                       <MenuItem fx:id="telaInicial" onAction="#onTelaInicial" text="Tela Inicial" />
                       <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                   </Menu>

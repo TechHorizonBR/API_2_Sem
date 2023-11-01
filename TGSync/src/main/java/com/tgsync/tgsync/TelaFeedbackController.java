@@ -4,6 +4,7 @@ import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
 import Model.DAO.TGDAO;
 import Model.DTO.*;
+import com.tgsync.tgsync.util.MudancaTelas;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +25,7 @@ import javafx.stage.Stage;
 import java.text.ParseException;
 import java.util.List;
 
-public class TelaFeedbackController {
+public class TelaFeedbackController extends MudancaTelas {
 
     private TelaAlunosController telaAlunosController;
     public void injecaoDepFeedback(TelaAlunosController telaAlunosController){
@@ -50,9 +51,6 @@ public class TelaFeedbackController {
     private AnchorPane pnlPrincipal;
 
     @FXML
-    private MenuItem sair;
-
-    @FXML
     private Text txtNome;
 
     @FXML
@@ -60,15 +58,6 @@ public class TelaFeedbackController {
 
     @FXML
     private TableView<EntregaDTO> tabelaNotas;
-
-    @FXML
-    private MenuItem telaInicial;
-
-    @FXML
-    private MenuItem telaOrientadores;
-
-    @FXML
-    private MenuItem visualizarAlunos;
 
     @FXML
     void onCellClick(MouseEvent event) {
@@ -100,22 +89,6 @@ public class TelaFeedbackController {
 
     private AlunoDTO aluno = new AlunoDTO();
     private TurmaDTO turma = new TurmaDTO();
-
-
-    @FXML
-    void encerrarSistema(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onOrientadores(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onTelaInicial(ActionEvent event) {
-
-    }
 
     @FXML
     void onVisualizarAlunosClicked(ActionEvent event) {

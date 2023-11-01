@@ -28,14 +28,12 @@
                   <Menu mnemonicParsing="false" text="Alunos">
                      <items>
                         <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
-                        <MenuItem mnemonicParsing="false" text="Pendências" />
-                        <MenuItem mnemonicParsing="false" text="Atribuir Notas e Feedbacks" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Cadastros">
                      <items>
                         <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" onAction="#onOrientadores" text="Orientadores" />
-                        <MenuItem mnemonicParsing="false" text="Definir Entregas" />
+                        <MenuItem fx:id="entregas" mnemonicParsing="false" text="Definir Entregas" onAction="#telaEntregas"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatórios">
@@ -48,7 +46,6 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Configurações">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Histórico" />
                         <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
                         <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
                      </items>
