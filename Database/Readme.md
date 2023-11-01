@@ -79,6 +79,7 @@
 | id                    | BIGINT       | NOT NULL, PK | Id da entrega|
 | titulo                | VARCHAR(255) | NOT NULL | Titulo da entrega|
 | dataEntrega           | DATE         | NOT NULL | Data da entrega|
+| tipo                | VARCHAR(20) | - | Tipo de entrega|
 | idTurma               | BIGINT       | NOT NULL, FOREIGN KEY | Id da Turma|
 
 
