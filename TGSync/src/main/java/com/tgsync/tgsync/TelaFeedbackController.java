@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -50,6 +51,12 @@ public class TelaFeedbackController {
 
     @FXML
     private MenuItem sair;
+
+    @FXML
+    private Text txtNome;
+
+    @FXML
+    private Text txtTipo;
 
     @FXML
     private TableView<EntregaDTO> tabelaNotas;
@@ -137,6 +144,8 @@ public class TelaFeedbackController {
         List<EntregaDTO> listaEntrega = entregaDAO.getEntregasPorIdTurmaTipoTG(turma, tgdto );
         System.out.println(tgdto.getTipo());
         System.out.println(turma.getId());
+        txtNome.setText(aluno.getNome());
+        txtTipo.setText(tgdto.getTipo());
 
         for(EntregaDTO entrega : listaEntrega){
             obsEntrega.add(entrega);
