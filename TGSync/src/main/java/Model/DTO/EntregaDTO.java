@@ -105,7 +105,11 @@ public class EntregaDTO {
      public String getMatriculaTG(){
           TurmaDAO turmaDAO = new TurmaDAO();
           TurmaDTO turmaDTO = turmaDAO.getTurmaPorId(this.idTurma);
-          return String.valueOf(turmaDTO.getDisciplina());
+          if(this.tipo.equals("Artigo Científico") || this.tipo.equals("Relatório Técnico")){
+               return "1/2";
+          }else{
+               return String.valueOf(turmaDTO.getDisciplina());
+          }
      }
 }
 

@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TelaEntregasController extends MudancaTelas {
@@ -62,9 +63,8 @@ public class TelaEntregasController extends MudancaTelas {
 
     @FXML
     ObservableList<EntregaDTO> obsListEntregasTG1 = FXCollections.observableArrayList();
-
     @FXML
-    ObservableList<EntregaDTO> obsListEntregasTG2 = FXCollections.observableArrayList();
+    ObservableList<Integer> observableListTG = FXCollections.observableArrayList();
 
     public void initialize() {
         try {
@@ -81,16 +81,23 @@ public class TelaEntregasController extends MudancaTelas {
         Integer tg = comboBoxTG.getValue();
         String tipoTg = comboBoxTipoTG.getValue();
         LocalDate dataAtual = LocalDate.now();
-        if (tg == null) {
-            Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
-        } else if (titulo.equals("")) {
+        boolean verificador = true;
+        if (titulo.equals("")) {
             Alerts.showAlert("Atenção!", "", "Não é possível cadastrar uma entrega com o título vazio.", Alert.AlertType.WARNING);
+            verificador = false;
         } else if (data.isBefore(dataAtual)) {
             Alerts.showAlert("Atenção!", "", "Não é possível inserir uma data anterior a atual.", Alert.AlertType.WARNING);
+            verificador = false;
         } else if (tipoTg.equals("")) {
             Alerts.showAlert("Atenção!", "", "É obrigatório selecionar um tipo de TG.", Alert.AlertType.WARNING);
-
-        } else {
+            verificador = false;
+        } else if (tipoTg.equals("Portfólio")) {
+            if(tg == null){
+                Alerts.showAlert("Atenção!", "", "É necessário selecionar o TG.", Alert.AlertType.WARNING);
+                verificador = false;
+            }
+        }
+        if (verificador == true){
             EntregaDAO entregaDAO = new EntregaDAO();
             TurmaDAO turmaDAO = new TurmaDAO();
             TurmaDTO turmaService = new TurmaDTO();
@@ -100,7 +107,11 @@ public class TelaEntregasController extends MudancaTelas {
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            turmaService.setDisciplina(tg);
+            if(tg!=null) {
+                turmaService.setDisciplina(tg);
+            }else{
+                turmaService.setDisciplina(1);
+            }
             turmaService = TurmaDAO.getTurmaPorAtributo(turmaService);
 
             LocalDateTime localDateTime = data.atStartOfDay();
@@ -188,6 +199,17 @@ public class TelaEntregasController extends MudancaTelas {
             updateTableTG();
         } catch (ParseException e) {
             throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void carregarMatriculaTG(){
+        observableListTG.clear();
+        comboBoxTG.setItems(null);
+        String tipo = comboBoxTipoTG.getValue();
+        if(tipo.equals("Portfólio")){
+            observableListTG.add(1);
+            observableListTG.add(2);
+            comboBoxTG.setItems(observableListTG);
         }
     }
     }
