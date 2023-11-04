@@ -60,6 +60,12 @@ public class TelaAlunosController extends MudancaTelas {
     private TextField txtAno;
     @FXML
     private TextField txtSemestre;
+
+    @FXML
+    private ComboBox<Integer> tgCombo;
+
+    @FXML
+    private ComboBox<String> tipoCombo;
     @FXML
     private TextField txtTG;
     @FXML
@@ -69,6 +75,7 @@ public class TelaAlunosController extends MudancaTelas {
     @FXML
     private TableColumn<AlunoDTO, String> colunaDiscplina;
     ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
+    ObservableList<Integer> listTG = FXCollections.observableArrayList();
 
     @FXML
     void onTableClick(MouseEvent event) {
@@ -113,6 +120,19 @@ public class TelaAlunosController extends MudancaTelas {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void carregarTipoTG(ActionEvent event) {
+        listTG.clear();
+        tgCombo.setItems(null);
+        String tipo = tipoCombo.getValue();
+        if(tipo.equals("Portfólio")){
+            listTG.add(1);
+            listTG.add(2);
+            tgCombo.setItems(listTG);
+        }
+    }
+
 
     @FXML
     void OnOkButton(ActionEvent event) {
