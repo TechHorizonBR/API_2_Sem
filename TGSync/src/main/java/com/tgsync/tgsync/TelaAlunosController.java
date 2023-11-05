@@ -62,6 +62,9 @@ public class TelaAlunosController extends MudancaTelas {
     private TextField txtSemestre;
 
     @FXML
+    private ComboBox<Integer> semestreCombo;
+
+    @FXML
     private ComboBox<Integer> tgCombo;
 
     @FXML
@@ -82,8 +85,14 @@ public class TelaAlunosController extends MudancaTelas {
         int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
         AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
         Integer ano = Integer.parseInt(txtAno.getText());
-        Integer semestre = Integer.parseInt(txtSemestre.getText());
-        Integer tg = Integer.parseInt(txtTG.getText());
+        Integer semestre = semestreCombo.getValue();
+        Integer tg = null;
+
+        if(tgCombo.getValue() == null){
+            tg = 1;
+        }else{
+            tg = tgCombo.getValue();
+        }
         TurmaDTO turmaDTO = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(ano,semestre,tg));
         if (turmaDTO != null){
             openTelaFeedback(alunoDTO, turmaDTO);
@@ -130,6 +139,7 @@ public class TelaAlunosController extends MudancaTelas {
             listTG.add(1);
             listTG.add(2);
             tgCombo.setItems(listTG);
+            tgCombo.setValue(listTG.get(0));
         }
     }
 
@@ -142,22 +152,31 @@ public class TelaAlunosController extends MudancaTelas {
         AlunoDAO alunoDAO = new AlunoDAO();
         TurmaDAO turmaDAO = new TurmaDAO();
         TGDAO tgdao = new TGDAO();
+        Integer tg = null;
 
-        if (txtAno.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTG.getText().isEmpty()){
+        if(tgCombo.getValue() == null){
+            tg = 1;
+        }else{
+            tg = tgCombo.getValue();
+        }
+
+        String tipoTg = tipoCombo.getValue();
+
+        if (txtAno.getText().isEmpty() || semestreCombo.getValue() == null){
             Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
-        }else if(txtAno.getText().matches(".*[a-zA-Z].*")||txtTG.getText().matches(".*[a-zA-Z].*")||txtSemestre.getText().matches(".*[a-zA-Z].*")) {
-            Alerts.showAlert("Atenção", "", "Os campos não aceita letras, apenas números!", Alert.AlertType.WARNING);
+        }else if(txtAno.getText().matches(".*[a-zA-Z].*")) {
+            Alerts.showAlert("Atenção", "", "Os campos não aceitam letras, apenas números!", Alert.AlertType.WARNING);
         }else{
             Integer ano = Integer.parseInt(txtAno.getText());
-            Integer semestre = Integer.parseInt(txtSemestre.getText());
-            Integer tg = Integer.parseInt(txtTG.getText());
+            Integer semestre = semestreCombo.getValue();
 
 
             List<Long> listMatricula = new LinkedList<>();
             TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
 
+            System.out.println("TIPO: " + tipoTg + ", TG: " + tg + ", SEMESTRE: " + semestre + ", ANO: " + ano);
             if (turmaDTO != null){
-                listMatricula = alunoDAO.getAllMatriculaPorIdTurma(turmaDTO);
+                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, tg, turmaDTO);
 
                 if (!listMatricula.isEmpty()){
                     for (Long matricula: listMatricula){

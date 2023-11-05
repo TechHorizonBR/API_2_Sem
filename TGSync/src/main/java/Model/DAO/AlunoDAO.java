@@ -2,6 +2,7 @@ package Model.DAO;
 
 import Model.ConexaoBD.ConexaoBD;
 import Model.DTO.AlunoDTO;
+import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 
 import java.sql.Connection;
@@ -225,6 +226,44 @@ public class    AlunoDAO {
             String sql = "SELECT * FROM matricula WHERE idTurma = ?";
             stmt = connection.prepareStatement(sql);
             stmt.setLong(1, turmaDTO.getId());
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                matriculasEncontradas.add(rs.getLong("idAluno"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return matriculasEncontradas;
+    }
+
+    public List<Long> getAllMatriculaPorIdTipoeIdTurma(String tipo, Integer tg, TurmaDTO turmaDTO){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Long> matriculasEncontradas = new LinkedList<>();
+
+        if(tipo.contains("Portfólio")){
+            tipo = "Portfólio";
+        } else if (tipo.contains("Relatório")) {
+            tipo = "Relatório";
+        } else if (tipo.contains("Artigo")) {
+            tipo = "Artigo";
+        }
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT tg.idAluno FROM tg INNER JOIN matricula ON tg.idAluno = matricula.idAluno WHERE tg.tipo LIKE ? and matricula.idTurma = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1,"%" + tipo + "%");
+            stmt.setInt(2, tg);
             rs = stmt.executeQuery();
 
             while(rs.next()){
