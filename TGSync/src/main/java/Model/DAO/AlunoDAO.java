@@ -262,8 +262,9 @@ public class    AlunoDAO {
             connection = ConexaoBD.ConexaoBD();
             String sql = "SELECT tg.idAluno FROM tg INNER JOIN matricula ON tg.idAluno = matricula.idAluno WHERE tg.tipo LIKE ? and matricula.idTurma = ?";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1,"%" + tipo + "%");
-            stmt.setInt(2, tg);
+            String tipoTg = "%"+tipo+"%";
+            stmt.setString(1,tipoTg);
+            stmt.setLong(2, turmaDTO.getId());
             rs = stmt.executeQuery();
 
             while(rs.next()){
