@@ -3,11 +3,10 @@ package com.tgsync.tgsync;
 import Model.DAO.AlunoDAO;
 import Model.DAO.TGDAO;
 import Model.DAO.TurmaDAO;
-import Model.DTO.AlunoDTO;
-import Model.DTO.OrientadorDTO;
-import Model.DTO.TGDTO;
-import Model.DTO.TurmaDTO;
+import Model.DTO.*;
 import Model.util.Alerts;
+import com.tgsync.tgsync.util.MudancaTelas;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -16,12 +15,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,58 +32,43 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TelaAlunosController {
+public class TelaAlunosController extends MudancaTelas {
 
-    @FXML
-    private Button btnAlunos;
-
-    @FXML
-    private Button btnCadastro;
-
-    @FXML
-    private Button btnConfiguracoes;
-
-    @FXML
-    private Button btnRelatorios;
-    @FXML
-    private Button onVoltar;
     @FXML
     private TableColumn<AlunoDTO, String> colunaNome;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmail;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmailFatec;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaEmailOrientador;
-
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaNomeOrientador;
-
     @FXML
     private TableColumn<AlunoDTO, String> colunaTipoTG;
-
     @FXML
     private ImageView imgLogo;
-
     @FXML
     private Button onOkButton;
-
+    @FXML
+    private Button onAvaliacaoFeedbackButton;
     @FXML
     private AnchorPane pnlPrincipal;
-
     @FXML
     private TableView<AlunoDTO> tabelaAlunos;
-
     @FXML
     private TextField txtAno;
-
     @FXML
     private TextField txtSemestre;
 
+    @FXML
+    private ComboBox<Integer> semestreCombo;
+
+    @FXML
+    private ComboBox<Integer> tgCombo;
+
+    @FXML
+    private ComboBox<String> tipoCombo;
     @FXML
     private TextField txtTG;
     @FXML
@@ -89,10 +77,71 @@ public class TelaAlunosController {
     private TableColumn<AlunoDTO, String> colunaEmpresa;
     @FXML
     private TableColumn<AlunoDTO, String> colunaDiscplina;
-
-
     ObservableList<AlunoDTO> listAlunos = FXCollections.observableArrayList();
+    ObservableList<Integer> listTG = FXCollections.observableArrayList();
 
+    @FXML
+    void onTableClick(MouseEvent event) {
+        int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
+        AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
+        Integer ano = Integer.parseInt(txtAno.getText());
+        Integer semestre = semestreCombo.getValue();
+        Integer tg = null;
+
+        if(tgCombo.getValue() == null){
+            tg = 1;
+        }else{
+            tg = tgCombo.getValue();
+        }
+        TurmaDTO turmaDTO = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(ano,semestre,tg));
+        if (turmaDTO != null){
+            openTelaFeedback(alunoDTO, turmaDTO);
+        }else{
+            Alerts.showAlert("Atenção!", "", "Alguma coisa ocorreu errado.", Alert.AlertType.WARNING);
+        }
+
+    }
+
+    public void openTelaFeedback(AlunoDTO alunoDTO, TurmaDTO turmaDTO){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFeedback.fxml"));
+            Parent root = loader.load();
+
+            TelaFeedbackController telaFeedbackController = loader.getController();
+            telaFeedbackController.injecaoDepFeedback(this);
+//            telaFeedbackController.receberAluno(alunoDTO);
+//            telaFeedbackController.receberTurma(turmaDTO);
+            telaFeedbackController.receberDados(alunoDTO, turmaDTO);
+
+
+            //TelaEditarEntregaController editarEntregaController = loader.getController();
+            //editarEntregaController.setTelaEntregasController(this);
+            //editarEntregaController.setMessage(entregaDTO);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("TGSync");
+            Scene scene = new Scene(root);
+            popupStage.setScene(scene);
+
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void carregarTipoTG(ActionEvent event) {
+        listTG.clear();
+        tgCombo.setItems(null);
+        String tipo = tipoCombo.getValue();
+        if(tipo.equals("Portfólio")){
+            listTG.add(1);
+            listTG.add(2);
+            tgCombo.setItems(listTG);
+            tgCombo.setValue(listTG.get(0));
+        }
+    }
 
 
     @FXML
@@ -103,22 +152,31 @@ public class TelaAlunosController {
         AlunoDAO alunoDAO = new AlunoDAO();
         TurmaDAO turmaDAO = new TurmaDAO();
         TGDAO tgdao = new TGDAO();
+        Integer tg = null;
 
-        if (txtAno.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTG.getText().isEmpty()){
+        if(tgCombo.getValue() == null){
+            tg = 1;
+        }else{
+            tg = tgCombo.getValue();
+        }
+
+        String tipoTg = tipoCombo.getValue();
+
+        if (txtAno.getText().isEmpty() || semestreCombo.getValue() == null){
             Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
-        }else if(txtAno.getText().matches(".*[a-zA-Z].*")||txtTG.getText().matches(".*[a-zA-Z].*")||txtSemestre.getText().matches(".*[a-zA-Z].*")) {
-            Alerts.showAlert("Atenção", "", "Os campos não aceita letras, apenas números!", Alert.AlertType.WARNING);
+        }else if(txtAno.getText().matches(".*[a-zA-Z].*")) {
+            Alerts.showAlert("Atenção", "", "Os campos não aceitam letras, apenas números!", Alert.AlertType.WARNING);
         }else{
             Integer ano = Integer.parseInt(txtAno.getText());
-            Integer semestre = Integer.parseInt(txtSemestre.getText());
-            Integer tg = Integer.parseInt(txtTG.getText());
+            Integer semestre = semestreCombo.getValue();
 
 
             List<Long> listMatricula = new LinkedList<>();
             TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
 
+            System.out.println("TIPO: " + tipoTg + ", TG: " + tg + ", SEMESTRE: " + semestre + ", ANO: " + ano);
             if (turmaDTO != null){
-                listMatricula = alunoDAO.getAllMatriculaPorIdTurma(turmaDTO);
+                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, tg, turmaDTO);
 
                 if (!listMatricula.isEmpty()){
                     for (Long matricula: listMatricula){
@@ -170,50 +228,11 @@ public class TelaAlunosController {
                             return new SimpleStringProperty("");
                         }
                     });
-
-
                     tabelaAlunos.setItems(listAlunos);
                 }
             } else{
                 Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
             }
-
         }
-
-
-
-    }
-    @FXML
-    public void onVoltarMain(ActionEvent event){
-        onVoltar.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        try {
-                            loadView("telaMain.fxml");
-                        } catch (IOException ex) {
-                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-    }
-
-
-    private void loadView(String absoluteName) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
-        AnchorPane pane = loader.load();
-
-
-        Scene mainScene = HelloApplication.getMainScene();
-        VBox mainVBox = (VBox) mainScene.getRoot();
-        mainVBox.getChildren().clear();
-        mainVBox.getChildren().addAll(pane.getChildren());
-
-
-    }
-    public void initialize(URL url, ResourceBundle rb){
-        
     }
 }

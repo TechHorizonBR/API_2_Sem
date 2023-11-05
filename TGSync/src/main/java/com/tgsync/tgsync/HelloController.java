@@ -30,50 +30,35 @@ public class HelloController {
 
     @FXML
     private Button onOpenCSVButton;
-
     @FXML
     private Button onViewAllDataButton;
     @FXML
     private VBox vBox;
-
     final FileChooser fileChooser = new FileChooser();
-
-
-
     @FXML
     protected void onOpenCSVButton() {
         Scene mainScene = HelloApplication.getMainScene();
-        onOpenCSVButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        try{
-                            if(TurmaService.registrarTurma()){
-                                configureFileChooser(fileChooser);
-                                File file = fileChooser.showOpenDialog(mainScene.getWindow());
-                                if (file != null) {
-                                    openFile(file);
-                                    AlunoService.registrarAluno(file.getAbsolutePath(), TurmaService.buscarTurmaComDataDoPC());
-                                    TgService.registrarTg(file.getAbsolutePath());
-                                    Alerts.showAlert("Sucesso!", "", "Upload realizado com sucesso!", Alert.AlertType.CONFIRMATION);
-                                }
-                            }else{
-                                Alerts.showAlert("ATENÇÃO!!", "", "Não é possível realizar duas vezes o upload no mesmo semestre/ano.", Alert.AlertType.WARNING);
-                            }
-                        } catch (ParseException ex) {
-                            Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Entre em contato com o seu administrador.", Alert.AlertType.WARNING);
-                        }
 
-                    }
-                });
-
-
+        try{
+            if(TurmaService.registrarTurma()){
+                configureFileChooser(fileChooser);
+                File file = fileChooser.showOpenDialog(mainScene.getWindow());
+                if (file != null) {
+                    openFile(file);
+                    AlunoService.registrarAluno(file.getAbsolutePath(), TurmaService.buscarTurmaComDataDoPC());
+                    TgService.registrarTg(file.getAbsolutePath());
+                    Alerts.showAlert("Sucesso!", "", "Upload realizado com sucesso!", Alert.AlertType.CONFIRMATION);
+                }
+            }else{
+                Alerts.showAlert("ATENÇÃO!!", "", "Não é possível realizar duas vezes o upload no mesmo semestre/ano.", Alert.AlertType.WARNING);
+            }
+        } catch (ParseException ex) {
+            Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Entre em contato com o seu administrador.", Alert.AlertType.WARNING);
+        }
     }
     private void openFile(File file) {
         System.out.println("Caminho: "+ file.getAbsolutePath());
     }
-
-
     private static void configureFileChooser(final FileChooser fileChooser) {
 
         fileChooser.setTitle("Abrir CSV");
@@ -81,28 +66,18 @@ public class HelloController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Arquivo CSV", "*.csv*"));
     }
     @FXML
-    protected void onViewAllDataButton(){
-        onViewAllDataButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        try {
-                            loadView("telaMain.fxml");
-                        } catch (IOException ex) {
-                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
+    protected void onViewAllDataButton(ActionEvent event){
+        try {
+            loadView("telaMain.fxml");
+        } catch (IOException ex) {
+            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(ex);
+        }
+
     }
-
-
     private void loadView(String absoluteName) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
         AnchorPane pane = loader.load();
-
-
         Scene mainScene = HelloApplication.getMainScene();
         VBox mainVBox = (VBox) mainScene.getRoot();
         mainVBox.getChildren().clear();

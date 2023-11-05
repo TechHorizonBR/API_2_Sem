@@ -2,6 +2,8 @@ package com.tgsync.tgsync;
 
 import Model.DTO.AlunoDTO;
 import Model.util.Alerts;
+import com.tgsync.tgsync.util.MudancaTelas;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +25,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TelaOrientadorController{
+public class TelaOrientadorController extends MudancaTelas {
 
     // Buttons
     @FXML
@@ -56,6 +58,7 @@ public class TelaOrientadorController{
 
     @FXML
     private TableView<OrientadorDTO> tabelaOrientadores;
+    @FXML
     ObservableList<OrientadorDTO> orientadores = FXCollections.observableArrayList();
     // Data Base
     private OrientadorDAO orientadorDAO;
@@ -110,38 +113,5 @@ public class TelaOrientadorController{
             Alerts.showAlert("SUCESSO!","","Orientador cadastrado com sucesso.", Alert.AlertType.CONFIRMATION);
 
         }
-
-
-    }
-
-    @FXML
-    public void onVoltar(ActionEvent event){
-        buttonVoltar.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        try {
-                            loadView("telaMain.fxml");
-                        } catch (IOException ex) {
-                            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-    }
-
-
-    private void loadView(String absoluteName) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(absoluteName));
-        AnchorPane pane = loader.load();
-
-
-        Scene mainScene = HelloApplication.getMainScene();
-        VBox mainVBox = (VBox) mainScene.getRoot();
-        mainVBox.getChildren().clear();
-        mainVBox.getChildren().addAll(pane.getChildren());
-
-
     }
 }

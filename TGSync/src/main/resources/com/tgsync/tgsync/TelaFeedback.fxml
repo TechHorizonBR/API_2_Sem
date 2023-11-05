@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaFeedbackController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="Alunos">
+                     <items>
+                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Cadastros">
+                     <items>
+                        <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" onAction="#onOrientadores" text="Orientadores" />
+                        <MenuItem fx:id="entregas" mnemonicParsing="false" text="Definir Entregas" onAction="#telaEntregas" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatórios">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Aptos a defesa" />
+                        <MenuItem mnemonicParsing="false" text="Entregas" />
+                        <MenuItem mnemonicParsing="false" text="Fechamento" />
+                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Configurações">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Histórico" />
+                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
+                        <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <ImageView fx:id="imgLogo" fitHeight="75.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/logo-tgsync.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <VBox.margin>
+                  <Insets bottom="-20.0" left="35.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Atribuicao de Feedbacks">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="45.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="10.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="45.0" right="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="txtNome" strokeType="OUTSIDE" strokeWidth="0.0" text="Teste" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="10.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo TG:">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="45.0" right="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="txtTipo" strokeType="OUTSIDE" strokeWidth="0.0" text="Teste" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="-20.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <ScrollPane hmax="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCellClick" prefHeight="269.0" prefWidth="826.0">
+               <content>
+                  <TableView fx:id="tabelaNotas" onMouseClicked="#onCellClick" prefHeight="410.0" prefWidth="1800.0">
+                     <columns>
+                        <TableColumn fx:id="colunaEntrega" maxWidth="300.0" minWidth="100.0" prefWidth="200.0" resizable="false" text="Entrega" />
+                        <TableColumn fx:id="colunaNota" maxWidth="300.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Nota" />
+                        <TableColumn fx:id="colunaFeedback" maxWidth="610.0" minWidth="200.0" prefWidth="610.0" text="Feedback" />
+                     </columns>
+                  </TableView>
+               </content>
+               <VBox.margin>
+                  <Insets left="40.0" top="80.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox prefHeight="69.0" prefWidth="900.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
