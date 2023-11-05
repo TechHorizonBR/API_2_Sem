@@ -211,6 +211,15 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 
 </details>
 
+<details>
+     
+<summary>Sprint 3</summary>
+
+![Sprint 3](https://github.com/TechHorizonBR/API_2_Sem/assets/31674205/b87d7f26-cc08-4fba-8273-c171aceace1b)
+
+</details>
+
+
 
 
 <span id="docs">
