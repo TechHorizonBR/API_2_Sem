@@ -219,9 +219,7 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 
 </details>
 
-
-
-
+  
 <span id="docs">
 
 ## Documentação 📜
