@@ -2,10 +2,7 @@ package com.tgsync.tgsync;
 
 import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
-import Model.DTO.AlunoDTO;
-import Model.DTO.EntregaDTO;
-import Model.DTO.NotaDTO;
-import Model.DTO.TurmaDTO;
+import Model.DTO.*;
 import Model.util.Alerts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -82,7 +79,7 @@ public class TelaEditarNotaController {
                     Alerts.showAlert("Erro", "", "Um erro ocorreu no sistema, por favor tente novamente mais tarde.", Alert.AlertType.ERROR);
                 }else{
                     Alerts.showAlert("Sucesso", "", "Informações adicionadas com sucesso!", Alert.AlertType.INFORMATION);
-                    telaFeedbackController.receberDados(aluno, turma);
+                    telaFeedbackController.receberDados(aluno, turma,tgdto);
                     stage.close();
                 }
             }else{
@@ -91,7 +88,7 @@ public class TelaEditarNotaController {
                     Alerts.showAlert("Erro", "", "Um erro ocorreu no sistema, por favor tente novamente mais tarde.", Alert.AlertType.ERROR);
                 }else{
                     Alerts.showAlert("Sucesso", "", "Informações adicionadas com sucesso!", Alert.AlertType.INFORMATION);
-                    telaFeedbackController.receberDados(aluno, turma);
+                    telaFeedbackController.receberDados(aluno, turma, tgdto);
                     stage.close();
                 }
             }
@@ -102,11 +99,13 @@ public class TelaEditarNotaController {
     private AlunoDTO aluno = new AlunoDTO();
     private TurmaDTO turma = new TurmaDTO();
     private EntregaDTO entrega = new EntregaDTO();
+    private TGDTO tgdto = new TGDTO();
 
-    public void receberDados(AlunoDTO aluno, TurmaDTO turma, EntregaDTO entrega){
+    public void receberDados(AlunoDTO aluno, TurmaDTO turma, EntregaDTO entrega, TGDTO tgdto){
         this.aluno = aluno;
         this.turma = turma;
         this.entrega = entrega;
+        this.tgdto = tgdto;
 
         txtEntrega.setText(entrega.getTituloEntrega());
     }

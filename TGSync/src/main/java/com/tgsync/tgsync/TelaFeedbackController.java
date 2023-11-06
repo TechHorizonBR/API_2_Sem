@@ -69,7 +69,7 @@ public class TelaFeedbackController extends MudancaTelas {
 
             TelaEditarNotaController telaEditarNotaController = loader.getController();
             telaEditarNotaController.injecaoDepFeedback(this);
-            telaEditarNotaController.receberDados(aluno, turma, entrega);
+            telaEditarNotaController.receberDados(aluno, turma, entrega, tgdto);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -89,6 +89,7 @@ public class TelaFeedbackController extends MudancaTelas {
 
     private AlunoDTO aluno = new AlunoDTO();
     private TurmaDTO turma = new TurmaDTO();
+    private TGDTO tgdto = new TGDTO();
 
     @FXML
     void onVisualizarAlunosClicked(ActionEvent event) {
@@ -96,10 +97,12 @@ public class TelaFeedbackController extends MudancaTelas {
     }
 
 
-    public void receberDados(AlunoDTO aluno, TurmaDTO turma){
+    public void receberDados(AlunoDTO aluno, TurmaDTO turma, TGDTO tgdto){
+
         this.aluno = aluno;
         this.turma = turma;
-        System.out.println("CHEGA AQUI");
+        this.tgdto = tgdto;
+
         try{
             updateEntregaNota();
         } catch (ParseException e){
@@ -112,11 +115,7 @@ public class TelaFeedbackController extends MudancaTelas {
 
         obsEntrega.clear();
         tabelaNotas.setItems(null);
-        TGDAO tgdao = new TGDAO();
-        TGDTO tgdto = tgdao.getTgPorIdAluno(aluno.getId());
         List<EntregaDTO> listaEntrega = entregaDAO.getEntregasPorIdTurmaTipoTG(turma, tgdto );
-        System.out.println(tgdto.getTipo());
-        System.out.println(turma.getId());
         txtNome.setText(aluno.getNome());
         txtTipo.setText(tgdto.getTipo());
 
