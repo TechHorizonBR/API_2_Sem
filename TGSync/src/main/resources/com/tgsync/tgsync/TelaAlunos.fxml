@@ -86,7 +86,7 @@
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Portfólio" />
-                           <String fx:value="Artigo Científico" />
+                           <String fx:value="Artigo Tecnológico ou Científico" />
                            <String fx:value="Relatório Técnico" />
                         </FXCollections>
                      </items>

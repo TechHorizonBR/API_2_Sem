@@ -3,11 +3,14 @@ package com.tgsync.tgsync.util;
 import Model.util.Alerts;
 import com.tgsync.tgsync.HelloApplication;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -33,6 +36,27 @@ public class MudancaTelas {
     public MenuItem telaInicial;
     @FXML
     public MenuItem sair;
+    @FXML
+    public ComboBox<Integer> comboBoxTG;
+    @FXML
+    public ComboBox<String> comboBoxTipoTG;
+    @FXML
+    ObservableList<Integer> observableListTG = FXCollections.observableArrayList();
+
+    @FXML
+    void carregarMatriculaTG() {
+        observableListTG.clear();
+        comboBoxTG.setItems(null);
+        String tipo = "";
+        if (comboBoxTipoTG != null) {
+            tipo = comboBoxTipoTG.getValue();
+        }
+        if ("Portfólio".equals(tipo)) { // Verifique se o valor é igual a "Portfólio"
+            observableListTG.add(1);
+            observableListTG.add(2);
+            comboBoxTG.setItems(observableListTG);
+        }
+    }
 
     @FXML
     public void onVisualizarAlunosClicked() {
