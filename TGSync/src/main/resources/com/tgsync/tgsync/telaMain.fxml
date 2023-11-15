@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
     <children>
       <VBox prefHeight="275.0" prefWidth="900.0">
          <children>
@@ -26,13 +26,13 @@
                       <MenuItem fx:id="entregas" onAction="#telaEntregas" text="Definir entregas" />
                   </Menu>
                   <Menu text="Relatórios">
-                      <MenuItem text="Aptos a Defesa" />
+                      <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Aptos a Defesa" />
                       <MenuItem text="Entregas" />
                       <MenuItem text="Fechamento" />
                       <MenuItem text="Feedbacks" />
                   </Menu>
                   <Menu text="Configurações">
-                      <MenuItem fx:id="telaInicial" onAction="#onTelaInicial" text="Tela Inicial" />
+                      <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
                       <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                   </Menu>
                   <cursor>

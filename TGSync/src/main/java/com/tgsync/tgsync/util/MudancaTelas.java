@@ -95,6 +95,15 @@ public class MudancaTelas {
         }
     }
     @FXML
+    public void onAlunosAptosClick(ActionEvent event){
+        try{
+            loadView("TelaRelatorioAlunoApto.fxml");
+        }catch (IOException e){
+            Alerts.showAlert("Erro", "", "Erro ao exibir tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
     public void encerrarSistema(ActionEvent event){
         Platform.exit();
     }
