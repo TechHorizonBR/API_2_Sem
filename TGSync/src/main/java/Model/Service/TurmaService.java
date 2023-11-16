@@ -16,9 +16,7 @@ public class TurmaService {
         List<TurmaDTO> todasTurmas;
         int novaturma = 0;
 
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Date hoje = new Date(); //Recebe data do computador com horario
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
@@ -26,9 +24,9 @@ public class TurmaService {
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
-        Date hoje = cal.getTime(); //Recebe data do computador sem horario
+        Date hoje = cal.getTime();
 
-        Integer ano = cal.get(Calendar.YEAR); //Recebe apenas o ano
+        Integer ano = cal.get(Calendar.YEAR);
         int semestre = 0;
 
         Date dia_esp = sdf.parse((ano+"-06-30"));
@@ -40,7 +38,7 @@ public class TurmaService {
         }
 
         todasTurmas = turmadao.getAllTurmas();
-        //Verifica se ja existem turmas com mesmo semestre e ano
+
         for(TurmaDTO dados : todasTurmas){
             if(dados.getSemestre() == semestre && dados.getAno() == ano){
                 novaturma = 1;
@@ -57,7 +55,6 @@ public class TurmaService {
     }
     public static TurmaDTO buscarTurmaComDataDoPC() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Date hoje = new Date(); //Recebe data do computador com horario
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
@@ -65,9 +62,9 @@ public class TurmaService {
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
-        Date hoje = cal.getTime(); //Recebe data do computador sem horario
+        Date hoje = cal.getTime();
 
-        Integer ano = cal.get(Calendar.YEAR); //Recebe apenas o ano
+        Integer ano = cal.get(Calendar.YEAR);
         int semestre = 0;
 
         Date dia_esp = sdf.parse((ano+"-06-30"));

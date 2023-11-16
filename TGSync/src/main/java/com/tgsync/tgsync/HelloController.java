@@ -57,7 +57,7 @@ public class HelloController {
         }
     }
     private void openFile(File file) {
-        System.out.println("Caminho: "+ file.getAbsolutePath());
+
     }
     private static void configureFileChooser(final FileChooser fileChooser) {
 

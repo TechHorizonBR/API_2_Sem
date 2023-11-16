@@ -1,5 +1,6 @@
 package Model.DTO;
 
+import Model.DAO.AlunoDAO;
 import Model.DAO.EntregaDAO;
 
 import java.util.LinkedList;
@@ -75,6 +76,12 @@ public class NotaDTO {
         }else{
             return "N/A";
         }
+    }
+
+    public String getNomeAluno(){
+        AlunoDAO alunoDAO = new AlunoDAO();
+        AlunoDTO alunoDTO = alunoDAO.getAlunoPorId(this.idAluno);
+        return alunoDTO.getNome();
     }
 
     @Override

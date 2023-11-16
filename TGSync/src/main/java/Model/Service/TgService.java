@@ -42,9 +42,6 @@ public class TgService {
                 if (alunoDTO != null) {
                     Long idAluno = alunoDTO.getId();
                     tgdao.addTg(new TGDTO(tipo, discplina, problema, empresa, idAluno));
-                    System.out.println("Deu certo");
-                } else {
-                    System.err.println("Aluno não encontrado para o email fornecido: " + linha[2]);
                 }
             }
         } catch (FileNotFoundException ex) {

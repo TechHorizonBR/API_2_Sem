@@ -101,20 +101,14 @@ public class AlunoService {
                             turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
                             alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
                         }
-                        else{
-                            System.out.println("TESTE");
-                        }
                     } else if (linha[6].equals("TG2")) {
                         turmaDTO.setDisciplina(2);
                         turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
                         AlunoDTO novoAluno = new AlunoDTO(linha[3], linha[1], emailFatec, idOrientador);
                         alunoDAO.addAluno(novoAluno);
-                        System.out.println(novoAluno.getEmailFatec());
                         AlunoDTO buscaAluno = alunoDAO.getAlunoPorEmailSemMatricula(novoAluno.getEmailFatec());
                         if(buscaAluno!=null){
                             alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
-                        }else{
-                            System.out.println("TESTE2");
                         }
                     }else if(linha[6].equals("TG1 e TG2")){
                         turmaDTO.setDisciplina(1);
@@ -127,10 +121,7 @@ public class AlunoService {
                             turmaDTO.setDisciplina(2);
                             turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
                             alunoDAO.addMatriculaAluno(buscaAluno, turmaDTO);
-                        }else{
-                            System.out.println("O aluno foi inserido mas tá nulo");
                         }
-
                     }
                 }
 
