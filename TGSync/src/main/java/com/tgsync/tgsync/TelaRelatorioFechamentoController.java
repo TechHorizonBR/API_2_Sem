@@ -4,14 +4,11 @@ import Model.DAO.AlunoDAO;
 import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
 import Model.DAO.TurmaDAO;
-import Model.DTO.AlunoDTO;
+
 import Model.DTO.NotaDTO;
-import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,7 +83,7 @@ public class TelaRelatorioFechamentoController extends MudancaTelas {
             List<NotaDTO> listNota = new LinkedList<>();
 
             if (turmaDTO != null){
-                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, tg, turmaDTO);
+                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg,turmaDTO);
                 listIdEntregas = entregaDAO.getIdEntregasPorTurma(turmaDTO.getId(), tipoTg);
 
                 if (!listMatricula.isEmpty()){

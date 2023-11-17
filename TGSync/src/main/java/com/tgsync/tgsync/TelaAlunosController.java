@@ -171,12 +171,11 @@ public class TelaAlunosController extends MudancaTelas {
             Integer ano = Integer.parseInt(txtAno.getText());
             Integer semestre = semestreCombo.getValue();
 
-
             List<Long> listMatricula = new LinkedList<>();
             TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
 
             if (turmaDTO != null){
-                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, tg, turmaDTO);
+                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO);
 
                 if (!listMatricula.isEmpty()){
                     for (Long matricula: listMatricula){

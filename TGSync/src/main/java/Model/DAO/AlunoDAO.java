@@ -245,7 +245,7 @@ public class    AlunoDAO {
         return matriculasEncontradas;
     }
 
-    public List<Long> getAllMatriculaPorIdTipoeIdTurma(String tipo, Integer tg, TurmaDTO turmaDTO){
+    public List<Long> getAllMatriculaPorIdTipoeIdTurma(String tipo, TurmaDTO turmaDTO){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Long> matriculasEncontradas = new LinkedList<>();
