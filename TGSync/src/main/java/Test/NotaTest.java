@@ -24,7 +24,7 @@ public class NotaTest {
         notaDAO.updateNota(new NotaDTO(1L, "Muito bom", 7.0, 1L, 1L));
         System.out.println(notaDAO.getNotaPorId(1L));
 
-        List<Long> ids = entregaDAO.getIdEntregasPorTurma(1L);
-        System.out.println(notaDAO.getMedia(ids, 2L));
+        //List<Long> ids = entregaDAO.getIdEntregasPorTurma(1L);
+        //System.out.println(notaDAO.getMedia(ids, 2L));
     }
 }

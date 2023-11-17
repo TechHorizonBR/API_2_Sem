@@ -140,7 +140,7 @@ public class EntregaDAO {
         return entregasEncontradas;
     }
 
-    public List<Long> getIdEntregasPorTurma(Long idTurma){
+    public List<Long> getIdEntregasPorTurma(Long idTurma, String tipo){
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -148,9 +148,10 @@ public class EntregaDAO {
 
         try{
             connection = ConexaoBD.ConexaoBD();
-            String sql = "SELECT id FROM entrega WHERE idTurma = ?";
+            String sql = "SELECT id FROM entrega WHERE idTurma = ? and tipo LIKE ?";
             stmt = connection.prepareStatement(sql);
             stmt.setLong(1, idTurma);
+            stmt.setString(2, "%" + tipo + "%");
             rs = stmt.executeQuery();
 
             while(rs.next()){

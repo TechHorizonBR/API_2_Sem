@@ -1,18 +1,25 @@
 package com.tgsync.tgsync;
 
 import Model.DAO.AlunoDAO;
+import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.AlunoDTO;
 import Model.DTO.NotaDTO;
+import Model.DTO.TGDTO;
 import Model.DTO.TurmaDTO;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +43,8 @@ public class TelaRelatorioFechamentoController extends MudancaTelas {
     private ComboBox<String> tipoCombo;
     @FXML
     private ComboBox<Integer> semestreCombo;
+    ObservableList<NotaDTO> obsNota = FXCollections.observableArrayList();
+    List<Long> listMatricula = new LinkedList<>();
     @FXML
     void carregarTipoTG(ActionEvent event) {
         listTG.clear();
@@ -50,9 +59,12 @@ public class TelaRelatorioFechamentoController extends MudancaTelas {
     }
     @FXML
     public void onOkButton(){
+        obsNota.clear();
+        tabelaMedia.setItems(obsNota);
         AlunoDAO alunoDAO = new AlunoDAO();
         TurmaDAO turmaDAO = new TurmaDAO();
         NotaDAO notaDAO = new NotaDAO();
+        EntregaDAO entregaDAO = new EntregaDAO();
         Integer tg = null;
         if(tgCombo.getValue() == null){
             tg = 1;
@@ -69,24 +81,51 @@ public class TelaRelatorioFechamentoController extends MudancaTelas {
         }else{
             Integer ano = Integer.parseInt(txtAno.getText());
             Integer semestre = semestreCombo.getValue();
-
-
-            List<Long> listMatricula = new LinkedList<>();
+            List<Long> listIdEntregas = new LinkedList<>();
             TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
             List<NotaDTO> listNota = new LinkedList<>();
 
             if (turmaDTO != null){
                 listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, tg, turmaDTO);
+                listIdEntregas = entregaDAO.getIdEntregasPorTurma(turmaDTO.getId(), tipoTg);
 
-
-                if (!listMatricula.isEmpty()) {
-                    for(Long matricula : listMatricula){
-                        //listNota.add(notaD)
+                if (!listMatricula.isEmpty()){
+                    for (Long matricula: listMatricula){
+                        listNota.add(new NotaDTO(notaDAO.getMedia(listIdEntregas, matricula), matricula));
                     }
-                }
-                }
+                    for(NotaDTO notaDTO : listNota){
+                        obsNota.add(notaDTO);
+                    }
 
+                colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                colunaMedia.setCellValueFactory(new PropertyValueFactory<>("media"));
+                colunaMedia.setCellFactory(column -> {
+                    return new TableCell<NotaDTO, Double>() {
+                        @Override
+                        protected void updateItem(Double media, boolean empty) {
+                            super.updateItem(media, empty);
+
+                            if (media == null || empty) {
+                                setText(null);
+                                setStyle("");
+                            } else {
+                                setText(String.valueOf(media));
+                                setStyle("-fx-font-weight: bold;");
+                                if (media < 6.0) {
+                                    setTextFill(Color.RED);
+                                } else {
+                                    setTextFill(Color.GREEN);
+                                }
+                            }
+                        }
+                    };
+                });
+                tabelaMedia.setItems(obsNota);
+                }
+            }else{
+                Alerts.showAlert("Atenção", "", "Esta turma não existe", Alert.AlertType.WARNING);
+            }
+        }
     }
-}
 }
 
