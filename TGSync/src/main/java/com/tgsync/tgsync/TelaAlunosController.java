@@ -4,6 +4,7 @@ import Model.DAO.AlunoDAO;
 import Model.DAO.TGDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.*;
+import Model.Service.TurmaService;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
 import javafx.application.Platform;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -110,14 +112,7 @@ public class TelaAlunosController extends MudancaTelas {
 
             TelaFeedbackController telaFeedbackController = loader.getController();
             telaFeedbackController.injecaoDepFeedback(this);
-//            telaFeedbackController.receberAluno(alunoDTO);
-//            telaFeedbackController.receberTurma(turmaDTO);
             telaFeedbackController.receberDados(alunoDTO, turmaDTO, newTGDTO);
-
-
-            //TelaEditarEntregaController editarEntregaController = loader.getController();
-            //editarEntregaController.setTelaEntregasController(this);
-            //editarEntregaController.setMessage(entregaDTO);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -144,113 +139,117 @@ public class TelaAlunosController extends MudancaTelas {
         }
     }
 
-
     @FXML
-    void OnOkButton(ActionEvent event) {
+    void OnOkButton(ActionEvent event) throws ParseException {
         listAlunos.clear();
         tabelaAlunos.setItems(null);
         tabelaAlunos.setItems(listAlunos);
         AlunoDAO alunoDAO = new AlunoDAO();
         TurmaDAO turmaDAO = new TurmaDAO();
         TGDAO tgdao = new TGDAO();
-        Integer tg = null;
-
-        if(tgCombo.getValue() == null){
-            tg = 1;
-        }else{
-            tg = tgCombo.getValue();
-        }
-
+        Integer tg = tgCombo.getValue();
         String tipoTg = tipoCombo.getValue();
 
-        if (txtAno.getText().isEmpty() || semestreCombo.getValue() == null){
+        if (tipoTg == null){
             Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
-        }else if(txtAno.getText().matches(".*[a-zA-Z].*")) {
-            Alerts.showAlert("Atenção", "", "Os campos não aceitam letras, apenas números!", Alert.AlertType.WARNING);
         }else{
-            Integer ano = Integer.parseInt(txtAno.getText());
-            Integer semestre = semestreCombo.getValue();
-
-            List<Long> listMatricula = new LinkedList<>();
-            TurmaDTO turmaDTO = turmaDAO.getTurmaPorAtributo(new TurmaDTO(ano, semestre, tg));
-
-            if (turmaDTO != null){
-                listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO);
-
-                if (!listMatricula.isEmpty()){
-                    for (Long matricula: listMatricula){
-                        listAlunos.add(alunoDAO.getAlunoPorId(matricula));
-                    }
-                    for (AlunoDTO aluno : listAlunos) {
-                        aluno.getNomeOrientador();
-                        aluno.getEmailOrientador();
-                    }
-                    listAlunos = FXCollections.observableArrayList(listAlunos);
-                    colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                    colunaEmail.setCellValueFactory(new PropertyValueFactory<>("emailPessoal"));
-                    colunaEmailFatec.setCellValueFactory(new PropertyValueFactory<>("emailFatec"));
-                    colunaNomeOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeOrientador()));
-                    colunaEmailOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmailOrientador()));
-
-                    colunaTipoTG.setCellValueFactory(cellData -> {
-                        AlunoDTO aluno = cellData.getValue();
-                        List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
-                        if (!tgDoAluno.isEmpty()) {
-                            for(TGDTO tgdto : tgDoAluno){
-                                if(tgdto.getTipo().contains(tipoTg)){
-                                    this.newTGDTO = tgdto;
-                                    return new SimpleStringProperty(tgdto.getTipo());
-                                }
-                            }
-                        } else {
-                            return new SimpleStringProperty("");
-                        }
-                        return null;
-                    });
-                    colunaDiscplina.setCellValueFactory(cellData -> {
-                        AlunoDTO aluno = cellData.getValue();
-                        List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
-                        if (!tgDoAluno.isEmpty()) {
-                            for(TGDTO tgdto : tgDoAluno){
-                                if(tgdto.getTipo().contains(tipoTg)){
-                                    return new SimpleStringProperty(tgdto.getDisciplina());
-                                }
-                            }
-                        } else {
-                            return new SimpleStringProperty("");
-                        }
-                        return null;
-                    });
-                    colunaEmpresa.setCellValueFactory(cellData -> {
-                        AlunoDTO aluno = cellData.getValue();
-                        List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
-                        if (!tgDoAluno.isEmpty()) {
-                            for(TGDTO tgdto : tgDoAluno){
-                                if(tgdto.getTipo().contains(tipoTg)){
-                                    return new SimpleStringProperty(tgdto.getEmpresa());
-                                }
-                            }
-                        } else {
-                            return new SimpleStringProperty("");
-                        }
-                        return null;
-                    });
-                    colunaProblema.setCellValueFactory(cellData -> {
-                        AlunoDTO aluno = cellData.getValue();
-                        List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
-                        if (!tgDoAluno.isEmpty()) {
-                            for(TGDTO tgdto : tgDoAluno){
-                                if(tgdto.getTipo().contains(tipoTg)){
-                                    return new SimpleStringProperty(tgdto.getProblema());
-                                }
-                            }
-                        } else {
-                            return new SimpleStringProperty("");
-                        }
-                        return null;
-                    });
-                    tabelaAlunos.setItems(listAlunos);
+            TurmaDTO turmaDTO1 = TurmaService.buscarTurmaComDataDoPC();
+            TurmaDTO turmaDTO2 = TurmaService.buscarTurmaComDataDoPC();
+            if(tg == null){
+                turmaDTO1.setDisciplina(1);
+                turmaDTO2.setDisciplina(2);
+            }else if(tg == 1){
+                turmaDTO1.setDisciplina(1);
+            }else if(tg == 2){
+                turmaDTO1.setDisciplina(2);
+            }
+            turmaDTO1 = TurmaDAO.getTurmaPorAtributo(turmaDTO1);
+            turmaDTO2 = TurmaDAO.getTurmaPorAtributo(turmaDTO2);
+            List<Long> listMatriculas = new LinkedList<>();
+            List<Long> listMatriculas2 = new LinkedList<>();
+            if (turmaDTO1 != null || turmaDTO2 != null){
+                if(turmaDTO1 != null){
+                    listMatriculas = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO1);
                 }
+                if(turmaDTO2 != null){
+                    listMatriculas2 = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO2);
+                    for (Long matricula: listMatriculas2){
+                        listMatriculas.add(matricula);
+                    }
+                }
+                for (Long matricula: listMatriculas){
+                    listAlunos.add(alunoDAO.getAlunoPorId(matricula));
+                }
+                for (AlunoDTO aluno : listAlunos) {
+                    aluno.getNomeOrientador();
+                    aluno.getEmailOrientador();
+                }
+                listAlunos = FXCollections.observableArrayList(listAlunos);
+                colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                colunaEmail.setCellValueFactory(new PropertyValueFactory<>("emailPessoal"));
+                colunaEmailFatec.setCellValueFactory(new PropertyValueFactory<>("emailFatec"));
+                colunaNomeOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeOrientador()));
+                colunaEmailOrientador.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmailOrientador()));
+
+                colunaTipoTG.setCellValueFactory(cellData -> {
+                    AlunoDTO aluno = cellData.getValue();
+                    List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
+                    if (!tgDoAluno.isEmpty()) {
+                        for(TGDTO tgdto : tgDoAluno){
+                            if(tgdto.getTipo().contains(tipoTg)){
+                                this.newTGDTO = tgdto;
+                                return new SimpleStringProperty(tgdto.getTipo());
+                            }
+                        }
+                    } else {
+                        return new SimpleStringProperty("");
+                    }
+                    return null;
+                });
+                colunaDiscplina.setCellValueFactory(cellData -> {
+                    AlunoDTO aluno = cellData.getValue();
+                    List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
+                    if (!tgDoAluno.isEmpty()) {
+                        for(TGDTO tgdto : tgDoAluno){
+                            if(tgdto.getTipo().contains(tipoTg)){
+                                return new SimpleStringProperty(tgdto.getDisciplina());
+                            }
+                        }
+                    } else {
+                        return new SimpleStringProperty("");
+                    }
+                    return null;
+                });
+                colunaEmpresa.setCellValueFactory(cellData -> {
+                    AlunoDTO aluno = cellData.getValue();
+                    List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
+                    if (!tgDoAluno.isEmpty()) {
+                        for(TGDTO tgdto : tgDoAluno){
+                            if(tgdto.getTipo().contains(tipoTg)){
+                                return new SimpleStringProperty(tgdto.getEmpresa());
+                            }
+                        }
+                    } else {
+                        return new SimpleStringProperty("");
+                    }
+                    return null;
+                });
+                colunaProblema.setCellValueFactory(cellData -> {
+                    AlunoDTO aluno = cellData.getValue();
+                    List<TGDTO> tgDoAluno = tgdao.getTgsPorIdAluno(aluno.getId());
+                    if (!tgDoAluno.isEmpty()) {
+                        for(TGDTO tgdto : tgDoAluno){
+                            if(tgdto.getTipo().contains(tipoTg)){
+                                return new SimpleStringProperty(tgdto.getProblema());
+                            }
+                        }
+                    } else {
+                        return new SimpleStringProperty("");
+                    }
+                    return null;
+                });
+                tabelaAlunos.setItems(listAlunos);
+
             } else{
                 Alerts.showAlert("Atenção!","", "Essa turma não existe!", Alert.AlertType.WARNING);
             }

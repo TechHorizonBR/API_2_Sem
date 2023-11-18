@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,7 +89,22 @@ public class TelaRelatorioFechamentoController extends MudancaTelas {
 
                 if (!listMatricula.isEmpty()){
                     for (Long matricula: listMatricula){
-                        listNota.add(new NotaDTO(notaDAO.getMedia(listIdEntregas, matricula), matricula));
+                        List<Double> notas = new LinkedList<>();
+                        notas = notaDAO.getMedia(listIdEntregas, matricula);
+                        Double media = 0.0;
+
+                        if(!notas.isEmpty()){
+                            for(Double nota : notas){
+                                media += nota;
+                            }
+                            media /= listIdEntregas.size();
+                            DecimalFormat df = new DecimalFormat("#.##");
+                            String numeroFormatado = df.format(media);
+                            numeroFormatado = numeroFormatado.replace(",", ".");
+                            media = Double.valueOf(numeroFormatado);
+                        }
+
+                        listNota.add(new NotaDTO(media, matricula));
                     }
                     for(NotaDTO notaDTO : listNota){
                         obsNota.add(notaDTO);
