@@ -109,14 +109,14 @@ public class NotaDAO {
     }
 
 
-    public Double getMedia(List<Long> ids, Long idAluno){
+    public List<Double> getMedia(List<Long> ids, Long idAluno){
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Double media = null;
+        List<Double> media = new LinkedList<>();
 
         try{
             connection = ConexaoBD.ConexaoBD();
-            String sql = "SELECT AVG(valor) FROM nota WHERE idEntrega IN (";
+            String sql = "SELECT valor FROM nota WHERE idEntrega IN (";
             for(int x = 0; x < ids.size(); x++){
                 sql += (x == 0 ? "?" : ", ?");
             }
@@ -127,8 +127,8 @@ public class NotaDAO {
             }
             stmt.setLong(ids.size()+1, idAluno);
             rs = stmt.executeQuery();
-            if(rs.next()){
-                media = rs.getDouble(1);
+            while(rs.next()){
+                media.add(rs.getDouble("valor"));
             }
         }catch (SQLException e){
             e.printStackTrace();
