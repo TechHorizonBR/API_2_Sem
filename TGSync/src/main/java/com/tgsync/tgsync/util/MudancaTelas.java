@@ -103,6 +103,16 @@ public class MudancaTelas {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    public void onRelatorioEntregas(ActionEvent event){
+        try {
+            loadView("TelaAcompanhamentoDeEntregas.fxml");
+        }catch (IOException e){
+            Alerts.showAlert("Erro", "", "Erro ao exibir tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(e);
+        }
+    }
     @FXML
     public void encerrarSistema(ActionEvent event){
         Platform.exit();

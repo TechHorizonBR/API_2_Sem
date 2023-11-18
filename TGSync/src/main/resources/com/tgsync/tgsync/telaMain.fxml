@@ -27,7 +27,7 @@
                   </Menu>
                   <Menu text="Relatórios">
                       <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Aptos a Defesa" />
-                      <MenuItem text="Entregas" />
+                      <MenuItem fx:id="relatorioEntrega" text="Entregas" onAction="#onRelatorioEntregas"/>
                       <MenuItem fx:id="relatorioFechamento" text="Fechamento" onAction="#onRelatorioFechamento"/>
                       <MenuItem text="Feedbacks" />
                   </Menu>
