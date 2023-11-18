@@ -67,11 +67,13 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
 
             TurmaDTO turmaDTO1 = TurmaService.buscarTurmaComDataDoPC();
             TurmaDTO turmaDTO2 = TurmaService.buscarTurmaComDataDoPC();
-            if(tg == 1 || tg == null){
+            if(tg == null){
                 turmaDTO1.setDisciplina(1);
-            }
-            if(tg == 2 || tg == null){
                 turmaDTO2.setDisciplina(2);
+            }else if(tg == 1){
+                turmaDTO1.setDisciplina(1);
+            }else if(tg == 2){
+                turmaDTO1.setDisciplina(2);
             }
             turmaDTO1 = TurmaDAO.getTurmaPorAtributo(turmaDTO1);
             turmaDTO2 = TurmaDAO.getTurmaPorAtributo(turmaDTO2);
@@ -83,9 +85,9 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
                 }
                 if(turmaDTO2 != null){
                     listMatriculas2 = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO2);
-                }
-                for (Long matricula: listMatriculas2){
-                    listMatriculas.add(matricula);
+                    for (Long matricula: listMatriculas2){
+                        listMatriculas.add(matricula);
+                    }
                 }
                 for (Long matricula: listMatriculas){
                     listAlunos.add(alunoDAO.getAlunoPorId(matricula));
