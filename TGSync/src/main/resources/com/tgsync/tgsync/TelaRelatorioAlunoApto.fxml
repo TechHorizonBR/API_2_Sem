@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioAlunoAptoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioAlunoAptoController">
    <children>
       <VBox layoutX="6.0" prefHeight="600.0" prefWidth="895.0">
          <children>
@@ -90,17 +90,17 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="anoComboBox" prefWidth="150.0">
                      <HBox.margin>
                         <Insets left="45.0" top="7.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="semestreComboBox" prefWidth="150.0">
                      <HBox.margin>
                         <Insets left="45.0" top="7.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Button fx:id="gerarCsvButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#encontraAlunoApto" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
