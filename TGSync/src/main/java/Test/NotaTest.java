@@ -16,11 +16,15 @@ import java.util.Locale;
 public class NotaTest {
     public static void main(String[] args) {
         NotaDAO notaDAO = new NotaDAO();
+        EntregaDAO entregaDAO = new EntregaDAO();
         //notaDAO.addNota(new NotaDTO("DEU CERTO", 2.0, 504L,2L));
         List<Long> lista = new LinkedList<>();
      //   System.out.println(notaDAO.getNotaPorAlunoEntrega(new AlunoDTO(504L, "TETSE", "TESTE", "djfbj", 2L,lista ));
         System.out.println(notaDAO.getNotaPorId(1L));
         notaDAO.updateNota(new NotaDTO(1L, "Muito bom", 7.0, 1L, 1L));
         System.out.println(notaDAO.getNotaPorId(1L));
+
+        //List<Long> ids = entregaDAO.getIdEntregasPorTurma(1L);
+        //System.out.println(notaDAO.getMedia(ids, 2L));
     }
 }

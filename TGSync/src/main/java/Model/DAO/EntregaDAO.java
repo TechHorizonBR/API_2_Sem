@@ -140,6 +140,37 @@ public class EntregaDAO {
         return entregasEncontradas;
     }
 
+    public List<Long> getIdEntregasPorTurma(Long idTurma, String tipo){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Long> listaIds = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT id FROM entrega WHERE idTurma = ? and tipo LIKE ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, idTurma);
+            stmt.setString(2, "%" + tipo + "%");
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                listaIds.add(rs.getLong("id"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return listaIds;
+    }
+
     public EntregaDTO getEntregaPorId(Long id){
         PreparedStatement stmt = null;
         ResultSet rs = null;

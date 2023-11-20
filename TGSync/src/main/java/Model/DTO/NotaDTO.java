@@ -1,5 +1,6 @@
 package Model.DTO;
 
+import Model.DAO.AlunoDAO;
 import Model.DAO.EntregaDAO;
 
 import java.util.LinkedList;
@@ -14,6 +15,11 @@ public class NotaDTO {
     private Long idAluno;
 
     private Long idEntrega;
+    private Double media;
+    public NotaDTO(Double media, Long idAluno){
+        this.media = media;
+        this.idAluno = idAluno;
+    }
 
     public NotaDTO(Long id, String feedback, Double valor, Long idAluno, Long idEntrega){
         this.id = id;
@@ -75,6 +81,20 @@ public class NotaDTO {
         }else{
             return "N/A";
         }
+    }
+
+    public String getNomeAluno() {
+        AlunoDAO alunoDAO = new AlunoDAO();
+        AlunoDTO alunoDTO = alunoDAO.getAlunoPorId(this.idAluno);
+        return alunoDTO.getNome();
+    }
+
+    public Double getMedia() {
+        return media;
+    }
+
+    public void setMedia(Double media) {
+        this.media = media;
     }
 
     @Override
