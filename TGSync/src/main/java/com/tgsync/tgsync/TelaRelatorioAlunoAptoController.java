@@ -60,6 +60,13 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
             Alerts.showAlert("Erro","","Não existem entregas para esse período!", Alert.AlertType.ERROR);
         }
     }
+
+    public void exibirSemestre( ){
+
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         obsSemestre.add(1);

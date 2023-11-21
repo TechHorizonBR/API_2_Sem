@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,9 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioAlunoAptoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioAlunoAptoController">
    <children>
-      <VBox layoutX="6.0" prefHeight="600.0" prefWidth="895.0">
+      <VBox layoutX="-14.0" prefHeight="600.0" prefWidth="895.0">
          <children>
             <MenuBar>
               <menus>
@@ -88,7 +90,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="99.0" prefWidth="920.0">
                <children>
                   <ComboBox fx:id="anoComboBox" prefWidth="150.0">
                      <HBox.margin>
@@ -113,6 +115,12 @@
                   </Button>
                </children>
             </HBox>
+            <TableView prefHeight="337.0" prefWidth="874.0">
+              <columns>
+                <TableColumn prefWidth="473.0" text="Aluno" />
+                <TableColumn prefWidth="244.0" text="Apto" />
+              </columns>
+            </TableView>
          </children>
       </VBox>
    </children>
