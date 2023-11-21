@@ -59,8 +59,6 @@ public class TelaAlunosController extends MudancaTelas {
     @FXML
     private TableView<AlunoDTO> tabelaAlunos;
     @FXML
-    private TextField txtAno;
-    @FXML
     private TextField txtSemestre;
 
     @FXML
@@ -84,11 +82,9 @@ public class TelaAlunosController extends MudancaTelas {
     private TGDTO newTGDTO = new TGDTO();
 
     @FXML
-    void onTableClick(MouseEvent event) {
+    void onTableClick(MouseEvent event) throws ParseException {
         int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
         AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
-        Integer ano = Integer.parseInt(txtAno.getText());
-        Integer semestre = semestreCombo.getValue();
         Integer tg = null;
 
         if(tgCombo.getValue() == null){
@@ -96,7 +92,9 @@ public class TelaAlunosController extends MudancaTelas {
         }else{
             tg = tgCombo.getValue();
         }
-        TurmaDTO turmaDTO = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(ano,semestre,tg));
+        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
+        turmaDTO.setDisciplina(tg);
+        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
         if (turmaDTO != null){
             openTelaFeedback(alunoDTO, turmaDTO);
         }else{
