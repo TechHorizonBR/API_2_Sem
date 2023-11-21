@@ -119,4 +119,26 @@ public class OrientadorDAO {
         return null;
     }
 
+    public List<Long> getIdsOrientadores(){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Long> idsOrientadores = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT id FROM orientador";
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                idsOrientadores.add(rs.getLong("id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return idsOrientadores;
+    }
+
 }
