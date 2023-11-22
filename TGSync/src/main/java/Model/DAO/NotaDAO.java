@@ -4,6 +4,7 @@ import Model.ConexaoBD.ConexaoBD;
 import Model.DTO.AlunoDTO;
 import Model.DTO.EntregaDTO;
 import Model.DTO.NotaDTO;
+import Test.NotaTest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,6 +78,38 @@ public class NotaDAO {
             }
         }
         return null;
+    }
+
+    public List<NotaDTO> getNotasPorAlunoEntrega(Long alunoId, Long entregaId){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<NotaDTO> listNotas = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT * FROM nota WHERE idAluno = ? and idEntrega = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1,alunoId);
+            stmt.setLong(2,entregaId);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                listNotas.add(new NotaDTO(rs.getLong("id"), rs.getString("feedback"), rs.getDouble("valor"), rs.getLong("idAluno"), rs.getLong("idEntrega")));
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if(connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listNotas;
     }
 
     public NotaDTO getNotaPorId(Long id){

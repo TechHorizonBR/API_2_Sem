@@ -21,8 +21,7 @@ public class AlunoTest {
 
         //alunoDAO.addMatriculaAluno(alunoDTO, turmaDTO);
 
-        List<AlunoDTO> listaAlunos = alunoDAO.getAllAlunos();
-
-       System.out.println(listaAlunos);
+        //List<Long> listaAlunos = alunoDAO.getIdsAlunosPorIdOrientador(22L);
+        //System.out.println(listaAlunos);
     }
 }
