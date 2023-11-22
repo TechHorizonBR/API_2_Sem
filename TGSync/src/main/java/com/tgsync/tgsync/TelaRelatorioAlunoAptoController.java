@@ -62,17 +62,33 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
     }
 
     public void exibirSemestre( ){
+        TurmaDAO turmaDAO = new TurmaDAO();
+        List<TurmaDTO> turmasCadastradas = turmaDAO.getAllTurmas();
+        int ano = anoComboBox.getValue();
 
+        for(TurmaDTO turma: turmasCadastradas){
+            if(turma.getAno() == ano && turma.getSemestre() == 1 && !obsSemestre.contains(1)){
+                obsSemestre.add(1);
+            }
+            if(turma.getAno() == ano && turma.getSemestre() == 2 & !obsSemestre.contains(2)){
+                obsSemestre.add(2);
+            }
+        }
+        semestreComboBox.setItems(obsSemestre);
+        semestreComboBox.setValue(obsSemestre.get(0));
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        obsSemestre.add(1);
-        obsSemestre.add(2);
-        obsAno.add(2023);
+        TurmaDAO turmaDAO = new TurmaDAO();
+        List<TurmaDTO> turmasCadastradas = turmaDAO.getAllTurmas();
+
+        for(TurmaDTO turma: turmasCadastradas){
+            int ano = turma.getAno();
+            if(!obsAno.contains((int) ano)){
+                obsAno.add(ano);
+            }
+        }
         anoComboBox.setItems(obsAno);
-        semestreComboBox.setItems(obsSemestre);
     }
 }

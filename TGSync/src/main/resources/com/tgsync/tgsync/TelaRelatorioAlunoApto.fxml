@@ -93,7 +93,7 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <ComboBox fx:id="anoComboBox" prefWidth="150.0">
+                        <ComboBox fx:id="anoComboBox" onAction="#exibirSemestre" prefWidth="150.0">
                             <HBox.margin>
                                 <Insets left="45.0" top="7.0" />
                             </HBox.margin>
@@ -120,7 +120,9 @@
                <content>
                   <TableView fx:id="tabelaMedia" prefHeight="314.0" prefWidth="800.0">
                      <columns>
-                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="788.0000503659248" resizable="false" text="Nome" />
+                        <TableColumn fx:id="colunaNome" maxWidth="393.0" minWidth="141.0" prefWidth="392.0" resizable="false" text="Nome" />
+                        <TableColumn fx:id="colunaNome1" minWidth="11.0" prefWidth="111.0" resizable="false" text="Tipo TG" />
+                        <TableColumn fx:id="colunaNome2" minWidth="200.0" prefWidth="285.0" resizable="false" text="Orientador" />
                      </columns>
                   </TableView>
                </content>
@@ -128,6 +130,14 @@
                   <Insets left="40.0" top="-40.0" />
                </VBox.margin>
             </ScrollPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prévia do relatório" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="46.0" top="-338.0" />
+               </VBox.margin>
+            </Text>
             </children>
         </VBox>
     </children>

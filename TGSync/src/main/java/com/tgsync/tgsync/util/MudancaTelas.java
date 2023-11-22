@@ -42,7 +42,6 @@ public class MudancaTelas {
     public ComboBox<String> comboBoxTipoTG;
     @FXML
     ObservableList<Integer> observableListTG = FXCollections.observableArrayList();
-
     @FXML
     void carregarMatriculaTG() {
         observableListTG.clear();
@@ -96,6 +95,7 @@ public class MudancaTelas {
     }
     @FXML
     public void onAlunosAptosClick(ActionEvent event){
+
         try{
             loadView("TelaRelatorioAlunoApto.fxml");
         }catch (IOException e){
