@@ -75,6 +75,7 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
             }
         }
         semestreComboBox.setItems(obsSemestre);
+        semestreComboBox.setValue(obsSemestre.get(0));
     }
 
     @Override
@@ -87,10 +88,7 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
             if(!obsAno.contains((int) ano)){
                 obsAno.add(ano);
             }
-    }
-
-
+        }
         anoComboBox.setItems(obsAno);
-
     }
 }
