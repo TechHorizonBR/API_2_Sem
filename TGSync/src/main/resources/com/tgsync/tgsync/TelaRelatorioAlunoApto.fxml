@@ -93,7 +93,7 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <ComboBox fx:id="anoComboBox" prefWidth="150.0">
+                        <ComboBox fx:id="anoComboBox" onAction="#exibirSemestre" prefWidth="150.0">
                             <HBox.margin>
                                 <Insets left="45.0" top="7.0" />
                             </HBox.margin>
