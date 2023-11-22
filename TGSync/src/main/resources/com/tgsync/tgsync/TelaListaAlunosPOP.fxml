@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaEditarEntregaController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="62.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/logo-tgsync.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <VBox.margin>
+                  <Insets bottom="-20.0" left="20.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TELA ALUNOS ORIENTADOS" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="10.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="26.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <ScrollPane layoutX="25.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="547.0">
+         <content>
+            <TableView fx:id="tabelaListaAlunos" prefHeight="232.0" prefWidth="576.0">
+               <columns>
+                  <TableColumn fx:id="colunaNome" maxWidth="300.0" minWidth="200.0" prefWidth="808.0" resizable="false" text="Nome Orientadores" />
+                  <TableColumn maxWidth="300.0" minWidth="200.0" prefWidth="808.0" text="Email FATEC" />
+                  <TableColumn maxWidth="300.0" minWidth="200.0" prefWidth="808.0" text="Email Pessoal" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
