@@ -128,7 +128,13 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
             // Passando os dados para o controlador da tela de resultados de entregas
             telaResultadosDeEntregasController.injecaoEntregasAluno(this);
             //telaResultadosDeEntregasController.receberDados(alunoDTO, turmaDTO);
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("TGSync");
+            Scene scene = new Scene(root);
+            popupStage.setScene(scene);
 
+            popupStage.showAndWait();
             // Resto do código para exibir a tela em um Stage
         } catch (Exception e) {
             e.printStackTrace();
