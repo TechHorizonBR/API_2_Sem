@@ -129,7 +129,7 @@
             </HBox>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="826.0">
                <content>
-                  <TableView fx:id="tabelaAlunos"  prefHeight="410.0" prefWidth="1800.0">
+                  <TableView fx:id="tabelaAlunos"  onMouseClicked="#onTableClickEntrega"   prefHeight="410.0" prefWidth="1800.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" maxWidth="900.0" minWidth="500.0" prefWidth="811.1999862790108" resizable="false" text="Nome" />
                      </columns>
