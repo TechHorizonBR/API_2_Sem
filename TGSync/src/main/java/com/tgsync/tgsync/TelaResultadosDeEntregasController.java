@@ -38,7 +38,7 @@ public class TelaResultadosDeEntregasController extends MudancaTelas {
     private TableColumn<EntregaDTO, String> colunaNota;
 
     @FXML
-    private TableColumn<EntregaDTO, String> colunaFeedback;
+    private TableColumn<EntregaDTO, Boolean> colunaStatus;
 
     @FXML
     private ImageView imgLogo;
@@ -57,6 +57,7 @@ public class TelaResultadosDeEntregasController extends MudancaTelas {
 
 
     ObservableList<EntregaDTO> obsEntrega = FXCollections.observableArrayList();
+    
 
     private AlunoDTO aluno = new AlunoDTO();
     private TurmaDTO turma = new TurmaDTO();
@@ -66,6 +67,7 @@ public class TelaResultadosDeEntregasController extends MudancaTelas {
     void onVisualizarAlunosClicked(ActionEvent event) {
 
     }
+
 
 
     public void receberDados(AlunoDTO aluno, TurmaDTO turma) {
