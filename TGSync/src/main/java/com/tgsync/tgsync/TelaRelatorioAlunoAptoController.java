@@ -1,11 +1,10 @@
 package com.tgsync.tgsync;
 
+import Model.DAO.AlunoDAO;
 import Model.DAO.EntregaDAO;
+import Model.DAO.NotaDAO;
 import Model.DAO.TurmaDAO;
-import Model.DTO.AlunoDTO;
-import Model.DTO.EntregaDTO;
-import Model.DTO.TGDTO;
-import Model.DTO.TurmaDTO;
+import Model.DTO.*;
 import Model.util.Alerts;
 import com.tgsync.tgsync.util.MudancaTelas;
 import javafx.collections.FXCollections;
@@ -19,6 +18,9 @@ import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,38 +34,87 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
     public Button gerarCsvButton;
     private ObservableList<Integer> obsAno = FXCollections.observableArrayList();
     private ObservableList<Integer> obsSemestre = FXCollections.observableArrayList();
+    List<Long> listMatricula = new LinkedList<>();
 
     private EntregaDAO entregaDAO = new EntregaDAO();
+    public Double calculaMedia(List<Double> listaNotas){
+        Double soma =0.0;
+        for(Double nota: listaNotas){
+            soma += nota;
+        }
+        return soma/listaNotas.size();
+    }
 
-    public void encontraAlunoApto(ActionEvent event){
+    public void encontraAlunoApto(ActionEvent event) {
+        AlunoDAO alunoDAO = new AlunoDAO();
+        TurmaDAO turmaDAO = new TurmaDAO();
+        NotaDAO notaDAO = new NotaDAO();
+        EntregaDAO entregaDAO = new EntregaDAO();
+        List<Long> listIdEntregas = null;
         try {
             if (anoComboBox.getValue() != null && semestreComboBox.getValue() != null) {
                 TurmaDTO turmaDTO1 = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(anoComboBox.getValue(), semestreComboBox.getValue(), 1));
                 TurmaDTO turmaDTO2 = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(anoComboBox.getValue(), semestreComboBox.getValue(), 2));
-
+                List<EntregaDTO> listEntregasPort = new ArrayList<>();
+                List<EntregaDTO> listEntregasRelatorio = new ArrayList<>();
                 TGDTO tgdto = new TGDTO();
                 tgdto.setTipo("Portfólio");
                 if (turmaDTO1 != null && turmaDTO2 != null) {
-                    List<EntregaDTO> listEntregas = entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO1, tgdto);
-                    List<EntregaDTO> listAuxiliar = entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO2, tgdto);
+                    listEntregasPort.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO1, tgdto));
+                    listEntregasPort.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO2, tgdto));
+                    System.out.println(listEntregasPort.size());
+                }
+                tgdto.setTipo("Relatório Técnico");
+                if (turmaDTO1 != null && turmaDTO2 != null) {
+                    listEntregasRelatorio.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO1, tgdto));
+                    listEntregasRelatorio.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO2, tgdto));
+                }
+                System.out.println(listEntregasRelatorio.size());
+                List<String> tipoTg = new ArrayList<>();
+                tipoTg.add("Portfólio");
+                tipoTg.add("Relatório Técnico");
+                List<NotaDTO> listNota = new LinkedList<>();
 
-                    for (EntregaDTO entrega : listAuxiliar) {
-                        listEntregas.add(entrega);
-                        System.out.println(entrega);
+                for (String tipo : tipoTg) {
+                    listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipo, turmaDTO1);
+                    listIdEntregas = entregaDAO.getIdEntregasPorTurma(turmaDTO1.getId(), tipo);
+
+                    System.out.println(listMatricula);
+
+                    if (!listMatricula.isEmpty()) {
+                        for (Long matricula : listMatricula) {
+                            List<Double> notas = new LinkedList<>();
+                            notas = notaDAO.getMedia(listIdEntregas, matricula);
+                            Double media = 0.0;
+
+                            if (!notas.isEmpty()) {
+                                for (Double nota : notas) {
+                                    media += nota;
+                                }
+                                media /= listIdEntregas.size();
+                                DecimalFormat df = new DecimalFormat("#.##");
+                                String numeroFormatado = df.format(media);
+                                numeroFormatado = numeroFormatado.replace(",", ".");
+                                media = Double.valueOf(numeroFormatado);
+                            }
+
+                            listNota.add(new NotaDTO(media, matricula));
+                            System.out.println(listNota);
+                        }
+
+
+                        Alerts.showAlert("Sucesso!", "", "Gerado com sucesso!", Alert.AlertType.CONFIRMATION);
                     }
                 }
-                Alerts.showAlert("Sucesso!","","Gerado com sucesso!", Alert.AlertType.CONFIRMATION);
-                System.out.println("Chegou aqui!");
+
             }
-        }
-        catch (NullPointerException e){
-            Alerts.showAlert("Erro","","Não existem entregas para esse período!", Alert.AlertType.ERROR);
+        } catch (Exception e){
+            Alerts.showAlert("Erro","","Erro ao gerar csv", Alert.AlertType.ERROR);
         }
     }
-
-    public void exibirSemestre( ){
-        TurmaDAO turmaDAO = new TurmaDAO();
-        List<TurmaDTO> turmasCadastradas = turmaDAO.getAllTurmas();
+    public void exibirSemestre(){
+        TurmaDAO turmaDao = new TurmaDAO();
+        List<TurmaDTO> turmasCadastradas = turmaDao.getAllTurmas();
         int ano = anoComboBox.getValue();
 
         for(TurmaDTO turma: turmasCadastradas){
@@ -75,7 +126,6 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
             }
         }
         semestreComboBox.setItems(obsSemestre);
-        semestreComboBox.setValue(obsSemestre.get(0));
     }
 
     @Override
