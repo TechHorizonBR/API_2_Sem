@@ -118,7 +118,6 @@ public class OrientadorDAO {
         }
         return null;
     }
-
     public List<Long> getIdsOrientadores(){
         PreparedStatement stmt = null;
         ResultSet rs = null;

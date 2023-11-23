@@ -33,6 +33,8 @@ public class MudancaTelas {
     @FXML
     public MenuItem relatorioFeedbacks;
     @FXML
+    public MenuItem relatorioCertificadoOrientadores;
+    @FXML
     public MenuItem telaInicial;
     @FXML
     public MenuItem sair;
@@ -61,6 +63,16 @@ public class MudancaTelas {
     public void onVisualizarAlunosClicked() {
         try {
             loadView("TelaAlunos.fxml");
+        } catch (IOException ex) {
+            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @FXML
+    public void onRelatorioCertOrienClicked() {
+        try {
+            loadView("TelaRelatorioCertificadoOrientadores.fxml");
         } catch (IOException ex) {
             Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
             throw new RuntimeException(ex);

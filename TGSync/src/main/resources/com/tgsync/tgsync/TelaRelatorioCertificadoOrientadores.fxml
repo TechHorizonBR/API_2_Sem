@@ -18,8 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioCertificadoOrientadoresController">
+<AnchorPane prefHeight="600.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaRelatorioCertificadoOrientadoresController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="910.0">
          <children>
@@ -63,7 +62,7 @@
                   <Insets bottom="-20.0" left="35.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TELA CERTIFICADO ORIENTADORES" textAlignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CERTIFICADO ORIENTADORES" textAlignment="CENTER">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -71,9 +70,17 @@
                   <Insets left="45.0" />
                </VBox.margin>
             </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orientadores são aptos a certificação somente se todos os orientados do mesmo realizarem ao menos uma entrega." wrappingWidth="794.190673828125">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="-20.0" left="45.0" top="20.0" />
+               </VBox.margin>
+            </Text>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="810.0">
                <content>
-                  <TableView fx:id="tabelaOrientadores" prefHeight="346.0" prefWidth="850.0">
+                  <TableView fx:id="tabelaOrientadores" onMouseClicked="#onTableClick" prefHeight="346.0" prefWidth="850.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="808.0" resizable="false" text="Nome Orientadores" />
                      </columns>
@@ -85,7 +92,7 @@
             </ScrollPane>
             <HBox alignment="TOP_RIGHT" prefHeight="90.0" prefWidth="910.0">
                <children>
-                  <Button fx:id="ButtonGerarCSV" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnGerarCSV" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Button fx:id="ButtonGerarCSV" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOkButton" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

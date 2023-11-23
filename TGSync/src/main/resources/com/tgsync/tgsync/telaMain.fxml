@@ -28,7 +28,8 @@
                   <Menu text="Relatórios">
                       <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Aptos a Defesa" />
                       <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Entregas" />
-                      <MenuItem fx:id="relatorioFechamento" text="Fechamento" />
+                      <MenuItem fx:id="relatorioFechamento" text="Fechamento" onAction="#onRelatorioFechamento" />
+                      <MenuItem fx:id="relatorioCertificadoOrientadores" text="Relatório de Certificação Orientadores" onAction="#onRelatorioCertOrienClicked"/>
                       <MenuItem text="Feedbacks" />
                   </Menu>
                   <Menu text="Configurações">

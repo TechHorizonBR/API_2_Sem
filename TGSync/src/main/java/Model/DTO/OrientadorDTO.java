@@ -44,7 +44,7 @@ public class OrientadorDTO {
 
     @Override
     public String toString(){
-        return this.nome;
+        return String.format("Nome: %s, Id: %s", this.nome, this.id);
     }
 }
 
