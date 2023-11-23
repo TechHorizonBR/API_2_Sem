@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.LinkedList;
@@ -26,6 +27,8 @@ public class TelaAlunosPOPController extends MudancaTelas {
     private TableColumn<AlunoDTO, String> colunaEmailPessoal;
     @FXML
     private TableView<AlunoDTO> tabelaListaAlunos;
+    @FXML
+    private Text nomeOrientador;
     private OrientadorDTO orientadorDTO = new OrientadorDTO();
 
     private TurmaDAO turmaDAO = new TurmaDAO();
@@ -52,7 +55,7 @@ public class TelaAlunosPOPController extends MudancaTelas {
             for(Long idAluno : idsAlunos){
                 obsAluno.add(alunoDAO.getAlunoPorId(idAluno));
             }
-
+            nomeOrientador.setText(orientadorDTO.getNome());
             colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
             colunaEmailPessoal.setCellValueFactory(new PropertyValueFactory<>("emailPessoal"));
             colunaEmailFatec.setCellValueFactory(new PropertyValueFactory<>("emailFatec"));
