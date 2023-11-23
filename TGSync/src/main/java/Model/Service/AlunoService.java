@@ -44,6 +44,10 @@ public class AlunoService {
                 Long idOrientador = null;
                 if(orientadorDTO!=null){
                     idOrientador = orientadorDTO.getId();
+                }else{
+                    orientadorDAO.addOrientador(new OrientadorDTO(linha[4], emailOrientador));
+                    orientadorDTO = orientadorDAO.getOrientadorPorEmail(emailOrientador);
+                    idOrientador = orientadorDTO.getId();
                 }
 
                 if (alunoDTO != null) {
