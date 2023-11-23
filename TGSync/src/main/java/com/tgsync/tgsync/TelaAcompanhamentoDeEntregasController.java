@@ -61,40 +61,40 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
         AlunoDAO alunoDAO = new AlunoDAO();
         Integer tg = tgCombo.getValue();
         String tipoTg = tipoCombo.getValue();
-        if (tipoTg == null){
+        if (tipoTg == null) {
             Alerts.showAlert("Atenção", "", "Preenchimento de todos os campos é obrigatório", Alert.AlertType.WARNING);
-        }else{
+        } else {
 
             TurmaDTO turmaDTO1 = TurmaService.buscarTurmaComDataDoPC();
             TurmaDTO turmaDTO2 = TurmaService.buscarTurmaComDataDoPC();
-            if(tg == null){
+            if (tg == null) {
                 turmaDTO1.setDisciplina(1);
                 turmaDTO2.setDisciplina(2);
-            }else if(tg == 1){
+            } else if (tg == 1) {
                 turmaDTO1.setDisciplina(1);
-            }else if(tg == 2){
+            } else if (tg == 2) {
                 turmaDTO1.setDisciplina(2);
             }
             turmaDTO1 = TurmaDAO.getTurmaPorAtributo(turmaDTO1);
             turmaDTO2 = TurmaDAO.getTurmaPorAtributo(turmaDTO2);
             List<Long> listMatriculas = new LinkedList<>();
             List<Long> listMatriculas2 = new LinkedList<>();
-            if (turmaDTO1 != null || turmaDTO2 != null){
-                if(turmaDTO1 != null){
+            if (turmaDTO1 != null || turmaDTO2 != null) {
+                if (turmaDTO1 != null) {
                     listMatriculas = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO1);
                 }
-                if(turmaDTO2 != null){
+                if (turmaDTO2 != null) {
                     listMatriculas2 = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipoTg, turmaDTO2);
-                    for (Long matricula: listMatriculas2){
+                    for (Long matricula : listMatriculas2) {
                         listMatriculas.add(matricula);
                     }
                 }
-                for (Long matricula: listMatriculas){
+                for (Long matricula : listMatriculas) {
                     listAlunos.add(alunoDAO.getAlunoPorId(matricula));
                 }
                 colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
                 tabelaAlunos.setItems(listAlunos);
-            }else{
+            } else {
                 Alerts.showAlert("Atenção", "", "Essa turma não existe", Alert.AlertType.WARNING);
             }
         }
@@ -105,7 +105,7 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
         listTG.clear();
         tgCombo.setItems(null);
         String tipo = tipoCombo.getValue();
-        if(tipo.equals("Portfólio")){
+        if (tipo.equals("Portfólio")) {
             listTG.add(1);
             listTG.add(2);
             tgCombo.setItems(listTG);
@@ -115,4 +115,46 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
 
 
 
-}
+
+
+    public void openTelaEntregasAluno(AlunoDTO alunoDTO, TurmaDTO turmaDTO) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaResultadosDeEntregas.fxml"));
+            Parent root = loader.load();
+
+            // Obtendo o controlador da tela carregada
+            TelaResultadosDeEntregasController telaResultadosDeEntregasController = loader.getController();
+
+            // Passando os dados para o controlador da tela de resultados de entregas
+            telaResultadosDeEntregasController.injecaoEntregasAluno(this);
+            //telaResultadosDeEntregasController.receberDados(alunoDTO, turmaDTO);
+
+            // Resto do código para exibir a tela em um Stage
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void onTableClickEntrega(MouseEvent event) throws ParseException {
+        int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
+        AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
+        TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
+        if (tipoCombo.getValue() == "Artigo Tecnológico ou Científico" || tipoCombo.getValue() == "Relatório Técnico"){
+            turmaDTO.setDisciplina(1);
+        }
+        else {
+            turmaDTO.setDisciplina(tgCombo.getValue());
+        }
+
+        turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
+
+        if (turmaDTO != null) {
+            openTelaEntregasAluno(alunoDTO, turmaDTO); // Ajuste para passar apenas aluno e turma
+        } else {
+            Alerts.showAlert("Atenção!", "", "Alguma coisa ocorreu errado.", Alert.AlertType.WARNING);
+        }
+    }
+
+    }
+

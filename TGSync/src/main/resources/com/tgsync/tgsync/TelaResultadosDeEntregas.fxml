@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaEditarEntregaController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAcompanhamentoDeEntregasController">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -34,7 +34,7 @@
                   <Insets left="26.0" top="5.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tabelaNotas" onMouseClicked="#onCellClick" prefHeight="225.0" prefWidth="600.0">
+            <TableView fx:id="tabelaNotas"  prefHeight="225.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="colunaEntrega" maxWidth="300.0" minWidth="100.0" prefWidth="272.80003052949905" resizable="false" text="Entrega" />
                   <TableColumn fx:id="colunaFeedback" maxWidth="610.0" minWidth="200.0" prefWidth="277.5999755859375" text="Status" />
