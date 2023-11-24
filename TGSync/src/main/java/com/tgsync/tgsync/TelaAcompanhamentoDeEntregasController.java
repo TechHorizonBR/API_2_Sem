@@ -114,11 +114,9 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
     }
 
 
-
-
-
     public void openTelaEntregasAluno(AlunoDTO alunoDTO, TurmaDTO turmaDTO) {
         try {
+            this.turmaMandarDados = turmaDTO;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaResultadosDeEntregas.fxml"));
             Parent root = loader.load();
 
@@ -126,8 +124,10 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
             TelaResultadosDeEntregasController telaResultadosDeEntregasController = loader.getController();
 
             // Passando os dados para o controlador da tela de resultados de entregas
-            telaResultadosDeEntregasController.injecaoEntregasAluno(this);
+            telaResultadosDeEntregasController.injecaoEntregasAluno(this, turmaDTO);
+
             //telaResultadosDeEntregasController.receberDados(alunoDTO, turmaDTO);
+            telaResultadosDeEntregasController.initialize();
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setTitle("TGSync");
@@ -156,10 +156,17 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
         turmaDTO = TurmaDAO.getTurmaPorAtributo(turmaDTO);
 
         if (turmaDTO != null) {
+            this.turmaMandarDados = turmaDTO;
             openTelaEntregasAluno(alunoDTO, turmaDTO); // Ajuste para passar apenas aluno e turma
         } else {
             Alerts.showAlert("Atenção!", "", "Alguma coisa ocorreu errado.", Alert.AlertType.WARNING);
         }
+    }
+
+    TurmaDTO turmaMandarDados = new TurmaDTO();
+
+    public TurmaDTO mandarDados(){
+        return this.turmaMandarDados;
     }
 
     }
