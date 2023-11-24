@@ -69,7 +69,6 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
                     listEntregasRelatorio.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO1, tgdto));
                     listEntregasRelatorio.addAll(entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO2, tgdto));
                 }
-                System.out.println(listEntregasRelatorio.size());
                 List<String> tipoTg = new ArrayList<>();
                 tipoTg.add("Portfólio");
                 tipoTg.add("Relatório Técnico");
@@ -78,8 +77,6 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
                 for (String tipo : tipoTg) {
                     listMatricula = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipo, turmaDTO1);
                     listIdEntregas = entregaDAO.getIdEntregasPorTurma(turmaDTO1.getId(), tipo);
-
-                    System.out.println(listMatricula);
 
                     if (!listMatricula.isEmpty()) {
                         for (Long matricula : listMatricula) {
@@ -96,17 +93,13 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
                                 String numeroFormatado = df.format(media);
                                 numeroFormatado = numeroFormatado.replace(",", ".");
                                 media = Double.valueOf(numeroFormatado);
+                                System.out.println(media);
                             }
-
                             listNota.add(new NotaDTO(media, matricula));
-                            System.out.println(listNota);
                         }
-
-
-                        Alerts.showAlert("Sucesso!", "", "Gerado com sucesso!", Alert.AlertType.CONFIRMATION);
                     }
                 }
-
+                Alerts.showAlert("Sucesso!", "", "Gerado com sucesso!", Alert.AlertType.CONFIRMATION);
             }
         } catch (Exception e){
             Alerts.showAlert("Erro","","Erro ao gerar csv", Alert.AlertType.ERROR);
