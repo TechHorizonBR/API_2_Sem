@@ -112,41 +112,16 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
             tgCombo.setValue(listTG.get(0));
         }
     }
-
-
-    public void openTelaEntregasAluno(AlunoDTO alunoDTO, TurmaDTO turmaDTO) {
-        try {
-            this.turmaMandarDados = turmaDTO;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaResultadosDeEntregas.fxml"));
-            Parent root = loader.load();
-
-            // Obtendo o controlador da tela carregada
-            TelaResultadosDeEntregasController telaResultadosDeEntregasController = loader.getController();
-
-            // Passando os dados para o controlador da tela de resultados de entregas
-            telaResultadosDeEntregasController.injecaoEntregasAluno(this, turmaDTO);
-
-            //telaResultadosDeEntregasController.receberDados(alunoDTO, turmaDTO);
-            telaResultadosDeEntregasController.initialize();
-            Stage popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("TGSync");
-            Scene scene = new Scene(root);
-            popupStage.setScene(scene);
-
-            popupStage.showAndWait();
-            // Resto do código para exibir a tela em um Stage
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    TurmaDTO turmaMandarDados = new TurmaDTO();
+    TGDTO tgdtoMandarDados = new TGDTO();
+    AlunoDTO alunoDTODados = new AlunoDTO();
 
     @FXML
     void onTableClickEntrega(MouseEvent event) throws ParseException {
         int i = tabelaAlunos.getSelectionModel().getSelectedIndex();
         AlunoDTO alunoDTO = tabelaAlunos.getItems().get(i);
         TurmaDTO turmaDTO = TurmaService.buscarTurmaComDataDoPC();
-        if (tipoCombo.getValue() == "Artigo Tecnológico ou Científico" || tipoCombo.getValue() == "Relatório Técnico"){
+        if (tipoCombo.getValue().contains("Artigo") || tipoCombo.getValue().contains("Relatório")){
             turmaDTO.setDisciplina(1);
         }
         else {
@@ -157,16 +132,48 @@ public class TelaAcompanhamentoDeEntregasController extends MudancaTelas {
 
         if (turmaDTO != null) {
             this.turmaMandarDados = turmaDTO;
-            openTelaEntregasAluno(alunoDTO, turmaDTO); // Ajuste para passar apenas aluno e turma
+            TGDTO tgdto = new TGDTO();
+            tgdto.setTipo(tipoCombo.getValue());
+            this.tgdtoMandarDados = tgdto;
+            this.alunoDTODados = alunoDTO;
+            openTelaEntregasAluno(this.alunoDTODados, turmaMandarDados, tgdtoMandarDados); // Ajuste para passar apenas aluno e turma
         } else {
             Alerts.showAlert("Atenção!", "", "Alguma coisa ocorreu errado.", Alert.AlertType.WARNING);
         }
     }
 
-    TurmaDTO turmaMandarDados = new TurmaDTO();
-
     public TurmaDTO mandarDados(){
         return this.turmaMandarDados;
+    }
+    public TGDTO getTgdtoMandarDados(){
+        return this.tgdtoMandarDados;
+    }
+    public AlunoDTO getAlunoDTO(){
+        return this.alunoDTODados;
+    }
+
+    public void openTelaEntregasAluno(AlunoDTO alunoDTO, TurmaDTO turmaDTO, TGDTO tgdto) {
+        try {
+            this.turmaMandarDados = turmaDTO;
+            this.tgdtoMandarDados = tgdto;
+            this.alunoDTODados = alunoDTO;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaResultadosDeEntregas.fxml"));
+            Parent root = loader.load();
+
+            TelaResultadosDeEntregasController telaResultadosDeEntregasController = loader.getController();
+            telaResultadosDeEntregasController.injecaoEntregasAluno(this, turmaDTO, tgdto, alunoDTO);
+            telaResultadosDeEntregasController.initialize();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("TGSync");
+            Scene scene = new Scene(root);
+            popupStage.setScene(scene);
+
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     }

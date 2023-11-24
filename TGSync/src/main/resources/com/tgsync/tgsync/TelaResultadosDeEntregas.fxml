@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -34,7 +35,30 @@
                   <Insets left="26.0" top="5.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tabelaNotas"  prefHeight="225.0" prefWidth="600.0">
+            <HBox prefHeight="58.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="27.0" top="20.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="txtNome" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Black" size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="-40.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tabelaNotas" prefHeight="225.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="colunaEntrega" maxWidth="300.0" minWidth="100.0" prefWidth="272.80003052949905" resizable="false" text="Entrega" />
                   <TableColumn fx:id="colunaStatus" maxWidth="610.0" minWidth="200.0" prefWidth="277.5999755859375" text="Status" />
