@@ -32,7 +32,6 @@ public class TgService {
                 String email2 = linha[2];
                 AlunoDTO alunoDTO = null;
 
-
                 if (linha[2].isEmpty()){
                     alunoDTO = alunoDAO.getAlunoPorEmail(linha[1]);
                 }else{
@@ -51,6 +50,5 @@ public class TgService {
         } catch (CsvException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
