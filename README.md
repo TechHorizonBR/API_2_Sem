@@ -143,7 +143,7 @@ Product Backlog | Prioridade | Status
 Carregamento do arquivo CSV | 1 | ✅
 Validação dados do orientador | 2 | ✅
 Registro de notas e feedbacks | 3 | ✅
-Registro de número de avaliações | 4 | ✅
+Cadastro de entregas | 4 | ✅
 Geração de relatório de alunos aptos a defesa | 5 | ✅
 Geração de relatório de notas dos alunos | 6 | ✅
 Geração de relatório de acompanhamento de entregas | 7 | ✅
