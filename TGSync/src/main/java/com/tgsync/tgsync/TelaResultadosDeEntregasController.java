@@ -82,7 +82,7 @@ public class TelaResultadosDeEntregasController extends MudancaTelas {
         colunaEntrega.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
         colunaStatus.setCellValueFactory(cellData -> new SimpleStringProperty(
                 cellData.getValue().getStatus(alunoDTO.getId())));
-        //System.out.println(obsListaNotas);
+
         obsEntrega = FXCollections.observableArrayList(obsEntrega);
         tabelaNotas.setItems(obsEntrega);
     }

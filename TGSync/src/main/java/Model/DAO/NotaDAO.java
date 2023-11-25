@@ -1,10 +1,7 @@
 package Model.DAO;
 
 import Model.ConexaoBD.ConexaoBD;
-import Model.DTO.AlunoDTO;
-import Model.DTO.EntregaDTO;
 import Model.DTO.NotaDTO;
-import Test.NotaTest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

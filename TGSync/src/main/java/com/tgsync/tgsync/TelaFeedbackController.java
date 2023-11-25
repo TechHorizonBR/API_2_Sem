@@ -127,9 +127,7 @@ public class TelaFeedbackController extends MudancaTelas {
         colunaNota.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNotaAlunos(aluno.getId())));
         colunaFeedback.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFeedbackAlunos(aluno.getId())));
 
-        //System.out.println(obsListaNotas);
         obsEntrega = FXCollections.observableArrayList(obsEntrega);
-        System.out.println(obsEntrega);
         tabelaNotas.setItems(obsEntrega);
     }
 }

@@ -12,14 +12,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class TelaRelatorioAlunoAptoController extends MudancaTelas implements Initializable {
 
@@ -48,6 +51,7 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
     @FXML
     private TableView<AlunoDTO> tableAlunos;
     private TGDAO tgdao = new TGDAO();
+    private OrientadorDAO orientadorDAO = new OrientadorDAO();
 
     public void encontraAlunoApto(ActionEvent event) {
         AlunoDAO alunoDAO = new AlunoDAO();
@@ -171,9 +175,6 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
             });
             tableAlunos.setItems(obsAlunosAptos);
 
-
-            Alerts.showAlert("Sucesso!", "", "Gerado com sucesso!", Alert.AlertType.CONFIRMATION);
-
         } catch (Exception e){
             Alerts.showAlert("Erro",e.getMessage(),"Erro ao gerar csv", Alert.AlertType.ERROR);
         }
@@ -207,4 +208,57 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
         }
         anoComboBox.setItems(obsAno);
     }
+
+    @FXML
+    public void gerarCSV() throws IOException {
+        if (!obsAlunosAptos.isEmpty()) {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Escolher Diretório para Salvar Arquivo");
+
+            File selectedDirectory = directoryChooser.showDialog(null);
+
+            if (selectedDirectory != null) {
+                String directoryPath = selectedDirectory.getAbsolutePath();
+                String filePath = directoryPath + File.separator + "RelatorioAlunosAptosDefesa.csv";
+                Files.createFile(Paths.get(filePath));
+
+                List<String> existentes = LinhaExistentes(filePath);
+
+                for (AlunoDTO aluno : obsAlunosAptos) {
+                    OrientadorDTO orientadorDTO = orientadorDAO.getOrientadorPorId(aluno.getIdOrientador());
+                    String linha = aluno.getNome()+";"+aluno.getEmailFatec()+";"+aluno.getEmailPessoal()+";"+orientadorDTO.getNome() + ";" + orientadorDTO.getEmail() + ";";
+                    existentes.add(linha);
+                }
+
+                String todasLinhas = unicaLinha(existentes);
+
+                try (FileWriter arquivoCSV = new FileWriter(filePath)) {
+                    arquivoCSV.write(todasLinhas);
+                    Alerts.showAlert("SUCESSO!", "", "Arquivo CSV gerado com sucesso na pasta "+filePath, Alert.AlertType.CONFIRMATION);
+                } catch (IOException e) {
+                    Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Verifique se já existe o arquivo no local destinado, ou entre em contato com seu administrador.", Alert.AlertType.ERROR);
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            Alerts.showAlert("ATENÇÃO!", "", "Não existe alunos aptos!", Alert.AlertType.WARNING);
+        }
+    }
+
+    public String unicaLinha(List<String> existentes) {
+        Set<String> linhasUnicas = new LinkedHashSet<>(existentes);
+        return String.join("\n", linhasUnicas);
+    }
+
+    public List<String> LinhaExistentes(String url){
+        List<String> result = new ArrayList<String>();
+        try{
+            Path path = Paths.get(url);
+            result = Files.readAllLines(path);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

@@ -99,12 +99,12 @@
                                 <Insets left="45.0" top="7.0" />
                             </HBox.margin>
                         </ComboBox>
-                        <ComboBox fx:id="semestreComboBox" prefWidth="150.0">
+                        <ComboBox fx:id="semestreComboBox" onAction="#encontraAlunoApto" prefWidth="150.0">
                             <HBox.margin>
                                 <Insets left="45.0" top="7.0" />
                             </HBox.margin>
                         </ComboBox>
-                        <Button fx:id="gerarCsvButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#encontraAlunoApto" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="gerarCsvButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gerarCSV" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="Gerar CSV" textAlignment="JUSTIFY" textFill="WHITE">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
