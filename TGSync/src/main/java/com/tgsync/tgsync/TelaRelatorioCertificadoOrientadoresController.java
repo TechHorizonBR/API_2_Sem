@@ -85,8 +85,9 @@ public class TelaRelatorioCertificadoOrientadoresController extends MudancaTelas
 
                 try (FileWriter arquivoCSV = new FileWriter(filePath)) {
                     arquivoCSV.write(todasLinhas);
-                    Alerts.showAlert("SUCESSO!", "", "Arquivo CSV gerado com sucesso!", Alert.AlertType.CONFIRMATION);
+                    Alerts.showAlert("SUCESSO!", "", "Arquivo CSV gerado com sucesso na pasta "+filePath, Alert.AlertType.CONFIRMATION);
                 } catch (IOException e) {
+                    Alerts.showAlert("ATENÇÃO!", "", "Alguma coisa não ocorreu bem! Verifique se já existe o arquivo no local destinado, ou entre em contato com seu administrador.", Alert.AlertType.ERROR);
                     e.printStackTrace();
                 }
             }

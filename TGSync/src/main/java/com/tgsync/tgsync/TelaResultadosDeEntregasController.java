@@ -2,6 +2,7 @@ package com.tgsync.tgsync;
 
 import Model.DAO.EntregaDAO;
 import Model.DAO.NotaDAO;
+import Model.DAO.OrientadorDAO;
 import Model.DAO.TGDAO;
 import Model.DTO.*;
 import com.tgsync.tgsync.util.MudancaTelas;
@@ -23,22 +24,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.text.ParseException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TelaResultadosDeEntregasController extends MudancaTelas {
-
-    private TelaAcompanhamentoDeEntregasController telaAcompanhamentoDeEntregasController;
-    public void injecaoEntregasAluno(TelaAcompanhamentoDeEntregasController telaAcompanhamentoDeEntregasController){
+    TelaAcompanhamentoDeEntregasController telaAcompanhamentoDeEntregasController = new TelaAcompanhamentoDeEntregasController();
+    private TurmaDTO turmaDTO = new TurmaDTO();
+    private TGDTO tgdtoDTO = new TGDTO();
+    private AlunoDTO alunoDTO = new AlunoDTO();
+    public void injecaoEntregasAluno(TelaAcompanhamentoDeEntregasController telaAcompanhamentoDeEntregasController, TurmaDTO turmaDTO, TGDTO tgdto, AlunoDTO aluno) {
         this.telaAcompanhamentoDeEntregasController = telaAcompanhamentoDeEntregasController;
+        this.turmaDTO = turmaDTO;
+        this.alunoDTO = aluno;
+        this.tgdtoDTO = tgdto;
     }
     @FXML
     private TableColumn<EntregaDTO, String> colunaEntrega;
 
     @FXML
-    private TableColumn<EntregaDTO, String> colunaNota;
-
-    @FXML
-    private TableColumn<EntregaDTO, Boolean> colunaStatus;
+    private TableColumn<EntregaDTO, String> colunaStatus;
 
     @FXML
     private ImageView imgLogo;
@@ -54,24 +58,32 @@ public class TelaResultadosDeEntregasController extends MudancaTelas {
 
     @FXML
     private TableView<EntregaDTO> tabelaNotas;
-
-
     ObservableList<EntregaDTO> obsEntrega = FXCollections.observableArrayList();
-    
 
-    private AlunoDTO aluno = new AlunoDTO();
-    private TurmaDTO turma = new TurmaDTO();
-    private TGDTO tgdto = new TGDTO();
+    public void initialize(){
+        this.turmaDTO = telaAcompanhamentoDeEntregasController.mandarDados();
+        this.tgdtoDTO = telaAcompanhamentoDeEntregasController.getTgdtoMandarDados();
+        this.alunoDTO = telaAcompanhamentoDeEntregasController.getAlunoDTO();
+        NotaDTO notaDTO = new NotaDTO();
+        EntregaDAO entregaDAO = new EntregaDAO();
 
-    @FXML
-    void onVisualizarAlunosClicked(ActionEvent event) {
+        obsEntrega.clear();
+        tabelaNotas.setItems(null);
+        List<EntregaDTO> listaEntrega = new LinkedList<>();
 
+        if(turmaDTO.getId()!= null){
+            listaEntrega = entregaDAO.getEntregasPorIdTurmaTipoTG(turmaDTO, tgdtoDTO);
+        }
+        txtNome.setText(alunoDTO.getNome());
+        for (EntregaDTO entrega : listaEntrega) {
+            obsEntrega.add(entrega);
+        }
+
+        colunaEntrega.setCellValueFactory(new PropertyValueFactory<>("tituloEntrega"));
+        colunaStatus.setCellValueFactory(cellData -> new SimpleStringProperty(
+                cellData.getValue().getStatus(alunoDTO.getId())));
+        //System.out.println(obsListaNotas);
+        obsEntrega = FXCollections.observableArrayList(obsEntrega);
+        tabelaNotas.setItems(obsEntrega);
     }
-
-
-
-    public void receberDados(AlunoDTO aluno, TurmaDTO turma) {
-
-        this.aluno = aluno;
-        this.turma = turma;
-    }}
+}

@@ -84,6 +84,16 @@ public class EntregaDTO {
           }
      }
 
+     public String getStatus(Long idAluno){
+          NotaDAO notaDAO = new NotaDAO();
+          NotaDTO notaDTO = notaDAO.getNotaPorAlunoEntrega(idAluno, this.idEntrega);
+          if(notaDTO == null){
+               return "Pendente";
+          }else{
+               return "Realizada";
+          }
+     }
+
      public String getFeedbackAlunos(Long idAluno){
           NotaDAO notaDAO = new NotaDAO();
           NotaDTO notaDTO = notaDAO.getNotaPorAlunoEntrega(idAluno, this.idEntrega);
