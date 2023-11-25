@@ -118,11 +118,11 @@
                 </HBox>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="800.0">
                <content>
-                  <TableView fx:id="tabelaMedia" prefHeight="314.0" prefWidth="800.0">
+                  <TableView fx:id="tableAlunos" prefHeight="314.0" prefWidth="800.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" maxWidth="393.0" minWidth="141.0" prefWidth="392.0" resizable="false" text="Nome" />
-                        <TableColumn fx:id="colunaNome1" minWidth="11.0" prefWidth="111.0" resizable="false" text="Tipo TG" />
-                        <TableColumn fx:id="colunaNome2" minWidth="200.0" prefWidth="285.0" resizable="false" text="Orientador" />
+                        <TableColumn fx:id="colunaTipoTg" minWidth="11.0" prefWidth="111.0" resizable="false" text="Tipo TG" />
+                        <TableColumn fx:id="colunaOrientador" minWidth="200.0" prefWidth="285.0" resizable="false" text="Orientador" />
                      </columns>
                   </TableView>
                </content>
