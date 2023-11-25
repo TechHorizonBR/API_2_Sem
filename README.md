@@ -228,6 +228,7 @@ Feira de Soluções|  12/12/2023| 12/12/2023
 - <a href="https://github.com/TechHorizonBR/API_2_Sem/blob/Sprint3/Docs/DiagramaDeClasse.png">Diagrama de Classes</a>
 - <a href="https://www.figma.com/file/c0g436FKcqlxVzvQkhjapb/WireFrame---API_2S?type=design&node-id=0%3A1&mode=design&t=zESC1cV3qporI61q-1">Protótipo de Telas</a>
 - <a href="https://github.com/TechHorizonBR/API_2_Sem/tree/Sprint2/Database">Banco de Dados</a>
+- <a href="https://github.com/TechHorizonBR/API_2_Sem/tree/Sprint4/Docs/Manual de Uso - TGSync.docx" download>Manual de Uso</a>
 
 
 <span id="tecnologias">
