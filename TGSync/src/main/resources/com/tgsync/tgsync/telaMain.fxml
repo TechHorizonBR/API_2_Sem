@@ -13,26 +13,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaMainController">
     <children>
       <VBox prefHeight="275.0" prefWidth="900.0">
          <children>
               <MenuBar prefHeight="25.0" prefWidth="569.0">
                   <Menu text="Alunos">
-                      <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar alunos" />
+                      <MenuItem fx:id="visualizarAlunos" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                   </Menu>
                   <Menu text="Cadastros">
                       <MenuItem fx:id="telaOrientadores" onAction="#onOrientadores" text="Orientadores" />
                       <MenuItem fx:id="entregas" onAction="#telaEntregas" text="Definir entregas" />
                   </Menu>
                   <Menu text="Relatórios">
-                      <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Aptos a Defesa" />
-                      <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Entregas" />
-                      <MenuItem fx:id="relatorioFechamento" text="Fechamento" onAction="#onRelatorioFechamento" />
-                      <MenuItem fx:id="relatorioCertificadoOrientadores" text="Relatório de Certificação Orientadores" onAction="#onRelatorioCertOrienClicked"/>
-                      <MenuItem text="Feedbacks" />
+                      <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                      <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                      <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                      <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
                   </Menu>
                   <Menu text="Configurações">
+                  <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
                       <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
                       <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                   </Menu>

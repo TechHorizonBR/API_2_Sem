@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="895.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
+<AnchorPane prefHeight="600.0" prefWidth="895.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaOrientadorController">
       <children>
       <VBox layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
          <children>
@@ -27,7 +27,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Alunos">
                   <items>
-                    <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
+                    <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastros">
@@ -36,18 +36,19 @@
                         <MenuItem fx:id="entregas" mnemonicParsing="false" onAction="#telaEntregas" text="Definir Entregas" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Relatórios">
-                  <items>
-                    <MenuItem fx:id="relatorioDefesa" mnemonicParsing="false" onAction="#onAlunosAptosClick" text="Aptos a defesa" />
-                        <MenuItem mnemonicParsing="false" text="Entregas" />
-                        <MenuItem mnemonicParsing="false" text="Fechamento" />
-                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Configurações">
+                  <Menu text="Relatórios">
                      <items>
-                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
-                        <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
+                        <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                        <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                        <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                        <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
+                     </items>
+                  </Menu>
+                  <Menu text="Configurações">
+                     <items>
+                        <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
+                        <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
+                        <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                      </items>
                   </Menu>
               </menus>

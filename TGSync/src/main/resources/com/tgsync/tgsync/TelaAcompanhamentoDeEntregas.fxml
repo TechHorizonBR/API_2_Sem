@@ -29,7 +29,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Alunos">
                      <items>
-                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
+                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Cadastros">
@@ -40,14 +40,15 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatórios">
                      <items>
-                        <MenuItem fx:id="relatorioDefesa" mnemonicParsing="false" onAction="#onAlunosAptosClick" text="Aptos a defesa" />
-                        <MenuItem mnemonicParsing="false" text="Entregas" />
-                        <MenuItem mnemonicParsing="false" text="Fechamento" />
-                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
+                        <MenuItem fx:id="relatorioDefesa" mnemonicParsing="false" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                        <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                        <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                        <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Configurações">
                      <items>
+                        <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
                         <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
                         <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
                      </items>
@@ -129,7 +130,7 @@
             </HBox>
             <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="826.0">
                <content>
-                  <TableView fx:id="tabelaAlunos"  onMouseClicked="#onTableClickEntrega"   prefHeight="410.0" prefWidth="1800.0">
+                  <TableView fx:id="tabelaAlunos" onMouseClicked="#onTableClickEntrega" prefHeight="410.0" prefWidth="1800.0">
                      <columns>
                         <TableColumn fx:id="colunaNome" maxWidth="900.0" minWidth="500.0" prefWidth="811.1999862790108" resizable="false" text="Nome" />
                      </columns>
