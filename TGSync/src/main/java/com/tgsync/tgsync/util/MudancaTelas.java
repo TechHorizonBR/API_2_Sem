@@ -52,10 +52,20 @@ public class MudancaTelas {
         if (comboBoxTipoTG != null) {
             tipo = comboBoxTipoTG.getValue();
         }
-        if ("Portfólio".equals(tipo)) { // Verifique se o valor é igual a "Portfólio"
+        if ("Portfólio".equals(tipo)) {
             observableListTG.add(1);
             observableListTG.add(2);
             comboBoxTG.setItems(observableListTG);
+        }
+    }
+
+    @FXML
+    void onImportarCsv(ActionEvent event) {
+        try {
+            loadView("telaCSV.fxml");
+        } catch (IOException ex) {
+            Alerts.showAlert("ERRO","Erro","Erro ao tentar trocar tela", Alert.AlertType.ERROR);
+            throw new RuntimeException(ex);
         }
     }
 
