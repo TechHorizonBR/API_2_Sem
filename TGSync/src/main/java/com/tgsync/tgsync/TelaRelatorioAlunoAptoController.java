@@ -64,8 +64,6 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
                 TurmaDTO turmaDTO1 = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(anoComboBox.getValue(), semestreComboBox.getValue(), 1));
                 TurmaDTO turmaDTO2 = TurmaDAO.getTurmaPorAtributo(new TurmaDTO(anoComboBox.getValue(), semestreComboBox.getValue(), 2));
 
-
-
                 String tipo = "Relatório";
 
                 listMatriculaTurma2 = alunoDAO.getAllMatriculaPorIdTipoeIdTurma(tipo, turmaDTO1);
@@ -223,10 +221,12 @@ public class TelaRelatorioAlunoAptoController extends MudancaTelas implements In
                 Files.createFile(Paths.get(filePath));
 
                 List<String> existentes = LinhaExistentes(filePath);
+                String linha = "Nome do Aluno: ;Email Fatec do aluno: ;Email pessoal do aluno: ;Nome orientador: ;Email do orientador: ;";
+                existentes.add(linha);
 
                 for (AlunoDTO aluno : obsAlunosAptos) {
                     OrientadorDTO orientadorDTO = orientadorDAO.getOrientadorPorId(aluno.getIdOrientador());
-                    String linha = aluno.getNome()+";"+aluno.getEmailFatec()+";"+aluno.getEmailPessoal()+";"+orientadorDTO.getNome() + ";" + orientadorDTO.getEmail() + ";";
+                    linha = aluno.getNome()+";"+aluno.getEmailFatec()+";"+aluno.getEmailPessoal()+";"+orientadorDTO.getNome() + ";" + orientadorDTO.getEmail() + ";";
                     existentes.add(linha);
                 }
 

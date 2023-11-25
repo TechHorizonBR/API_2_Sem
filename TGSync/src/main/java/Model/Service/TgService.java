@@ -40,6 +40,14 @@ public class TgService {
 
                 if (alunoDTO != null) {
                     Long idAluno = alunoDTO.getId();
+                    TGDTO tgDTO = tgdao.getTgPorIdAluno(idAluno);
+                    if(tgDTO!=null){
+                        try{
+                            tgdao.deletePorIdAluno(alunoDTO.getId());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                     tgdao.addTg(new TGDTO(tipo, discplina, problema, empresa, idAluno));
                 }
             }

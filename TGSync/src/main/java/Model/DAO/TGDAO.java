@@ -128,4 +128,26 @@ public class TGDAO {
         }
         return tgsEncontrados;
     }
+
+    public void deletePorIdAluno(Long id){
+        PreparedStatement stmt = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "DELETE FROM tg WHERE idAluno = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }finally {
+            try{
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

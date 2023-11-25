@@ -2,6 +2,7 @@ package Model.Service;
 
 import Model.DAO.AlunoDAO;
 import Model.DAO.OrientadorDAO;
+import Model.DAO.TGDAO;
 import Model.DAO.TurmaDAO;
 import Model.DTO.AlunoDTO;
 import Model.DTO.OrientadorDTO;
@@ -29,6 +30,7 @@ public class AlunoService {
             OrientadorDTO orientadorDTO = new OrientadorDTO();
             AlunoDTO alunoDTO;
             String emailFatec = null;
+            TGDAO tgdao = new TGDAO();
 
             for (String[] linha : linhas) {
                 if (linha[2].isEmpty()) {

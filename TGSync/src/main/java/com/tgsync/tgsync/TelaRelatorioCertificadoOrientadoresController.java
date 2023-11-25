@@ -61,10 +61,12 @@ public class TelaRelatorioCertificadoOrientadoresController extends MudancaTelas
 
             if (selectedDirectory != null) {
                 String directoryPath = selectedDirectory.getAbsolutePath();
-                String filePath = directoryPath + File.separator + "meuArquivo.csv";
+                String filePath = directoryPath + File.separator + "RelatorioOrientadores.csv";
                 Files.createFile(Paths.get(filePath));
 
                 List<String> existentes = LinhaExistentes(filePath);
+                String linha = "Nome orientador: ;Email orientador: ;Nome aluno: ;Email Fatec do aluno: ;";
+                existentes.add(linha);
 
                 for (Long idOrientador : listOrientadoresAptosIds) {
                     List<Long> idsAlunos = alunoDAO.getIdsAlunosPorIdOrientador(idOrientador);
@@ -76,7 +78,7 @@ public class TelaRelatorioCertificadoOrientadoresController extends MudancaTelas
                     }
 
                     for (AlunoDTO aluno : listAluno) {
-                        String linha = orientadorDTO.getNome() + ";" + orientadorDTO.getEmail() + ";" + aluno.getNome() + ";" + aluno.getEmailFatec() + ";";
+                        linha = orientadorDTO.getNome() + ";" + orientadorDTO.getEmail() + ";" + aluno.getNome() + ";" + aluno.getEmailFatec() + ";";
                         existentes.add(linha);
                     }
                 }

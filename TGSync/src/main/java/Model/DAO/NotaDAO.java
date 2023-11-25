@@ -144,35 +144,39 @@ public class NotaDAO {
         ResultSet rs = null;
         List<Double> media = new LinkedList<>();
 
-        try{
+        try {
             connection = ConexaoBD.ConexaoBD();
             String sql = "SELECT valor FROM nota WHERE idEntrega IN (";
-            for(int x = 0; x < ids.size(); x++){
+
+            for (int x = 0; x < ids.size(); x++) {
                 sql += (x == 0 ? "?" : ", ?");
             }
-            sql+= ") AND idAluno = ?;";
+            sql += ") AND idAluno = ?;";
             stmt = connection.prepareStatement(sql);
-            for(int y =0;y < ids.size(); y++){
-                stmt.setLong(y+1, ids.get(y));
+            for (int y = 0; y < ids.size(); y++) {
+                stmt.setLong(y + 1, ids.get(y));
             }
-            stmt.setLong(ids.size()+1, idAluno);
+            stmt.setLong(ids.size() + 1, idAluno);
+
             rs = stmt.executeQuery();
+
             while(rs.next()){
                 media.add(rs.getDouble("valor"));
             }
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e){
             e.printStackTrace();
-        }finally {
-            try{
-                if(connection!=null) connection.close();
-            }catch (SQLException e){
+        } finally {
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return media;
     }
+
     public int updateNota(NotaDTO notaDTO) {
         PreparedStatement stmt = null;
         int success = 0;
