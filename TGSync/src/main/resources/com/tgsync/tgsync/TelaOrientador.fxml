@@ -27,27 +27,28 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Alunos">
                   <items>
-                    <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" text="Visualizar Alunos" onAction="#onVisualizarAlunosClicked"/>
+                    <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
-                    <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" text="Orientadores" onAction="#onOrientadores"/>
-                        <MenuItem fx:id="entregas" mnemonicParsing="false" text="Definir Entregas" onAction="#telaEntregas"/>
+                    <MenuItem fx:id="telaOrientadores" mnemonicParsing="false" onAction="#onOrientadores" text="Orientadores" />
+                        <MenuItem fx:id="entregas" mnemonicParsing="false" onAction="#telaEntregas" text="Definir Entregas" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Relatórios">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Aptos a defesa" />
-                        <MenuItem mnemonicParsing="false" text="Entregas" />
-                        <MenuItem mnemonicParsing="false" text="Fechamento" />
-                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Configurações">
+                  <Menu text="Relatórios">
                      <items>
-                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" text="Tela Inicial" onAction="#onTelaInicial"/>
-                        <MenuItem fx:id="sair" mnemonicParsing="false" text="Sair" onAction="#encerrarSistema" />
+                        <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                        <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                        <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                        <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
+                     </items>
+                  </Menu>
+                  <Menu text="Configurações">
+                     <items>
+                        <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
+                        <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
+                        <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                      </items>
                   </Menu>
               </menus>
@@ -119,7 +120,7 @@
                <content>
                   <TableView fx:id="tabelaOrientadores" prefHeight="346.0" prefWidth="850.0">
                      <columns>
-                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome"/>
+                        <TableColumn fx:id="colunaNome" minWidth="200.0" prefWidth="403.2000167965889" resizable="false" text="Nome" />
                         <TableColumn fx:id="colunaEmail" minWidth="200.0" prefWidth="408.7999572753906" text="Email" />
                      </columns>
                   </TableView>

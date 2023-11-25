@@ -32,7 +32,6 @@ public class TgService {
                 String email2 = linha[2];
                 AlunoDTO alunoDTO = null;
 
-
                 if (linha[2].isEmpty()){
                     alunoDTO = alunoDAO.getAlunoPorEmail(linha[1]);
                 }else{
@@ -41,10 +40,15 @@ public class TgService {
 
                 if (alunoDTO != null) {
                     Long idAluno = alunoDTO.getId();
+                    TGDTO tgDTO = tgdao.getTgPorIdAluno(idAluno);
+                    if(tgDTO!=null){
+                        try{
+                            tgdao.deletePorIdAluno(alunoDTO.getId());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                     tgdao.addTg(new TGDTO(tipo, discplina, problema, empresa, idAluno));
-                    System.out.println("Deu certo");
-                } else {
-                    System.err.println("Aluno não encontrado para o email fornecido: " + linha[2]);
                 }
             }
         } catch (FileNotFoundException ex) {
@@ -54,6 +58,5 @@ public class TgService {
         } catch (CsvException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

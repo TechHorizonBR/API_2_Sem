@@ -98,4 +98,56 @@ public class TGDAO {
         }
         return null;
     }
+
+    public List<TGDTO> getTgsPorIdAluno(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<TGDTO> tgsEncontrados = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+
+            String sql = "SELECT * FROM tg WHERE idAluno = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                tgsEncontrados.add(new TGDTO(rs.getLong("id"), rs.getString("tipo"), rs.getString("disciplina"), rs.getString("problema"), rs.getString("empresa"), rs.getLong("idAluno")));
+            }
+        }catch (SQLException e){
+            e.getMessage();
+        }catch (ClassNotFoundException e){
+            e.getMessage();
+        }finally {
+            try{
+                if(connection!=null) connection.close();
+            }catch (SQLException e){
+                e.getMessage();
+            }
+        }
+        return tgsEncontrados;
+    }
+
+    public void deletePorIdAluno(Long id){
+        PreparedStatement stmt = null;
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "DELETE FROM tg WHERE idAluno = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }finally {
+            try{
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

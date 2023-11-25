@@ -245,7 +245,7 @@ public class    AlunoDAO {
         return matriculasEncontradas;
     }
 
-    public List<Long> getAllMatriculaPorIdTipoeIdTurma(String tipo, Integer tg, TurmaDTO turmaDTO){
+    public List<Long> getAllMatriculaPorIdTipoeIdTurma(String tipo, TurmaDTO turmaDTO){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Long> matriculasEncontradas = new LinkedList<>();
@@ -322,5 +322,28 @@ public class    AlunoDAO {
             }
         }
         return null;
+    }
+    public List<Long> getIdsAlunosPorIdOrientador(Long id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Long> listIdsAlunos = new LinkedList<>();
+
+        try{
+            connection = ConexaoBD.ConexaoBD();
+            String sql = "SELECT id FROM aluno WHERE idOrientador = ?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                listIdsAlunos.add(rs.getLong("id"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return listIdsAlunos;
     }
 }

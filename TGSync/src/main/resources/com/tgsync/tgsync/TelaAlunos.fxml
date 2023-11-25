@@ -13,7 +13,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +21,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import java.lang.Integer?>
 <AnchorPane fx:id="pnlPrincipal" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: gainsboro;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tgsync.tgsync.TelaAlunosController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onTableClick" prefHeight="602.0" prefWidth="900.0">
@@ -31,7 +29,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Alunos">
                      <items>
-                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
+                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Cadastros">
@@ -40,18 +38,19 @@
                         <MenuItem fx:id="entregas" mnemonicParsing="false" onAction="#telaEntregas" text="Definir Entregas" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Relatórios">
+                  <Menu text="Relatórios">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Aptos a defesa" />
-                        <MenuItem mnemonicParsing="false" text="Entregas" />
-                        <MenuItem mnemonicParsing="false" text="Fechamento" />
-                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
+                        <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                        <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                        <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                        <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Configurações">
+                  <Menu text="Configurações">
                      <items>
-                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
-                        <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
+                        <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
+                        <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
+                        <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                      </items>
                   </Menu>
                </menus>
@@ -86,7 +85,7 @@
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Portfólio" />
-                           <String fx:value="Artigo Científico" />
+                           <String fx:value="Artigo Tecnológico ou Científico" />
                            <String fx:value="Relatório Técnico" />
                         </FXCollections>
                      </items>
@@ -111,47 +110,12 @@
                         <Insets left="-20.0" top="20.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Semestre:" translateX="66.0">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Text>
-                  <ComboBox fx:id="semestreCombo" prefWidth="40.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <Integer fx:value="1" />
-                           <Integer fx:value="2" />
-                        </FXCollections>
-                     </items>
-                     <HBox.margin>
-                        <Insets left="-20.0" top="20.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ano:" translateX="30.0">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Text>
-                  <TextField fx:id="txtAno" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="110.0" promptText="Ano">
-                     <padding>
-                        <Insets left="5.0" right="50.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets right="70.0" top="20.0" />
-                     </HBox.margin>
-                  </TextField>
                   <Button fx:id="onOkButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnOkButton" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: lightslategrey; -fx-min-height: 20; -fx-border-color: dimgrey;" text="OK" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="10.0" right="30.0" top="20.0" />
+                        <Insets bottom="10.0" left="45.0" right="30.0" top="20.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />

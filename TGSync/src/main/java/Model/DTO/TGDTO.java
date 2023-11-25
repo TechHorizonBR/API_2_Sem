@@ -8,6 +8,7 @@ public class TGDTO {
     private String problema;
     private String empresa;
     private Long idAluno;
+    public TGDTO (){}
 
     public TGDTO(Long id, String tipo, String disciplina, String problema, String empresa, Long idAluno) {
         this.id = id;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Integer?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -32,7 +31,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Alunos">
                      <items>
-                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos" />
+                        <MenuItem fx:id="visualizarAlunos" mnemonicParsing="false" onAction="#onVisualizarAlunosClicked" text="Visualizar Alunos e Atribuir Notas" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Cadastros">
@@ -41,18 +40,19 @@
                         <MenuItem fx:id="entregas" mnemonicParsing="false" onAction="#telaEntregas" text="Definir Entregas" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Relatórios">
+                  <Menu text="Relatórios">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Aptos a defesa" />
-                        <MenuItem mnemonicParsing="false" text="Entregas" />
-                        <MenuItem mnemonicParsing="false" text="Fechamento" />
-                        <MenuItem mnemonicParsing="false" text="Feedbacks" />
+                        <MenuItem fx:id="relatorioDefesa" onAction="#onAlunosAptosClick" text="Relatório de Alunos aptos a defesa" />
+                        <MenuItem fx:id="relatorioEntrega" onAction="#onRelatorioEntregas" text="Relatório de Acompanhamento de Entregas" />
+                        <MenuItem fx:id="relatorioFechamento" onAction="#onRelatorioFechamento" text="Relatório de Fechamento de Notas" />
+                        <MenuItem fx:id="relatorioCertificadoOrientadores" onAction="#onRelatorioCertOrienClicked" text="Relatório de Certificação de Orientadores" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Configurações">
+                  <Menu text="Configurações">
                      <items>
-                        <MenuItem fx:id="telaInicial" mnemonicParsing="false" onAction="#onTelaInicial" text="Tela Inicial" />
-                        <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#encerrarSistema" text="Sair" />
+                        <MenuItem onAction="#onImportarCsv" text="Importar CSV" />
+                        <MenuItem onAction="#onTelaInicial" text="Tela Inicial" />
+                        <MenuItem fx:id="sair" onAction="#encerrarSistema" text="Sair" />
                      </items>
                   </Menu>
                </menus>

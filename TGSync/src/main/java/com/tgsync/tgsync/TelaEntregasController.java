@@ -50,12 +50,6 @@ public class TelaEntregasController extends MudancaTelas {
     private TableView<EntregaDTO> tabelaEntregasTG1;
 
     @FXML
-    private ComboBox<Integer> comboBoxTG;
-    @FXML
-    private ComboBox<String> comboBoxTipoTG;
-
-
-    @FXML
     private DatePicker dateDataEntrega;
 
     @FXML
@@ -63,8 +57,6 @@ public class TelaEntregasController extends MudancaTelas {
 
     @FXML
     ObservableList<EntregaDTO> obsListEntregasTG1 = FXCollections.observableArrayList();
-    @FXML
-    ObservableList<Integer> observableListTG = FXCollections.observableArrayList();
 
     public void initialize() {
         try {
@@ -201,15 +193,5 @@ public class TelaEntregasController extends MudancaTelas {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    void carregarMatriculaTG(){
-        observableListTG.clear();
-        comboBoxTG.setItems(null);
-        String tipo = comboBoxTipoTG.getValue();
-        if(tipo.equals("Portfólio")){
-            observableListTG.add(1);
-            observableListTG.add(2);
-            comboBoxTG.setItems(observableListTG);
-        }
-    }
+
     }
