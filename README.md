@@ -144,10 +144,10 @@ Carregamento do arquivo CSV | 1 | ✅
 Validação dados do orientador | 2 | ✅
 Registro de notas e feedbacks | 3 | ✅
 Registro de número de avaliações | 4 | ✅
-Replicação de notas em caso de relatórios técnicos | 5 | -
-Geração de relatório de alunos aptos a defesa | 6 | -
-Geração de relatório de notas dos alunos | 7 | -
-Geração de relatório de acompanhamento de entregas | 8 | -
+Geração de relatório de alunos aptos a defesa | 5 | ✅
+Geração de relatório de notas dos alunos | 6 | ✅
+Geração de relatório de acompanhamento de entregas | 7 | ✅
+Geração de relatório para certificado de orientador | 8 | ✅
 
 
 <span id="userstory">
@@ -167,11 +167,11 @@ Como professor, necessito que o sistema valide o nome do professor, para que eu 
 Como professor, necessito que seja possível atribuir uma nota e fornecer feedback para cada entrega do aluno, para que eu possa consultá-los no futuro. | 3
 Como professor, necessito que o sistema permita inserir o número necessário de entregas para cada turma de TG, a fim de realizar as avaliações. | 4
 Como professor, necessito que o sistema seja capaz de identificar se o aluno está matriculado no TG1, TG2 ou em ambos, a fim de definir a abordagem de avaliação adequada. | 4
-Como professor, necessito que o sistema faça a distinção entre os tipos de TG (portfolio, artigo tecnológico ou científico, relatório técnico para estágio ou disciplina) para que eu possa gerenciar cada tipo de forma adequada. | 5
-Como professor, gostaria que o sistema replicasse a nota do TG1 para TG2 em caso de relatórios técnicos, a fim de manter a consistência nas avaliações. | 5
-Como professor, necessito que o sistema possa gerar uma lista de alunos aptos para a defesa do projeto, a fim de facilitar o processo de certificação. | 6
-Como professor, necessito que o sistema permita o fechamento do semestre e o transporte de notas, para facilitar o processo de aprovação dos alunos. | 7
-Como professor, gostaria que o sistema destacasse os alunos que não estão entregando as atividades, para que eu possa identificar e abordar problemas nas entregas. | 8
+Como professor, necessito que o sistema possa gerar uma lista de alunos aptos para a defesa do projeto, a fim de facilitar o processo de certificação. | 5
+Como professor, necessito que o sistema permita o fechamento do semestre e o transporte de notas, para facilitar o processo de aprovação dos alunos. | 6
+Como professor, gostaria que o sistema destacasse os alunos que não estão entregando as atividades, para que eu possa identificar e abordar problemas nas entregas. | 7
+Como professor, necessito que o sistema possa gerar um relatório para certificação do orientador cujo todos os alunos realizaram ao menos uma entrega | 8
+
 
 </details>
 
@@ -185,7 +185,7 @@ Kick off do projeto| 21/08/2023| 21/08/2023 ✅
 1| 04/09/2023| 24/09/2023 ✅
 2| 25/09/2023| 15/10/2023 ✅
 3| 16/10/2023| 05/11/2023 ✅
-4|  06/11/2023| 26/11/2023 
+4|  06/11/2023| 26/11/2023 ✅
 Feira de Soluções|  12/12/2023| 12/12/2023 
 
 
